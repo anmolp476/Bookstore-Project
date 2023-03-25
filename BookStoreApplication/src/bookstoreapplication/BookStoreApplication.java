@@ -8,6 +8,7 @@ package bookstoreapplication;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -40,11 +41,16 @@ public class BookStoreApplication extends Application {
             }
         });
         
-        VBox root = new VBox();
-        root.getChildren().add(btn);
-        root.getChildren().add(btn2);
-
-        Scene scene = new Scene(root, 300, 250);
+        StackPane root = new StackPane();
+        VBox vbox = new VBox();
+  
+        vbox.getChildren().add(btn);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(20);
+        
+        vbox.getChildren().add(btn2);
+        root.getChildren().add(vbox);
+        Scene scene = new Scene(root, 560, 480);
         
         primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(scene);
