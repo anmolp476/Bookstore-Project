@@ -25,7 +25,6 @@ public class AccountManager {
         if(instance == null){
             instance = new AccountManager();
         }
-        
         return instance;
     }
     
@@ -33,11 +32,48 @@ public class AccountManager {
         return userList;
     }
     
-    public void addCustomer(String user, String pass){
-        CustomerData a = new CustomerData(user, pass, 0);
-        userList.add(a);
+    public UserEntity getUser(String user){
+        for (UserEntity i : userList){
+            if (i.getUsername().equals(user)){
+                return i;
+            }   
+        }
+        return null;        
     }
     
+    public void addCustomer(String user, String pass){    
+        if (!checkUserExists(user)){
+            UserEntity a = new CustomerData(user, pass, 0);
+            userList.add(a);
+        }
+    }
+    public boolean checkUserExists(String user){  
+        for (UserEntity i : userList){
+            if (i.getUsername().equals(user)){
+                return true;
+            }   
+        }
+        return false;
+    }
+    
+    public CustomerData getCustomer(String user){
+        for (UserEntity i : userList){
+            if (i.getUsername().equals(user)){
+                return (CustomerData)i;
+            }   
+        }
+        return null;
+    }
+    
+    public boolean removeCustomer(String user){
+        for (UserEntity i : userList){
+            if (i.getUsername().equals(user)){
+                userList.remove(i);
+                return true;
+            }   
+        }
+        return false;
+    }
     
     
 }
