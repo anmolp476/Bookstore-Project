@@ -2,9 +2,9 @@ package bookstoreapplication;
 
 public class BookData
 {
-    private String bookName = "";
-    private String author = "";
-    private float price;
+    protected String bookName = "";
+    protected String author = "";
+    protected float price;
     
     public BookData(String inputBookName, String inputAuthor, float inputPrice)
     {
