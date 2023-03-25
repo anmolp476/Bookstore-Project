@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+import javafx.scene.layout.VBox;
 /**
  *
  * @author Victor
@@ -30,13 +30,23 @@ public class BookStoreApplication extends Application {
                 System.out.println("Hello World!");
             }
         });
+        Button btn2 = new Button();
+        btn2.setText("Say 'test'");
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("setset!");
+            }
+        });
         
-        StackPane root = new StackPane();
+        VBox root = new VBox();
         root.getChildren().add(btn);
-        
+        root.getChildren().add(btn2);
+
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
