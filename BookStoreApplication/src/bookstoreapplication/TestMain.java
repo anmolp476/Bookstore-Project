@@ -24,8 +24,9 @@ public class TestMain extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Conference");
 
-        OwnerGUI TEST = new OwnerGUI();
-        TEST.accessUI(primaryStage);
+        //OwnerGUI TEST1 = new OwnerGUI();
+        CustomerGUI TEST2 = new CustomerGUI();
+        TEST2.accessUI(primaryStage);
 
         primaryStage.show();
     }
