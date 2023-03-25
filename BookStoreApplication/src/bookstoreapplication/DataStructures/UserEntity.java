@@ -25,4 +25,10 @@ public abstract class UserEntity {
     public String getPassword(){
         return password;
     }
+    
+    /**
+     * Returns a String representation of the type of user this is
+     * @return The type of user as a string
+     */
+    public String getUserType(){ return "User"; }
 }

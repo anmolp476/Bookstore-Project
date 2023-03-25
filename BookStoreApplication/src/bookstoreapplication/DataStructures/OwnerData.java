@@ -16,4 +16,9 @@ public class OwnerData extends UserEntity{
         super(username, password);
     }
     
+    /**
+     * Returns a String representation of the type of user this is
+     * @return The type of user as a string
+     */
+    public String getUserType(){ return "Owner"; }
 }
