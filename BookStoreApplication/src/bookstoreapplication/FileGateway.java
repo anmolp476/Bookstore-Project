@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package bookstoreapplication;
-
+import bookstoreapplication.DataStructures.UserEntity;
+import java.util.ArrayList;
 /**
  *
  * @author Yanny
  */
 public class FileGateway {
-    public UserData readUserFile(){
+    public UserEntity readUserFile(){
     
     }
     
@@ -18,11 +19,11 @@ public class FileGateway {
         
     }
     
-    public boolean writeUserFile(List<UserData> userDataList){
+    public boolean writeUserFile(ArrayList<UserEntity> userDataList){
         
     }
     
-    public boolean writeBookFile(List<BookData> bookDataList){
+    public boolean writeBookFile(ArrayList<BookData> bookDataList){
         
     }
     
