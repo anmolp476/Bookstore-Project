@@ -9,6 +9,6 @@ package bookstoreapplication;
  *
  * @author LordV
  */
-public class UserEntity {
+public abstract class UserEntity {
     
 }
