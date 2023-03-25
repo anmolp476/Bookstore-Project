@@ -69,7 +69,10 @@ public class LoginGUI implements Viewable {
 
         // Login
         accessLoginGUI(primaryStage, loginButton, cancelButton);
-
+        
+        // Sign Up (implement the signup button)
+        //accessSignUpGUI(primaryStage, signUpButton, scene);
+        
         // Main Layout
         VBox layout = createLayout(buttons);
         //layout.getChildren().add(mediaView);
@@ -188,13 +191,13 @@ public class LoginGUI implements Viewable {
     }
 
     private void shutdownSequence(Stage primaryStage) {
-        //String musicFile = "/sound2.mp3";
-        //Media sound = new Media(new File(musicFile).toURI().toString());
-        //MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        //mediaPlayer.setVolume(0.25);
-        //mediaPlayer.setAutoPlay(true);
-        //mediaPlayer.setOnEndOfMedia(primaryStage::close);
-        //MediaView mediaView = new MediaView(mediaPlayer);
+        String musicFile = "Media/shutdown.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.25);
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setOnEndOfMedia(primaryStage::close);
+        MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
         Text endCredits = new Text("Brought to you by, Group_3");
@@ -206,8 +209,21 @@ public class LoginGUI implements Viewable {
         StackPane.setAlignment(endCredits, Pos.CENTER);
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
-        
+
         loginPresenter.shutdownSequence(); //IMPLEMENT THIS LATER
+        
+        primaryStage.show();
+        
+        new java.util.Timer().schedule( 
+        new java.util.TimerTask() {
+            @Override
+            public void run() {
+                System.exit(0);
+            }
+        }, 
+        2000 
+);
+        //
     }
 
 }
