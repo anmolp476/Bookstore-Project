@@ -52,7 +52,6 @@ public class BookStoreApplication implements Viewable {
         root.getChildren().add(vbox);
         Scene scene = new Scene(root, 560, 480);
         
-        primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

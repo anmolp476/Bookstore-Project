@@ -21,10 +21,16 @@ public class main extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Conference");
-
+        primaryStage.setTitle("Bookstore Application");
+        
         BookStoreApplication BSA = new BookStoreApplication();
-        BSA.accessUI(primaryStage);
+        
+        LoginGUI loginGUI = new LoginGUI();
+        LoginPresenter loginPresenter = new LoginPresenter(BSA);
+        loginGUI.setLoginPresenter(loginPresenter);
+        
+        
+        loginGUI.accessUI(primaryStage);
 
         primaryStage.show();
     }

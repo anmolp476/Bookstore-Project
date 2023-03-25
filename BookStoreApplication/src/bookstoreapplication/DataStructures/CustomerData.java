@@ -31,4 +31,11 @@ public class CustomerData extends UserEntity{
         }
         return status;
     }
+    
+    /**
+     * Returns a String representation of the type of user this is
+     * @return The type of user as a string
+     */
+    @Override
+    public abstract String getUserType();
 }
