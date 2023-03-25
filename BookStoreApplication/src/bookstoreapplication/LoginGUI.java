@@ -188,25 +188,26 @@ public class LoginGUI implements Viewable {
     }
 
     private void shutdownSequence(Stage primaryStage) {
-        String musicFile = "/sound2.mp3";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.25);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setOnEndOfMedia(primaryStage::close);
-        MediaView mediaView = new MediaView(mediaPlayer);
+        //String musicFile = "/sound2.mp3";
+        //Media sound = new Media(new File(musicFile).toURI().toString());
+        //MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        //mediaPlayer.setVolume(0.25);
+        //mediaPlayer.setAutoPlay(true);
+        //mediaPlayer.setOnEndOfMedia(primaryStage::close);
+        //MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
         Text endCredits = new Text("Brought to you by, Group_3");
         endCredits.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 36));
 
         StackPane layout = new StackPane();
-        layout.getChildren().add(mediaView);
+        //layout.getChildren().add(mediaView);
         layout.getChildren().add(endCredits);
         StackPane.setAlignment(endCredits, Pos.CENTER);
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
-        //loginPresenter.shutdownSequence(); IMPLEMET LATEr
+        
+        //loginPresenter.shutdownSequence(); IMPLEMENT THIS LATER
     }
 
 }
