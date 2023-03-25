@@ -56,12 +56,11 @@ public class LoginGUI implements Viewable {
 
         // Buttons
         Button loginButton = new Button("Login");
-        Button signUpButton = new Button("Sign Up");
         Button cancelButton = new Button("Cancel");
         Button exitButton = createExitButton(primaryStage);
 
         // Button list
-        List<Button> buttons = new ArrayList<>(Arrays.asList(loginButton, signUpButton, exitButton));
+        List<Button> buttons = new ArrayList<>(Arrays.asList(loginButton, exitButton));
         for (Button button : buttons) {
             button.setMaxSize(200, 30);
             button.setMinSize(200, 30);
