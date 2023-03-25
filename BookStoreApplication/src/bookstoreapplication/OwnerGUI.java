@@ -60,8 +60,8 @@ public class OwnerGUI extends ApplicationGUI{
             btn2.setStyle(buttonStyle);
             btn3.setStyle(buttonStyle);
             
-           /* Image logo = new Image("file:");
-            ImageView imageViewer = new ImageViewer(logo);
+            /*Image logo = new Image("File:Media/BookstoreApplicationLogo.png");
+            ImageView imageViewer = new ImageView(logo);
             imageViewer.setFitWidth(75);
             imageViewer.setFitWidth(75); */
             
@@ -75,7 +75,7 @@ public class OwnerGUI extends ApplicationGUI{
             /*VBox imageBox = new VBox();
             imageBox.setAlignment(Pos.CENTER_LEFT);
             imageBox.setSpacing(15);
-            imageBox.getChildren().add(logo); */
+            imageBox.getChildren().add(imageViewer); */
             
             VBox vbox = new VBox();
             vbox.getChildren().add(mainTitle);
@@ -85,7 +85,6 @@ public class OwnerGUI extends ApplicationGUI{
             vbox.getChildren().add(btn2);
             root.getChildren().add(vbox);
             vbox.getChildren().add(btn3);
-         
             
             Scene scene = new Scene(root, 800, 550);
 
