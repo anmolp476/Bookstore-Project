@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
  */
 public class BookStoreApplication implements Viewable {
     
+    
     public void accessUI(Stage primaryStage) {
         Button btn = new Button();
         btn.setText("Say 'Hello World'");

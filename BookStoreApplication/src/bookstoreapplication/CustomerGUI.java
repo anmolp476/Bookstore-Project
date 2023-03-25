@@ -5,6 +5,7 @@
  */
 package bookstoreapplication;
 
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -54,4 +55,5 @@ public class CustomerGUI extends ApplicationGUI{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 }
