@@ -5,10 +5,13 @@
  */
 package bookstoreapplication;
 
+import javafx.stage.Stage;
+
 /**
  *
  * @author deeps
  */
-public class ApplicationGUI {
+public class ApplicationGUI implements Viewable{
     
+    public void accessUI(Stage primaryStage) {}
 }
