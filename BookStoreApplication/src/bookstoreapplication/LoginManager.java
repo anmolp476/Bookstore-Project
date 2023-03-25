@@ -5,6 +5,8 @@
  */
 package bookstoreapplication;
 
+import bookstoreapplication.DataStructures.UserEntity;
+
 /**
  *
  * @author Victor
