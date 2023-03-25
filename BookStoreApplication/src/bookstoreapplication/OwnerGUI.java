@@ -65,7 +65,7 @@ public class OwnerGUI extends ApplicationGUI{
             imageViewer.setFitWidth(75);
             imageViewer.setFitWidth(75); */
             
-            Text mainTitle = new Text("Bookstore Application - Group 3");
+            Text mainTitle = new Text("Owner Terminal");
             mainTitle.setFont(Font.font("Helvetica", FontWeight.BOLD, 35));
  
     
