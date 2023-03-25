@@ -80,7 +80,7 @@ public class LoginGUI implements Viewable {
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
         
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {//THIS CHANGES BEHAVIOR OF X BUTTON
             public void handle(WindowEvent we) {
                 shutdownSequence(primaryStage);
             }
@@ -218,11 +218,11 @@ public class LoginGUI implements Viewable {
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
 
-        loginPresenter.shutdownSequence(); //IMPLEMENT THIS LATER
+        loginPresenter.shutdownSequence(); //IMPLEMENT THIS LATER <<CALS SAVING FUNCTION
 
         primaryStage.show();
 
-        new java.util.Timer().schedule(
+        new java.util.Timer().schedule(//WAITS TO SHOW CREDITS THEN CLOSES APP
                 new java.util.TimerTask() {
             @Override
             public void run() {
