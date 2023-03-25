@@ -19,6 +19,9 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 
 /**
@@ -57,14 +60,22 @@ public class OwnerGUI extends ApplicationGUI{
             btn2.setStyle(buttonStyle);
             btn3.setStyle(buttonStyle);
             
+           /* Image logo = new Image("file:");
+            ImageView imageViewer = new ImageViewer(logo);
+            imageViewer.setFitWidth(75);
+            imageViewer.setFitWidth(75); */
+            
             Text mainTitle = new Text("Bookstore Application - Group 3");
             mainTitle.setFont(Font.font("Helvetica", FontWeight.BOLD, 35));
-            //mainTitle.setTextFill(Color.WHITE);
-            //mainTitle.setStroke(Color.BLACK);
-            //mainTitle.setStrokeWidth(1);
-            
+ 
+    
             StackPane root = new StackPane();
-            root.setStyle("-fx-background-color: skyblue;");
+            root.setStyle("-fx-background-color: #e6e0da;");
+            
+            /*VBox imageBox = new VBox();
+            imageBox.setAlignment(Pos.CENTER_LEFT);
+            imageBox.setSpacing(15);
+            imageBox.getChildren().add(logo); */
             
             VBox vbox = new VBox();
             vbox.getChildren().add(mainTitle);
