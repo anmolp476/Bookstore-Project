@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class FileGateway {
     
     public void saveAllFiles(){
-        
+        System.out.println("ATTEMPING TO SAVE ALL FILES");
     }
     public UserEntity readUserFile(){
         return null;

@@ -26,6 +26,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javafx.event.EventHandler;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -69,15 +71,21 @@ public class LoginGUI implements Viewable {
 
         // Login
         accessLoginGUI(primaryStage, loginButton, cancelButton);
-        
+
         // Sign Up (implement the signup button)
         //accessSignUpGUI(primaryStage, signUpButton, scene);
-        
         // Main Layout
         VBox layout = createLayout(buttons);
         //layout.getChildren().add(mediaView);
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
+        
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                shutdownSequence(primaryStage);
+            }
+        });
+        
         primaryStage.show();
     }
 
@@ -211,18 +219,18 @@ public class LoginGUI implements Viewable {
         primaryStage.setScene(scene);
 
         loginPresenter.shutdownSequence(); //IMPLEMENT THIS LATER
-        
+
         primaryStage.show();
-        
-        new java.util.Timer().schedule( 
-        new java.util.TimerTask() {
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
             @Override
             public void run() {
                 System.exit(0);
             }
-        }, 
-        2000 
-);
+        },
+                2000
+        );
         //
     }
 

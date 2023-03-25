@@ -41,6 +41,7 @@ public class LoginPresenter {
     }
     
     public void shutdownSequence() {
+        System.out.println("calling fileGateway");
         BSA.getLocalFileGateway().saveAllFiles();
     }
 }
