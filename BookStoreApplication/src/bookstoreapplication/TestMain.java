@@ -6,6 +6,7 @@
 package bookstoreapplication;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -17,14 +18,14 @@ import javafx.stage.Stage;
  *
  * @author Victor
  */
-public class main extends Application {
+public class TestMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Conference");
 
-        BookStoreApplication BSA = new BookStoreApplication();
-        BSA.accessUI(primaryStage);
+        OwnerGUI TEST = new OwnerGUI();
+        TEST.accessUI(primaryStage);
 
         primaryStage.show();
     }
