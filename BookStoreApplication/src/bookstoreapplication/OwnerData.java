@@ -10,5 +10,8 @@ package bookstoreapplication;
  * @author LordV
  */
 public class OwnerData extends UserEntity{
+    public OwnerData(String username, String password){
+        super(username, password);
+    }
     
 }
