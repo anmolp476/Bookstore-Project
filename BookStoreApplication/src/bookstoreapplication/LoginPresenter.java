@@ -39,4 +39,8 @@ public class LoginPresenter {
         return accountGUIFactory.createApplicationGUI(
                 accManager.getUser(username).getUserType(), BSA, username, primaryStage, LG);
     }
+    
+    public void shutdownSequence() {
+        BSA.getLocalFileGateway().saveAllFiles();
+    }
 }

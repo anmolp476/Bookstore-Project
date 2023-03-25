@@ -11,20 +11,24 @@ import java.util.ArrayList;
  * @author Yanny
  */
 public class FileGateway {
-    public UserEntity readUserFile(){
     
+    public void saveAllFiles(){
+        
+    }
+    public UserEntity readUserFile(){
+        return null;
     }
     
     public BookData readBookFile(){
-        
+         return null;
     }
     
     public boolean writeUserFile(ArrayList<UserEntity> userDataList){
-        
+        return false;
     }
     
     public boolean writeBookFile(ArrayList<BookData> bookDataList){
-        
+        return false;
     }
     
 }

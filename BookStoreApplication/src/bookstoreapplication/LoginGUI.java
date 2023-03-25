@@ -207,7 +207,7 @@ public class LoginGUI implements Viewable {
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
         
-        //loginPresenter.shutdownSequence(); IMPLEMENT THIS LATER
+        loginPresenter.shutdownSequence(); //IMPLEMENT THIS LATER
     }
 
 }
