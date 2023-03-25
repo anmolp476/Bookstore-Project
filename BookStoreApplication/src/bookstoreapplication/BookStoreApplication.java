@@ -18,10 +18,9 @@ import javafx.scene.layout.VBox;
  *
  * @author Victor
  */
-public class BookStoreApplication extends Application {
+public class BookStoreApplication implements Viewable {
     
-    @Override
-    public void start(Stage primaryStage) {
+    public void accessUI(Stage primaryStage) {
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -57,11 +56,5 @@ public class BookStoreApplication extends Application {
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
     
 }
