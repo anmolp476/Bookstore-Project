@@ -52,15 +52,16 @@ public class LoginGUI implements Viewable {
         //mediaPlayer.setVolume(0.25);
         //mediaPlayer.setAutoPlay(true);
         //MediaView mediaView = new MediaView(mediaPlayer);
-        primaryStage.setTitle("Conference");
+        primaryStage.setTitle("BookstoreApplication - Window");
 
         // Buttons
         Button loginButton = new Button("Login");
+        Button signUpButton = new Button("Sign Up");
         Button cancelButton = new Button("Cancel");
         Button exitButton = createExitButton(primaryStage);
 
         // Button list
-        List<Button> buttons = new ArrayList<>(Arrays.asList(loginButton, exitButton));
+        List<Button> buttons = new ArrayList<>(Arrays.asList(loginButton, signUpButton, exitButton));
         for (Button button : buttons) {
             button.setMaxSize(200, 30);
             button.setMinSize(200, 30);
@@ -171,7 +172,7 @@ public class LoginGUI implements Viewable {
 
     private VBox createLayout(List<Button> buttons) {
         VBox layout = new VBox(spacing);
-        Text title = new Text("Conference");
+        Text title = new Text("Bookstore Application - Login / Sign Up");
         title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(0, 0, 0, 0));
