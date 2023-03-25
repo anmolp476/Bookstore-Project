@@ -9,6 +9,6 @@ package bookstoreapplication;
  *
  * @author LordV
  */
-public class CustomerData {
+public class CustomerData extends UserEntity{
     
 }
