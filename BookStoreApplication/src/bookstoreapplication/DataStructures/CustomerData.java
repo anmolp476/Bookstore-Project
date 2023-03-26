@@ -5,8 +5,6 @@
  */
 package bookstoreapplication.DataStructures;
 
-import bookstoreapplication.DataStructures.UserEntity;
-
 /**
  *
  * @author LordV
@@ -37,5 +35,5 @@ public class CustomerData extends UserEntity{
      * @return The type of user as a string
      */
     @Override
-    public abstract String getUserType();
+    public String getUserType(){ return "User";};
 }

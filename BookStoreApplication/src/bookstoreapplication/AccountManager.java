@@ -5,6 +5,7 @@
  */
 package bookstoreapplication;
 
+import bookstoreapplication.DataStructures.OwnerData;
 import bookstoreapplication.DataStructures.CustomerData;
 import bookstoreapplication.DataStructures.UserEntity;
 import java.util.ArrayList;
@@ -43,10 +44,18 @@ public class AccountManager {
     
     public void addCustomer(String user, String pass){    
         if (!checkUserExists(user)){
-            UserEntity a = new CustomerData(user, pass, 0);
+            CustomerData a = new CustomerData(user, pass, 0);
             userList.add(a);
         }
     }
+        
+    public void addOwner(String user, String pass){    
+        if (!checkUserExists(user)){
+            UserEntity a = new OwnerData(user, pass);
+            userList.add(a);
+        }
+    }
+    
     public boolean checkUserExists(String user){  
         for (UserEntity i : userList){
             if (i.getUsername().equals(user)){

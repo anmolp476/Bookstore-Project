@@ -73,19 +73,20 @@ public class LoginGUI implements Viewable {
         accessLoginGUI(primaryStage, loginButton, cancelButton);
 
         // Sign Up (implement the signup button)
-        //accessSignUpGUI(primaryStage, signUpButton, scene);
+        accessSignUpGUI(primaryStage, signUpButton, scene);
+
         // Main Layout
         VBox layout = createLayout(buttons);
         //layout.getChildren().add(mediaView);
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
-        
+
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {//THIS CHANGES BEHAVIOR OF X BUTTON
             public void handle(WindowEvent we) {
                 shutdownSequence(primaryStage);
             }
         });
-        
+
         primaryStage.show();
     }
 
@@ -119,6 +120,86 @@ public class LoginGUI implements Viewable {
                 loginHelper(nameInput, passInput, loginSystem, primaryStage, returnButton));
         grid.setAlignment(Pos.CENTER);
         scene1 = new Scene(grid, defaultWidth, defaultHeight);
+    }
+
+    /**
+     * Creates a scene where the user can create an account on the program
+     *
+     * @param primaryStage The Stage the GUI uses
+     * @param button The button that will send the Stage to the scene when
+     * activated
+     * @param goBackScene The return scene
+     * @return returns the sign up scene
+     */
+    public Scene accessSignUpGUI(Stage primaryStage, Button button, Scene goBackScene) {
+        button.setOnAction(e -> primaryStage.setScene(scene2));
+
+        // Layout 1
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(0, 0, 0, 0));
+        grid.setHgap(spacing);
+        grid.setVgap(spacing);
+
+        // Labels
+        List<Label> labelList = createLabelList(
+                Arrays.asList("username", "password"), 2, "Enter your new ");
+        Label confirmLabel = new Label();
+
+        // TextFields
+        TextField nameInput = createTextField("username", 0, 2);
+        TextField passInput = createTextField("password", 0, 4);
+
+        // Buttons
+        Button confirmButton = signUpConfirm(nameInput, passInput, confirmLabel);
+        grid.getChildren().add(confirmLabel);
+        Button returnButton = signUpButtons(confirmLabel, confirmButton, Arrays.asList(nameInput, passInput), primaryStage, goBackScene);
+
+        // Layout 2
+        signUpLayout(grid, labelList, Arrays.asList(confirmButton, returnButton), Arrays.asList(nameInput, passInput));
+
+        scene2 = new Scene(grid, defaultWidth, defaultHeight);
+        return scene2;
+    }
+
+    private Button signUpButtons(Label confirmLabel, Button confirmButton, List<TextField> textFields, Stage primaryStage, Scene goBackScene) {
+        GridPane.setConstraints(confirmButton, 0, 8, 1, 1, HPos.LEFT, VPos.CENTER);
+        Button returnButton = new Button("Cancel");
+        returnButton.setOnAction(e -> {
+            for (TextField textField : textFields) {
+                System.out.println("clearning text fields");
+                textField.clear();
+            }
+            System.out.println("Going back to start menu");
+            confirmLabel.setText("");
+            primaryStage.setScene(scene);
+           
+        });
+        GridPane.setConstraints(returnButton, 0, 8, 1, 1, HPos.RIGHT, VPos.CENTER);
+        return returnButton;
+    }
+
+    private Button signUpConfirm(TextField nameInput, TextField passInput, Label confirmLabel) {
+        Button confirmButton = new Button("Confirm");
+        confirmButton.setOnAction(e -> {
+            if (loginPresenter.signUp(nameInput.getText(), passInput.getText())) {
+                confirmLabel.setText("Signed up successfully!");
+            } else {
+                confirmLabel.setText(
+                        "Either the username already exists or there in an invalid input. Please try again.");
+            }
+            GridPane.setConstraints(confirmLabel, 0, 9);
+        });
+        return confirmButton;
+    }
+
+    private void signUpLayout(GridPane grid, List<Label> labelList, List<Button> buttonList, List<TextField> textFields) {
+        Text title = new Text("Sign Up");
+        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        grid.getChildren().add(title);
+        grid.getChildren().addAll(labelList);
+        grid.getChildren().addAll(buttonList);
+        grid.getChildren().addAll(textFields);
+        grid.setAlignment(Pos.CENTER);
     }
 
     private Button loginHelper(TextField nameInput, PasswordField passInput, Label loginSystem, Stage primaryStage,
