@@ -20,6 +20,9 @@ public class AccountManager {
     
     private AccountManager(){
         userList = new ArrayList<UserEntity>();
+        if(!checkUserExists("admin")){
+            addOwner("admin", "admin");
+        }
     }
     
     public static AccountManager getInstance(){
@@ -51,7 +54,7 @@ public class AccountManager {
         
     public void addOwner(String user, String pass){    
         if (!checkUserExists(user)){
-            UserEntity a = new OwnerData(user, pass);
+            OwnerData a = new OwnerData(user, pass);
             userList.add(a);
         }
     }
