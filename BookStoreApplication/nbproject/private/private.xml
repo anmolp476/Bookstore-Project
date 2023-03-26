@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/main.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookManager.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/DataStructures/CustomerData.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/TestMain.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/OwnerGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/Viewable.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookStoreApplication.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/CustomerGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/LoginManager.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/ApplicationGUI.java</file>
         </group>
     </open-files>
