@@ -1,8 +1,8 @@
 package bookstoreapplication;
 
 import java.util.ArrayList;
-import bookstoreapplication.DataStructures.UserEntity;
-
+import bookstoreapplication.DataStructures.CustomerData;
+import java.text.DecimalFormat;
 
 public class CartManager extends BookManager
 {
@@ -30,9 +30,22 @@ public class CartManager extends BookManager
     }
     
     //To be completed
-    public void printReciept(UserEntity user)
+    public void printReciept(CustomerData user)
     {
-        System.out.println(user.getUsername());
+                // format order total as currency
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedTotal = df.format(this.getTotalPrice());
+
+        // build receipt string
+        String receipt = "=========================================\n";
+        receipt += "          Thank you for shopping!         \n";
+        receipt += "=========================================\n";
+        receipt += "Customer status: " + user.getStatus() + "\n";
+        receipt += "Points earned: " + user.getPoints() + "\n";
+        receipt += "Total cost: $" + formattedTotal + "\n";
+        receipt += "=========================================\n";
+
+        System.out.println(receipt);
     }
     
 }
