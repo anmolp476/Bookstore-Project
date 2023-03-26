@@ -75,8 +75,7 @@ public class LoginPresenter {
      */
     public ApplicationGUI createApplicationGUI(String username, Stage primaryStage, Viewable LG) {
         AccountGUIFactory accountGUIFactory = new AccountGUIFactory();
-        return accountGUIFactory.createApplicationGUI(
-                accManager.getUser(username).getUserType(), BSA, username, primaryStage, LG);
+        return accountGUIFactory.createApplicationGUI(accManager.getUser(username).getUserType(), BSA, username, primaryStage, LG);
     }
 
     public void shutdownSequence() {

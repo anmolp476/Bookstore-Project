@@ -220,8 +220,8 @@ public class LoginGUI implements Viewable {
         nameConfirm.setOnAction(e -> {
             if (loginPresenter.login(nameInput.getText(), passInput.getText())) {
                 nameSystem.setText("Log in Successful!");
-                loginPresenter.createApplicationGUI(
-                        nameInput.getText(), primaryStage, this).accessUI(primaryStage);
+                System.out.println("login sucessful");
+                loginPresenter.createApplicationGUI(nameInput.getText(), primaryStage, this).accessUI(primaryStage);
             } else {
                 nameSystem.setText("Incorrect Username or Password. Please Try again.");
             }
