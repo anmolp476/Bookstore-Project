@@ -21,15 +21,20 @@ import javafx.scene.layout.VBox;
 public class BookStoreApplication implements Viewable {
 
     private final FileGateway gateway;
-    
+    private final AccountManager accManager;
     
     public BookStoreApplication() {
         this.gateway = new FileGateway();;
+        accManager = AccountManager.getInstance();
     }
     
     
     public void accessUI(Stage primaryStage) {
         
+    }
+
+    public AccountManager getAccountManager() {
+        return accManager;
     }
 
     

@@ -26,7 +26,7 @@ public class main extends Application {
         BookStoreApplication BSA = new BookStoreApplication();
         
         LoginGUI loginGUI = new LoginGUI();
-        LoginPresenter loginPresenter = new LoginPresenter(BSA);
+        LoginManager loginPresenter = new LoginManager(BSA);
         loginGUI.setLoginPresenter(loginPresenter);
         
         

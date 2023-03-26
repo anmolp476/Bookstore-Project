@@ -35,15 +35,15 @@ import javafx.stage.WindowEvent;
  */
 public class LoginGUI implements Viewable {
 
-    private LoginPresenter loginPresenter;
+    private LoginManager loginManager;
 
     private Scene scene, scene1, scene2;
     final int defaultWidth = 600;
     final int defaultHeight = 400;
     final int spacing = 15;
 
-    public void setLoginPresenter(LoginPresenter presenter) {
-        loginPresenter = presenter;
+    public void setLoginPresenter(LoginManager presenter) {
+        loginManager = presenter;
     }
 
     public void accessUI(Stage primaryStage) {
@@ -181,7 +181,7 @@ public class LoginGUI implements Viewable {
     private Button signUpConfirm(TextField nameInput, TextField passInput, Label confirmLabel) {
         Button confirmButton = new Button("Confirm");
         confirmButton.setOnAction(e -> {
-            if (loginPresenter.signUp(nameInput.getText(), passInput.getText())) {
+            if (loginManager.signUp(nameInput.getText(), passInput.getText())) {
                 confirmLabel.setText("Signed up successfully!");
             } else {
                 confirmLabel.setText(
@@ -218,10 +218,10 @@ public class LoginGUI implements Viewable {
     private Button loginConfirm(TextField nameInput, PasswordField passInput, Label nameSystem, Stage primaryStage) {
         Button nameConfirm = new Button("Confirm");
         nameConfirm.setOnAction(e -> {
-            if (loginPresenter.login(nameInput.getText(), passInput.getText())) {
+            if (loginManager.login(nameInput.getText(), passInput.getText())) {
                 nameSystem.setText("Log in Successful!");
                 System.out.println("login sucessful");
-                loginPresenter.createApplicationGUI(nameInput.getText(), primaryStage, this).accessUI(primaryStage);
+                loginManager.createApplicationGUI(nameInput.getText(), primaryStage, this).accessUI(primaryStage);
             } else {
                 nameSystem.setText("Incorrect Username or Password. Please Try again.");
             }
@@ -299,7 +299,7 @@ public class LoginGUI implements Viewable {
         scene = new Scene(layout, defaultWidth, defaultHeight);
         primaryStage.setScene(scene);
 
-        loginPresenter.shutdownSequence(); //IMPLEMENT THIS LATER <<CALS SAVING FUNCTION
+        loginManager.shutdownSequence(); //IMPLEMENT THIS LATER <<CALS SAVING FUNCTION
 
         primaryStage.show();
 
