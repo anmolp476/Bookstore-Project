@@ -10,6 +10,8 @@ public class BookManager
     public BookManager(ArrayList<BookData> inputList)
     {
         bookList = inputList;
+        
+        if(inputList == null) bookList = new ArrayList<BookData>();
     }
 
     /**

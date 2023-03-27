@@ -22,10 +22,15 @@ public class BookStoreApplication implements Viewable {
 
     private final FileGateway gateway;
     private final AccountManager accManager;
+    private final BookManager bookManager;
     
     public BookStoreApplication() {
         this.gateway = new FileGateway();;
         accManager = AccountManager.getInstance();
+        
+        //Loadfiles from gateway
+        accManager.loadUserList(gateway.readUserFile());
+        this.bookManager = new BookManager(gateway.readBookFile());
     }
     
     

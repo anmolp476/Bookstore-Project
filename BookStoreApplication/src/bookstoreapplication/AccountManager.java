@@ -32,6 +32,13 @@ public class AccountManager {
         return instance;
     }
     
+    public void loadUserList(ArrayList<UserEntity> userList){
+        if(userList == null) return;
+        for(UserEntity user : userList){
+            userList.add(user);
+        }
+    }
+    
     public ArrayList getUserList(){
         return userList;
     }

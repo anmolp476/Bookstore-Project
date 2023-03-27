@@ -15,11 +15,12 @@ public class FileGateway {
     public void saveAllFiles(){
         System.out.println("ATTEMPING TO SAVE ALL FILES");
     }
-    public UserEntity readUserFile(){
+    public ArrayList<UserEntity> readUserFile(){
+        //returns a list of all userEntities, make sure to cast them properly as Users or Owners
         return null;
     }
     
-    public BookData readBookFile(){
+    public ArrayList<BookData> readBookFile(){
          return null;
     }
     
