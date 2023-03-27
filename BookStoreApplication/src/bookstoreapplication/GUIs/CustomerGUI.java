@@ -90,7 +90,7 @@ public class CustomerGUI extends ApplicationGUI {
         Button redeemBtn = new Button("Redeem Points to Buy");
         Button logoutBtn = new Button("Logout");
 
-        logoutBtn.setOnAction(e -> testSequence(primaryStage));
+        logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
         
         FlowPane buttons = new FlowPane(10, 10, buyBtn, redeemBtn, logoutBtn);
         buttons.setAlignment(Pos.CENTER);
@@ -106,7 +106,7 @@ public class CustomerGUI extends ApplicationGUI {
 
     }
 
-    public void testSequence(Stage primaryStage) {
+    public void logoutSequence(Stage primaryStage) {
         LoginGUI GUI = new LoginGUI();
         GUI.setLoginPresenter(LM);
         
