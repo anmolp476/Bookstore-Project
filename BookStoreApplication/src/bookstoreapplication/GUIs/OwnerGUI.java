@@ -9,9 +9,16 @@ package bookstoreapplication.GUIs;
 import bookstoreapplication.GUIs.ApplicationGUI;
 
 import bookstoreapplication.*;
+import static bookstoreapplication.GUIs.LoginGUI.defaultHeight;
+import static bookstoreapplication.GUIs.LoginGUI.defaultWidth;
+import java.util.Arrays;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -20,10 +27,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 
 
@@ -43,6 +53,7 @@ public class OwnerGUI extends ApplicationGUI{
     
     
         public void accessUI(Stage primaryStage) {
+            
             Button btn1 = new Button();
             String buttonStyle = "-fx-font-family: Helvetica; -fx-background-color: #fff; -fx-font-size: 16pt;";
             btn1.setText("Books");
@@ -71,6 +82,8 @@ public class OwnerGUI extends ApplicationGUI{
                     logoutSequence(primaryStage);
                 }
             });
+            
+            SetupChildScenes(btn1, btn2, primaryStage);
             
             btn1.setStyle(buttonStyle);
             btn2.setStyle(buttonStyle);
@@ -109,7 +122,46 @@ public class OwnerGUI extends ApplicationGUI{
             primaryStage.show();
     }
         
-    public void logoutSequence(Stage primaryStage) {
+    private void SetupChildScenes(Button BooksButton, Button CustomersButton, Stage primaryStage){
+        SetupOwnerBooksScene(BooksButton, primaryStage);
+        SetupOwnerCustomersScene(CustomersButton, primaryStage);
+    }
+        
+    private void SetupOwnerBooksScene(Button BooksButton, Stage primaryStage){
+        // Layout 1
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(0, 0, 0, 0));
+        grid.setHgap(15);
+        grid.setVgap(15);
+
+        Text title = new Text("Book Management Menu");
+        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        GridPane.setConstraints(title, 1, 0);
+        grid.getChildren().add(title);
+        
+        grid.setAlignment(Pos.CENTER);
+        
+        Owner_Books_Scene = new Scene(grid, defaultWidth, defaultHeight);
+    }
+    
+    private void SetupOwnerCustomersScene(Button CustomersButton, Stage primaryStage){
+        // Layout 1
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(0, 0, 0, 0));
+        grid.setHgap(15);
+        grid.setVgap(15);
+
+        Text title = new Text("Customer Management Menu");
+        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        GridPane.setConstraints(title, 1, 0);
+        grid.getChildren().add(title);
+        
+        grid.setAlignment(Pos.CENTER);
+        
+        Owner_Customers_Scene = new Scene(grid, defaultWidth, defaultHeight);
+    }
+    
+    private void logoutSequence(Stage primaryStage) {
         LoginGUI GUI = new LoginGUI();
         GUI.setLoginPresenter(LM);
         
