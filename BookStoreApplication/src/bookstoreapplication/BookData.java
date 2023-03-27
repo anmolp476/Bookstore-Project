@@ -14,7 +14,6 @@ public class BookData
         bookName = inputBookName;
         author = inputAuthor;
         price = inputPrice;
- 
     }
 
     /**

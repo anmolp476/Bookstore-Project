@@ -40,6 +40,7 @@ import javafx.scene.control.TableColumn;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
@@ -67,7 +68,7 @@ public class CustomerGUI extends ApplicationGUI {
     @Override
     public void accessUI(Stage primaryStage) {
         TableView<Book> table = new TableView<>();
-        table.setEditable(true);
+        table.setEditable(false);
 
         CustomerData CD = (CustomerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
@@ -75,7 +76,7 @@ public class CustomerGUI extends ApplicationGUI {
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
         
         TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
-        TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
+        TableColumn<Book, Float> col2 = new TableColumn<>("Price of Book");
         TableColumn<Book, Boolean> col3 = new TableColumn<>("Selection Box");
         
         double tableWidth = LoginGUI.defaultWidth;
@@ -83,12 +84,21 @@ public class CustomerGUI extends ApplicationGUI {
         col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         col3.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+        
+        col1.setStyle("-fx-border-width: 0 0 0 1px; -fx-border-color: gray;");
+        col2.setStyle("-fx-border-width: 0 0 0 1px; -fx-border-color: gray;");
+        col3.setStyle("-fx-border-width: 0 0 0 1px; -fx-border-color: gray;");
            
-        //col3.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
-        //col3.setCellFactory(CheckBoxTableCell.forTableColumn(col3));
-
         table.getColumns().addAll(col1, col2, col3);
         
+        ObservableList<Book> booksList = FXCollections.observableArrayList(
+            new Book(),
+            new Book(),
+            new Book()
+        );
+        
+        table.setItems(booksList);
+       
         Button buyBtn = new Button("Buy");
         buyBtn.setOnAction(e -> RegularPurchase(primaryStage));
         

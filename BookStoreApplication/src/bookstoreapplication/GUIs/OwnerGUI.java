@@ -34,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -45,7 +46,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-
+import javafx.collections.ObservableList;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.PropertyValueFactory;
 /**
@@ -57,6 +58,14 @@ public class OwnerGUI extends ApplicationGUI {
     private Scene OwnerMainMenuScene, Owner_Books_Scene, Owner_Customers_Scene;
     LoginManager LM;
     BookStoreApplication BSA;
+    //private List<BookData> books = new ArrayList<>();
+    private ObservableList<BookData> books = FXCollections.observableArrayList(
+                                                    new BookData("A", "Z", (float)99.99),
+                                                    new BookData("B", "X", (float)99.99),
+                                                    new BookData("C", "W", (float)99.99),
+                                                    new BookData("D", "Y", (float)99.99),
+                                                    new BookData("E", "V", (float)99.99)
+                                                );   
 
     public OwnerGUI(LoginManager LM, BookStoreApplication BSA) {
         this.LM = LM;
@@ -138,12 +147,11 @@ public class OwnerGUI extends ApplicationGUI {
     private void SetupOwnerBooksScene(Stage primaryStage) {
         TableView<BookData> table = new TableView<>();
         table.setEditable(true);
-
-        List<BookData> books = new ArrayList<>();
-        books.add(new BookData("Temp","Temp", 99));
-        books.add(new BookData("Temp","Temp", 99));
-        table.setItems(FXCollections.observableArrayList(books));
-
+      
+        /*books.add(new BookData("temp", "temp", (float)99.99));
+        books.add(new BookData("temp2", "temp2", (float)199.99));
+        books.add(new BookData("temp3", "temp3", (float)299.99)); */
+        
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage books");
         topParagraph.setMinHeight(40);
@@ -151,14 +159,26 @@ public class OwnerGUI extends ApplicationGUI {
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
-        TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
+        col1.setCellValueFactory(new PropertyValueFactory<BookData, String>(books.get(1).getBookName()));
+        TableColumn<BookData, Float> col2 = new TableColumn<>("Price of Book");
+        col2.setCellValueFactory(new PropertyValueFactory<BookData, Float>((books.get(1).getPrice())));
+        TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection Boxes");
+        //col3.setCellValueFactory(new PropertyValueFactory<BookData, Boolean>((books.get(1).getPrice())));
 
+        table.setItems(books);
+        
         double tableWidth = LoginGUI.defaultWidth;
 
         col1.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
         col2.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
 
-        table.getColumns().addAll(col1, col2);
+        table.getColumns().addAll(col1, col2, col3);
+       
+        
+       /* for(BookData book : books) {
+           
+        } */
+       
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
@@ -174,6 +194,8 @@ public class OwnerGUI extends ApplicationGUI {
 
         Button backBtn = new Button("Back");
         backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
+        
+        
 
         FlowPane buttons = new FlowPane();
         buttons.setVgap(8);
@@ -202,7 +224,8 @@ public class OwnerGUI extends ApplicationGUI {
         primaryStage.setScene(Owner_Books_Scene);
         primaryStage.show();
     }
-
+    
+    
     private void addBook(Stage primaryStage) {
         //add logic here
     }
@@ -224,7 +247,7 @@ public class OwnerGUI extends ApplicationGUI {
         List<UserEntity> users = BSA.getAccountManager().getUserList();
         List<CustomerData> customers = new ArrayList<CustomerData>();
         
-        for (UserEntity i : users){
+        for(UserEntity i : users){
             if (i instanceof CustomerData){
                 customers.add((CustomerData)i);                
             }
@@ -243,8 +266,7 @@ public class OwnerGUI extends ApplicationGUI {
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPassword())));
         TableColumn<CustomerData, Integer> col3 = new TableColumn<>("Points");
         col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPoints())));
-
-
+        
         double tableWidth = LoginGUI.defaultWidth;
 
         col1.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
