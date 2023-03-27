@@ -250,7 +250,7 @@ public class OwnerGUI extends ApplicationGUI{
         Button addBtn = new Button("Add");
         addBtn.setOnAction(e -> addCustomer(primaryStage));
         
-        Button deleteBtn = new Button("Delete Selected Books");
+        Button deleteBtn = new Button("Delete Customer Data");
         deleteBtn.setOnAction(e -> deleteCustomer(primaryStage));
         
         Button backBtn = new Button("Back");
