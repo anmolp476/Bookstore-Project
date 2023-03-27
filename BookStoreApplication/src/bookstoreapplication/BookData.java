@@ -1,6 +1,8 @@
 package bookstoreapplication;
 
 import java.io.Serializable;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class BookData implements Serializable
 {
@@ -13,6 +15,7 @@ public class BookData implements Serializable
         bookName = inputBookName;
         author = inputAuthor;
         price = inputPrice;
+ 
     }
 
     /**
@@ -56,8 +59,6 @@ public class BookData implements Serializable
     public void setPrice(float newPrice) {
         price = newPrice;
     }
-    
-    
 }
 
 
