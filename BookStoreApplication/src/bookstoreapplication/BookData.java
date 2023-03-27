@@ -1,14 +1,10 @@
 package bookstoreapplication;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class BookData implements Serializable
-=======
 public class BookData
->>>>>>> parent of 43670e5 (finished methods for fileGateway)
 {
     protected String bookName = "";
     protected String author = "";
