@@ -78,7 +78,7 @@ public class CustomerGUI extends ApplicationGUI{
         root.setTop(topParagraph);
         root.setCenter(table);
         root.setBottom(buttons);
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, LoginGUI.defaultWidth, LoginGUI.defaultHeight);
         primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(scene);
         primaryStage.show();

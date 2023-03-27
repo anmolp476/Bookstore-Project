@@ -5,14 +5,16 @@
         <group>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/main.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookManager.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/OwnerGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/CustomerGUI.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/DataStructures/CustomerData.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/TestMain.java</file>
-            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/OwnerGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/LoginGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/AccountGUIFactory.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/Viewable.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookStoreApplication.java</file>
-            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/CustomerGUI.java</file>
             <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/LoginManager.java</file>
-            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/ApplicationGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/ApplicationGUI.java</file>
         </group>
     </open-files>
 </project-private>
