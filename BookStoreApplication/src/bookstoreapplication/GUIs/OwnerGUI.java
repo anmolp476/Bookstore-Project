@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bookstoreapplication;
+package bookstoreapplication.GUIs;
 
 //import java.awt.Color;
+import bookstoreapplication.GUIs.ApplicationGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

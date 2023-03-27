@@ -5,6 +5,7 @@
  */
 package bookstoreapplication;
 
+import bookstoreapplication.GUIs.CustomerGUI;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;

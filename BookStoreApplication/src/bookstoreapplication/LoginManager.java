@@ -5,6 +5,8 @@
  */
 package bookstoreapplication;
 
+import bookstoreapplication.GUIs.ApplicationGUI;
+import bookstoreapplication.GUIs.AccountGUIFactory;
 import bookstoreapplication.DataStructures.OwnerData;
 import bookstoreapplication.DataStructures.CustomerData;
 import bookstoreapplication.DataStructures.UserEntity;

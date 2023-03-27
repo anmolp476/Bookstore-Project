@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bookstoreapplication;
+package bookstoreapplication.GUIs;
 
+import bookstoreapplication.BookStoreApplication;
+import bookstoreapplication.Viewable;
 import javafx.stage.Stage;
 
 /**

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bookstoreapplication;
+package bookstoreapplication.GUIs;
 
+import bookstoreapplication.GUIs.ApplicationGUI;
 import java.awt.print.Book;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;

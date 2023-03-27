@@ -1,7 +1,8 @@
 //Deep Patel
 
-package bookstoreapplication;
+package bookstoreapplication.GUIs;
 
+import bookstoreapplication.Viewable;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

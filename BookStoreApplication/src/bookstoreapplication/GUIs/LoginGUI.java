@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bookstoreapplication;
+package bookstoreapplication.GUIs;
 
+import bookstoreapplication.LoginManager;
+import bookstoreapplication.Viewable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
