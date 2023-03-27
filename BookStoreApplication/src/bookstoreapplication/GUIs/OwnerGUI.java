@@ -9,10 +9,15 @@ package bookstoreapplication.GUIs;
 import bookstoreapplication.GUIs.ApplicationGUI;
 
 import bookstoreapplication.*;
+import bookstoreapplication.DataStructures.CustomerData;
+import bookstoreapplication.DataStructures.*;
 import static bookstoreapplication.GUIs.LoginGUI.defaultHeight;
 import static bookstoreapplication.GUIs.LoginGUI.defaultWidth;
+import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -28,11 +33,15 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
 
@@ -43,7 +52,7 @@ import javafx.scene.layout.GridPane;
  */
 public class OwnerGUI extends ApplicationGUI{
     
-    private Scene Owner_Books_Scene, Owner_Customers_Scene;
+    private Scene OwnerMainMenuScene, Owner_Books_Scene, Owner_Customers_Scene;
     LoginManager LM;
 
     public OwnerGUI(LoginManager LM) {
@@ -114,10 +123,10 @@ public class OwnerGUI extends ApplicationGUI{
         root.getChildren().add(vbox);
         vbox.getChildren().add(btn3);
 
-        Scene scene = new Scene(root, LoginGUI.defaultWidth, LoginGUI.defaultHeight);
+        OwnerMainMenuScene = new Scene(root, LoginGUI.defaultWidth, LoginGUI.defaultHeight);
 
         primaryStage.setTitle("Book Store Application");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(OwnerMainMenuScene);
         primaryStage.show();
     }
         
@@ -127,20 +136,64 @@ public class OwnerGUI extends ApplicationGUI{
     }
         
     private void SetupOwnerBooksScene(Stage primaryStage){
-        // Layout 1
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(0, 0, 0, 0));
-        grid.setHgap(15);
-        grid.setVgap(15);
+        TableView<Book> table = new TableView<>();
+        table.setEditable(true);
 
-        Text title = new Text("Book Management Menu");
-        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
-        GridPane.setConstraints(title, 1, 0);
-        grid.getChildren().add(title);
+        List<Book> books = new ArrayList<>();
+        //books.add(new Book("Temp", 99.99));
+        //books.add(new Book("Temp", 99.99));
+        table.setItems(FXCollections.observableArrayList(books));
+
+        OwnerData OD = (OwnerData) LM.getCurrentUser();
+        Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage books");
+
+        BorderPane.setAlignment(topParagraph, Pos.CENTER);
+
+        TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
+        TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
+
+        double tableWidth = LoginGUI.defaultWidth;
+
+        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
+        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
+
+        table.getColumns().addAll(col1, col2);
+
+        Button addBtn = new Button("Add");
+        addBtn.setOnAction(e -> addBook(primaryStage));
         
-        grid.setAlignment(Pos.CENTER);
+        Button deleteBtn = new Button("Delete Selected Books");
+        deleteBtn.setOnAction(e -> deleteBooks(primaryStage));
         
-        Owner_Books_Scene = new Scene(grid, defaultWidth, defaultHeight);
+        Button backBtn = new Button("Back");
+        backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
+        
+        FlowPane buttons = new FlowPane(10, 10, addBtn, deleteBtn, backBtn);
+        buttons.setAlignment(Pos.CENTER);
+
+        BorderPane root = new BorderPane();
+        root.setTop(topParagraph);
+        root.setCenter(table);
+        root.setBottom(buttons);
+        
+        Owner_Books_Scene = new Scene(root, defaultWidth, defaultHeight);
+        
+        primaryStage.setTitle("Book Store Application");
+        primaryStage.setScene(Owner_Books_Scene);
+        primaryStage.show();
+    }
+    private void addBook(Stage primaryStage){
+        //add logic here
+    }
+    
+    private void deleteBooks(Stage primaryStage){
+        //add logic here
+    }
+    
+    private void returnToOwnerMainMenu(Stage primaryStage){
+        primaryStage.setTitle("Book Store Application");
+        primaryStage.setScene(OwnerMainMenuScene);
+        primaryStage.show();
     }
     
     private void SetupOwnerCustomersScene(Stage primaryStage){
