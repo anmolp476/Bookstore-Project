@@ -98,8 +98,6 @@ public class CustomerGUI extends ApplicationGUI {
         Button logoutBtn = new Button("Logout");
         logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
         
-        SetupCostScene(buyBtn, redeemBtn, primaryStage);
-        
         FlowPane buttons = new FlowPane(10, 10, buyBtn, redeemBtn, logoutBtn);
         buttons.setAlignment(Pos.CENTER);
 
@@ -114,17 +112,23 @@ public class CustomerGUI extends ApplicationGUI {
 
     }
     
-    private void SetupCostScene(Button buyBtn, Button redeemBtn, Stage primaryStage){
+    private void SetupCostScene(Stage primaryStage, double totalCost, double points, String status){
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> logoutSequence(primaryStage));
         
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
+        
         TextField totalCostField = new TextField();
+        totalCostField.setText(Double.toString(totalCost));
+        
         TextField pointsField = new TextField();
+        pointsField.setText(Double.toString(points));
+        
         TextField statusField = new TextField();
-
+        statusField.setText(status);
+        
         totalCostField.setPrefWidth(50);
         pointsField.setPrefWidth(50);
         statusField.setPrefWidth(50);
@@ -151,6 +155,8 @@ public class CustomerGUI extends ApplicationGUI {
         
         System.out.println("REGULAR PURCHASE TEST");
         
+        
+        SetupCostScene(primaryStage, 0, 0, "BRUH UPDATE THIS");
         primaryStage.setScene(CustomerCostScene);
         
     }
@@ -159,6 +165,8 @@ public class CustomerGUI extends ApplicationGUI {
         //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
+        
+        SetupCostScene(primaryStage, 20, 20, "BRUH UPDATE THIS");
         primaryStage.setScene(CustomerCostScene);
     }
     
