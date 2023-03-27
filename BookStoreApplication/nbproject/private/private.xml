@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             <file>file:/C:/Users/pra_d/OneDrive/Desktop/Pictures/Documents/GitHub/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/CustomerGUI.java</file>
             <file>file:/C:/Users/pra_d/OneDrive/Desktop/Pictures/Documents/GitHub/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/DataStructures/UserEntity.java</file>
@@ -28,6 +29,25 @@
             <file>file:/C:/Users/Yanny/Documents/GitHub/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/LoginGUI.java</file>
             <file>file:/C:/Users/Yanny/Documents/GitHub/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/LoginManager.java</file>
 >>>>>>> Stashed changes
+=======
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/main.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookManager.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/OwnerGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/CustomerGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/OwnerBookManager.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/AccountGUIFactory.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/Viewable.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/CustomerCostGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookStoreApplication.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/DataStructures/UserEntity.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/DataStructures/CustomerData.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/DataStructures/OwnerData.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/TestMain.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/LoginGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/LoginManager.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/GUIs/ApplicationGUI.java</file>
+            <file>file:/D:/Bookstore-Project/BookStoreApplication/src/bookstoreapplication/BookData.java</file>
+>>>>>>> parent of 4d003d8 (gitignore)
         </group>
     </open-files>
 </project-private>
