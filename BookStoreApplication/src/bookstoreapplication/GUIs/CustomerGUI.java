@@ -31,16 +31,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-<<<<<<< HEAD
 import bookstoreapplication.LoginManager;
-=======
+
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.TableColumn;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
->>>>>>> 80d7747fcc95c584297e85c6fac14c92d302f02a
-
 /**
  *
  * @author deeps
@@ -55,10 +52,6 @@ public class CustomerGUI extends ApplicationGUI{
     
     
     public void accessUI(Stage primaryStage) {
-<<<<<<< HEAD
-        Label topParagraph = new Label("Welcome " + LM.getCurrentUser().getUsername() + ". You have " + " points. Your status is Y.");
-=======
-        
         TableView<Book> table = new TableView<>();
         table.setEditable(true);
         
@@ -67,8 +60,7 @@ public class CustomerGUI extends ApplicationGUI{
         //books.add(new Book("Temp", 99.99));
         table.setItems(FXCollections.observableArrayList(books));
         
-        Label topParagraph = new Label("Welcome Jane. You have X points. Your status is Y.");
->>>>>>> 80d7747fcc95c584297e85c6fac14c92d302f02a
+        Label topParagraph = new Label("Welcome " + LM.getCurrentUser().getUsername() + ". You have X points. Your status is Y.");
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
     
         
