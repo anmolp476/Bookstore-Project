@@ -156,7 +156,7 @@ public class CustomerGUI extends ApplicationGUI {
         System.out.println("REGULAR PURCHASE TEST");
         
         
-        SetupCostScene(primaryStage, 0, 0, "BRUH UPDATE THIS");
+        SetupCostScene(primaryStage, 0, 0, "BRUH UPDATE THIS");//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         primaryStage.setScene(CustomerCostScene);
         
     }
@@ -166,7 +166,7 @@ public class CustomerGUI extends ApplicationGUI {
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
         
-        SetupCostScene(primaryStage, 20, 20, "BRUH UPDATE THIS");
+        SetupCostScene(primaryStage, 20, 20, "BRUH UPDATE THIS");//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         primaryStage.setScene(CustomerCostScene);
     }
     

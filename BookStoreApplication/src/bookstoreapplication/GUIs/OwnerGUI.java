@@ -82,7 +82,7 @@ public class OwnerGUI extends ApplicationGUI{
             }
         });
 
-        SetupChildScenes(btn1, btn2, primaryStage);
+        SetupChildScenes(primaryStage);
 
         btn1.setStyle(buttonStyle);
         btn2.setStyle(buttonStyle);
@@ -121,12 +121,12 @@ public class OwnerGUI extends ApplicationGUI{
         primaryStage.show();
     }
         
-    private void SetupChildScenes(Button BooksButton, Button CustomersButton, Stage primaryStage){
-        SetupOwnerBooksScene(BooksButton, primaryStage);
-        SetupOwnerCustomersScene(CustomersButton, primaryStage);
+    private void SetupChildScenes(Stage primaryStage){
+        SetupOwnerBooksScene(primaryStage);
+        SetupOwnerCustomersScene(primaryStage);
     }
         
-    private void SetupOwnerBooksScene(Button BooksButton, Stage primaryStage){
+    private void SetupOwnerBooksScene(Stage primaryStage){
         // Layout 1
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(0, 0, 0, 0));
@@ -143,7 +143,7 @@ public class OwnerGUI extends ApplicationGUI{
         Owner_Books_Scene = new Scene(grid, defaultWidth, defaultHeight);
     }
     
-    private void SetupOwnerCustomersScene(Button CustomersButton, Stage primaryStage){
+    private void SetupOwnerCustomersScene(Stage primaryStage){
         // Layout 1
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(0, 0, 0, 0));
