@@ -35,7 +35,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import bookstoreapplication.LoginManager;
 import java.io.File;
-
 import javafx.scene.layout.FlowPane;
 import javafx.scene.control.TableColumn;
 import java.util.ArrayList;
@@ -50,6 +49,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import bookstoreapplication.DataStructures.*;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.BMMimeMultipart;
 
 /**
  *
@@ -60,6 +60,8 @@ public class CustomerGUI extends ApplicationGUI {
     public LoginManager LM;
     private Scene CustomerCostScene;
     
+
+    
     public CustomerGUI(LoginManager LM) {
         this.LM = LM;
     }
@@ -68,28 +70,23 @@ public class CustomerGUI extends ApplicationGUI {
         TableView<Book> table = new TableView<>();
         table.setEditable(true);
 
-        List<Book> books = new ArrayList<>();
-        //books.add(new Book("Temp", 99.99));
-        //books.add(new Book("Temp", 99.99));
-        table.setItems(FXCollections.observableArrayList(books));
-
         CustomerData CD = (CustomerData) LM.getCurrentUser();
-        Label topParagraph = new Label("Wetlcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
+        Label topParagraph = new Label("Welcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
         topParagraph.setMinHeight(40);
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
-
+        
         TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
         TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
         TableColumn<Book, Boolean> col3 = new TableColumn<>("Selection Box");
-
+        
         double tableWidth = LoginGUI.defaultWidth;
-
+        
         col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         col3.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
 
         table.getColumns().addAll(col1, col2, col3);
-
+        
         Button buyBtn = new Button("Buy");
         buyBtn.setOnAction(e -> RegularPurchase(primaryStage));
         
@@ -111,9 +108,8 @@ public class CustomerGUI extends ApplicationGUI {
         primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
-    
+   
     private void SetupCostScene(Stage primaryStage, double totalCost, double points, String status){
 
         Button logoutButton = new Button("Logout");
