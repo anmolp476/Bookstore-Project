@@ -41,6 +41,8 @@ import javafx.scene.control.TableColumn;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -96,6 +98,8 @@ public class CustomerGUI extends ApplicationGUI {
         Button logoutBtn = new Button("Logout");
         logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
         
+        SetupCostScene(buyBtn, redeemBtn, primaryStage);
+        
         FlowPane buttons = new FlowPane(10, 10, buyBtn, redeemBtn, logoutBtn);
         buttons.setAlignment(Pos.CENTER);
 
@@ -109,11 +113,43 @@ public class CustomerGUI extends ApplicationGUI {
         primaryStage.show();
 
     }
+    
+    private void SetupCostScene(Button buyBtn, Button redeemBtn, Stage primaryStage){
+        Button logoutButton = new Button("Logout");
+        Label totalCostLabel = new Label("Total Cost:");
+        Label pointsLabel = new Label("Points:");
+        Label statusLabel = new Label("Status:");
+        TextField totalCostField = new TextField();
+        TextField pointsField = new TextField();
+        TextField statusField = new TextField();
+
+        totalCostField.setPrefWidth(50);
+        pointsField.setPrefWidth(50);
+        statusField.setPrefWidth(50);
+
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+        grid.add(logoutButton, 0, 3);
+        grid.add(totalCostLabel, 0, 1);
+        grid.add(totalCostField, 1, 1);
+        grid.add(pointsLabel, 0, 2);
+        grid.add(pointsField, 1, 2);
+        grid.add(statusLabel, 2, 2);
+        grid.add(statusField, 3, 2);
+
+        CustomerCostScene = new Scene(grid, defaultWidth, defaultHeight);
+    }
 
     private void RegularPurchase(Stage primaryStage){
         //CALL THE CART MANAGER CLASS FOR A REGULAR PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
+        System.out.println("REGULAR PURCHASE TEST");
+        
+        primaryStage.setScene(CustomerCostScene);
         
     }
     
@@ -121,7 +157,7 @@ public class CustomerGUI extends ApplicationGUI {
         //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
-        
+        primaryStage.setScene(CustomerCostScene);
     }
     
     private void logoutSequence(Stage primaryStage) {
