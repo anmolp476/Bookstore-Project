@@ -140,8 +140,8 @@ public class OwnerGUI extends ApplicationGUI{
         table.setEditable(true);
 
         List<BookData> books = new ArrayList<>();
-        //books.add(new Book("Temp", 99.99));
-        //books.add(new Book("Temp", 99.99));
+        //books.add(new BookData("Temp","Temp", 99));
+        //books.add(new BookData("Temp","Temp", 99));
         table.setItems(FXCollections.observableArrayList(books));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
@@ -220,31 +220,90 @@ public class OwnerGUI extends ApplicationGUI{
         TableView<CustomerData> table = new TableView<>();
         table.setEditable(true);
 
-        List<Book> CustomerData = new ArrayList<>();
+        List<CustomerData> customer = new ArrayList<>();
+        table.setItems(FXCollections.observableArrayList(customer));
+
         
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage the customers");
 
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
-        TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
-        TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
+        TableColumn<CustomerData, String> col1 = new TableColumn<>("Username");
+        TableColumn<CustomerData, String> col2 = new TableColumn<>("Password");
+        TableColumn<CustomerData, Integer> col3 = new TableColumn<>("Points");
+        
+        double tableWidth = LoginGUI.defaultWidth;
+        
+        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
+        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
+        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
+        
+        table.getColumns().addAll(col1, col2, col3);
 
+        Label LabelUsername = new Label("Username: ");
+        TextField usernameField = new TextField();
+        
+        Label LabelPassword = new Label("Password: ");
+        TextField passwordField = new TextField();
+
+        Button addBtn = new Button("Add");
+        addBtn.setOnAction(e -> addCustomer(primaryStage));
+        
+        Button deleteBtn = new Button("Delete Selected Books");
+        deleteBtn.setOnAction(e -> deleteCustomer(primaryStage));
+        
+        Button backBtn = new Button("Back");
+        backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
+        
+        FlowPane buttons = new FlowPane();
+        buttons.setVgap(8);
+        buttons.setHgap(4);
+        buttons.setPrefWrapLength(100); 
+        buttons.getChildren().add(LabelUsername);
+        buttons.getChildren().add(usernameField);
+        buttons.getChildren().add(LabelPassword);
+        buttons.getChildren().add(passwordField);
+        buttons.getChildren().add(addBtn);
+        buttons.getChildren().add(deleteBtn);
+        buttons.getChildren().add(backBtn);
+        
+        buttons.setAlignment(Pos.CENTER);
+        
+
+        BorderPane root = new BorderPane();
+        root.setTop(topParagraph);
+        root.setCenter(table);
+        
+        root.setBottom(buttons);
+                
+        Owner_Customers_Scene = new Scene(root, defaultWidth, defaultHeight);
+        
+        primaryStage.setTitle("Book Store Application");
+        primaryStage.setScene(Owner_Customers_Scene);
+        primaryStage.show();
 
 // Layout 1
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(0, 0, 0, 0));
-        grid.setHgap(15);
-        grid.setVgap(15);
+        //GridPane grid = new GridPane();
+        //grid.setPadding(new Insets(0, 0, 0, 0));
+        //grid.setHgap(15);
+        //grid.setVgap(15);
 
-        Text title = new Text("Customer Management Menu");
-        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
-        GridPane.setConstraints(title, 1, 0);
-        grid.getChildren().add(title);
+        //Text title = new Text("Customer Management Menu");
+        //title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        //GridPane.setConstraints(title, 1, 0);
+        //grid.getChildren().add(title);
         
-        grid.setAlignment(Pos.CENTER);
+        //grid.setAlignment(Pos.CENTER);
         
-        Owner_Customers_Scene = new Scene(grid, defaultWidth, defaultHeight);
+        //Owner_Customers_Scene = new Scene(grid, defaultWidth, defaultHeight);
+    }
+    private void addCustomer(Stage primaryStage){
+        //add logic here
+    }
+    
+    private void deleteCustomer(Stage primaryStage){
+        //add logic here
     }
     
     private void logoutSequence(Stage primaryStage) {
