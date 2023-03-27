@@ -49,7 +49,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import bookstoreapplication.DataStructures.*;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.BMMimeMultipart;
+import javafx.scene.control.cell.CheckBoxTableCell;
 
 /**
  *
@@ -59,13 +59,12 @@ public class CustomerGUI extends ApplicationGUI {
 
     public LoginManager LM;
     private Scene CustomerCostScene;
-    
-
-    
+   
     public CustomerGUI(LoginManager LM) {
         this.LM = LM;
     }
-
+   
+    @Override
     public void accessUI(Stage primaryStage) {
         TableView<Book> table = new TableView<>();
         table.setEditable(true);
@@ -80,10 +79,13 @@ public class CustomerGUI extends ApplicationGUI {
         TableColumn<Book, Boolean> col3 = new TableColumn<>("Selection Box");
         
         double tableWidth = LoginGUI.defaultWidth;
-        
+     
         col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
         col3.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+           
+        //col3.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
+        //col3.setCellFactory(CheckBoxTableCell.forTableColumn(col3));
 
         table.getColumns().addAll(col1, col2, col3);
         
@@ -133,8 +135,7 @@ public class CustomerGUI extends ApplicationGUI {
         totalCostLabel.setFont(Font.font("Arial", 30));
         pointsLabel.setFont(Font.font("Arial", 30));
         statusLabel.setFont(Font.font("Arial", 30));
-        
-        
+       
         titleLabel.setTranslateY(100);
         totalCostField.setMinWidth(80 + Double.toString(Math.floor(totalCost)).length());
         pointsField.setMinWidth(80 + Double.toString(Math.floor(points)).length());

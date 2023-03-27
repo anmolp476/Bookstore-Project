@@ -140,8 +140,8 @@ public class OwnerGUI extends ApplicationGUI {
         table.setEditable(true);
 
         List<BookData> books = new ArrayList<>();
-        //books.add(new BookData("Temp","Temp", 99));
-        //books.add(new BookData("Temp","Temp", 99));
+        books.add(new BookData("Temp","Temp", 99));
+        books.add(new BookData("Temp","Temp", 99));
         table.setItems(FXCollections.observableArrayList(books));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
