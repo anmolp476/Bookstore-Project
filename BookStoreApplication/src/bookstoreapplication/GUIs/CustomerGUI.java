@@ -113,40 +113,63 @@ public class CustomerGUI extends ApplicationGUI {
     }
     
     private void SetupCostScene(Stage primaryStage, double totalCost, double points, String status){
+
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> logoutSequence(primaryStage));
         
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
+        Label titleLabel = new Label("Hello, CUSTOMER. This is your reciept");        
+        
+        logoutButton.setTranslateX(375);
+        logoutButton.setTranslateY(-150);
+        logoutButton.setMinSize(150, 50);
+        logoutButton.setFont(Font.font("Arial", 20));
         
         TextField totalCostField = new TextField();
-        totalCostField.setText(Double.toString(totalCost));
-        
         TextField pointsField = new TextField();
-        pointsField.setText(Double.toString(points));
-        
         TextField statusField = new TextField();
-        statusField.setText(status);
         
-        totalCostField.setPrefWidth(50);
-        pointsField.setPrefWidth(50);
-        statusField.setPrefWidth(50);
-
+        titleLabel.setFont(Font.font("Arial", 35));
+        totalCostLabel.setFont(Font.font("Arial", 30));
+        pointsLabel.setFont(Font.font("Arial", 30));
+        statusLabel.setFont(Font.font("Arial", 30));
+        
+        
+        titleLabel.setTranslateY(100);
+        totalCostField.setMinWidth(80 + Double.toString(Math.floor(totalCost)).length());
+        pointsField.setMinWidth(80 + Double.toString(Math.floor(points)).length());
+        statusField.setMinWidth(80);
+        totalCostField.setEditable(false);
+        pointsField.setEditable(false);
+        statusField.setEditable(false);
+        totalCostField.setText(Double.toString(totalCost));
+        pointsField.setText(Double.toString(points));
+        statusField.setText(status);
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
+        grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
 
-        grid.add(logoutButton, 0, 3);
         grid.add(totalCostLabel, 0, 1);
-        grid.add(totalCostField, 1, 1);
+        grid.add(totalCostField, 25, 1);
         grid.add(pointsLabel, 0, 2);
-        grid.add(pointsField, 1, 2);
-        grid.add(statusLabel, 2, 2);
-        grid.add(statusField, 3, 2);
+        grid.add(pointsField, 25, 2);
+        grid.add(statusLabel, 0, 3);
+        grid.add(statusField, 25, 3);
+        
+        grid.setTranslateY(150);
+        grid.setTranslateX(190);
+                
+        BorderPane root = new BorderPane();
+        root.setTop(titleLabel);
+        BorderPane.setAlignment(titleLabel, Pos.CENTER);
+        root.setCenter(grid);
+        root.setAlignment(grid, Pos.CENTER);
+        root.setBottom(logoutButton);
 
-        CustomerCostScene = new Scene(grid, defaultWidth, defaultHeight);
+        CustomerCostScene = new Scene(root, defaultWidth, defaultHeight);
     }
 
     private void RegularPurchase(Stage primaryStage){
@@ -155,7 +178,7 @@ public class CustomerGUI extends ApplicationGUI {
         
         System.out.println("REGULAR PURCHASE TEST");
         
-        
+        //we need to fix the status and info yeah
         SetupCostScene(primaryStage, 0, 0, "BRUH UPDATE THIS");//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         primaryStage.setScene(CustomerCostScene);
         

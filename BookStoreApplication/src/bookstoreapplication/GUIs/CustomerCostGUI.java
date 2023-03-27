@@ -29,28 +29,52 @@ public class CustomerCostGUI extends Application {
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
+        Label titleLabel = new Label("Hello, CUSTOMER. This is your reciept");
+        
+        logoutButton.setTranslateX(325);
+        logoutButton.setTranslateY(-180);
+        logoutButton.setMinSize(150, 50);
+        logoutButton.setFont(Font.font("Arial", 20));
+        
         TextField totalCostField = new TextField();
         TextField pointsField = new TextField();
         TextField statusField = new TextField();
+        
+        titleLabel.setFont(Font.font("Arial", 35));
+        totalCostLabel.setFont(Font.font("Arial", 30));
+        pointsLabel.setFont(Font.font("Arial", 30));
+        statusLabel.setFont(Font.font("Arial", 30));
 
-        totalCostField.setPrefWidth(50);
-        pointsField.setPrefWidth(50);
-        statusField.setPrefWidth(50);
+        totalCostField.setPrefWidth(130);
+        pointsField.setPrefWidth(130);
+        statusField.setPrefWidth(130);
+        totalCostField.setEditable(false);
+        pointsField.setEditable(false);
+        statusField.setEditable(false);
 
         GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
+        grid.setAlignment(Pos.TOP_LEFT);
         grid.setHgap(10);
         grid.setVgap(10);
 
-        grid.add(logoutButton, 0, 3);
         grid.add(totalCostLabel, 0, 1);
         grid.add(totalCostField, 1, 1);
         grid.add(pointsLabel, 0, 2);
         grid.add(pointsField, 1, 2);
-        grid.add(statusLabel, 2, 2);
-        grid.add(statusField, 3, 2);
+        grid.add(statusLabel, 0, 3);
+        grid.add(statusField, 1, 3);
+        
+        grid.setTranslateY(90);
+        grid.setTranslateX(100);
+                
+        BorderPane root = new BorderPane();
+        root.setTop(titleLabel);
+        BorderPane.setAlignment(titleLabel, Pos.CENTER);
+        root.setCenter(grid);
+        root.setAlignment(grid, Pos.CENTER);
+        root.setBottom(logoutButton);
 
-        Scene scene = new Scene(grid, 800, 550);
+        Scene scene = new Scene(root, 800, 550);
 
         primaryStage.setTitle("Bookstore App");
         primaryStage.setScene(scene);
