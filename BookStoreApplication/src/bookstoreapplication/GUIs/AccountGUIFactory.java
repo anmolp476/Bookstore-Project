@@ -27,7 +27,7 @@ public class AccountGUIFactory {
                                                    Stage primaryStage, Viewable LG) {
         switch (selection) {
             case "Owner":
-                ApplicationGUI attGUI = new OwnerGUI();
+                ApplicationGUI attGUI = new OwnerGUI(LM);
                 return attGUI;
             case "User":
                 ApplicationGUI cGUI = new CustomerGUI(LM);

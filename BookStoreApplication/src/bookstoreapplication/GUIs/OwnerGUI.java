@@ -7,6 +7,8 @@ package bookstoreapplication.GUIs;
 
 //import java.awt.Color;
 import bookstoreapplication.GUIs.ApplicationGUI;
+
+import bookstoreapplication.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -30,6 +32,16 @@ import javafx.scene.image.ImageView;
  * @author deeps
  */
 public class OwnerGUI extends ApplicationGUI{
+    
+    private Scene Owner_Books_Scene, Owner_Customers_Scene;
+    LoginManager LM;
+
+    public OwnerGUI(LoginManager LM) {
+        this.LM = LM;
+    }
+    
+    
+    
         public void accessUI(Stage primaryStage) {
             Button btn1 = new Button();
             String buttonStyle = "-fx-font-family: Helvetica; -fx-background-color: #fff; -fx-font-size: 16pt;";
@@ -38,6 +50,7 @@ public class OwnerGUI extends ApplicationGUI{
                 @Override
                 public void handle(ActionEvent event) {
                     System.out.println("Books test");
+                    primaryStage.setScene(Owner_Books_Scene);
                 }
             });
             Button btn2 = new Button();
@@ -46,6 +59,7 @@ public class OwnerGUI extends ApplicationGUI{
                 @Override
                 public void handle(ActionEvent event) {
                     System.out.println("Customer test");
+                    primaryStage.setScene(Owner_Customers_Scene);
                 }
             });
             Button btn3 = new Button();
@@ -54,6 +68,7 @@ public class OwnerGUI extends ApplicationGUI{
                 @Override
                 public void handle(ActionEvent event) {
                     System.out.println("Logout Test");
+                    logoutSequence(primaryStage);
                 }
             });
             
@@ -92,5 +107,13 @@ public class OwnerGUI extends ApplicationGUI{
             primaryStage.setTitle("Book Store Application");
             primaryStage.setScene(scene);
             primaryStage.show();
+    }
+        
+    public void logoutSequence(Stage primaryStage) {
+        LoginGUI GUI = new LoginGUI();
+        GUI.setLoginPresenter(LM);
+        
+        GUI.shutdownSequence(primaryStage);
+       
     }
 }
