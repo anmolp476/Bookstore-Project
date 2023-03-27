@@ -136,10 +136,10 @@ public class OwnerGUI extends ApplicationGUI{
     }
         
     private void SetupOwnerBooksScene(Stage primaryStage){
-        TableView<Book> table = new TableView<>();
+        TableView<BookData> table = new TableView<>();
         table.setEditable(true);
 
-        List<Book> books = new ArrayList<>();
+        List<BookData> books = new ArrayList<>();
         //books.add(new Book("Temp", 99.99));
         //books.add(new Book("Temp", 99.99));
         table.setItems(FXCollections.observableArrayList(books));
@@ -149,8 +149,8 @@ public class OwnerGUI extends ApplicationGUI{
 
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
-        TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
-        TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
+        TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
+        TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
 
         double tableWidth = LoginGUI.defaultWidth;
 
@@ -158,6 +158,13 @@ public class OwnerGUI extends ApplicationGUI{
         col2.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
 
         table.getColumns().addAll(col1, col2);
+        
+        
+        Label LabelBookName = new Label("Book Name: ");
+        TextField bookNameField = new TextField();
+        
+        Label LabelBookPrice = new Label("Book Price: ");
+        TextField bookPriceField = new TextField();
 
         Button addBtn = new Button("Add");
         addBtn.setOnAction(e -> addBook(primaryStage));
@@ -168,12 +175,25 @@ public class OwnerGUI extends ApplicationGUI{
         Button backBtn = new Button("Back");
         backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
         
-        FlowPane buttons = new FlowPane(10, 10, addBtn, deleteBtn, backBtn);
+        FlowPane buttons = new FlowPane();
+        buttons.setVgap(8);
+        buttons.setHgap(4);
+        buttons.setPrefWrapLength(100); 
+        buttons.getChildren().add(LabelBookName);
+        buttons.getChildren().add(bookNameField);
+        buttons.getChildren().add(LabelBookPrice);
+        buttons.getChildren().add(bookPriceField);
+        buttons.getChildren().add(addBtn);
+        buttons.getChildren().add(deleteBtn);
+        buttons.getChildren().add(backBtn);
+        
         buttons.setAlignment(Pos.CENTER);
+        
 
         BorderPane root = new BorderPane();
         root.setTop(topParagraph);
         root.setCenter(table);
+        
         root.setBottom(buttons);
         
         Owner_Books_Scene = new Scene(root, defaultWidth, defaultHeight);
