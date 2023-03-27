@@ -5,6 +5,7 @@
  */
 package bookstoreapplication.GUIs;
 
+import bookstoreapplication.LoginManager;
 import bookstoreapplication.BookStoreApplication;
 import bookstoreapplication.Viewable;
 import javafx.stage.Stage;
@@ -22,14 +23,14 @@ public class AccountGUIFactory {
      * @param username the user that the controller is being made for
      * @return returns a new AccountController
      */
-    public ApplicationGUI createApplicationGUI(String selection, BookStoreApplication BSA, String username,
+    public ApplicationGUI createApplicationGUI(String selection, BookStoreApplication BSA, LoginManager LM, String username,
                                                    Stage primaryStage, Viewable LG) {
         switch (selection) {
             case "Owner":
                 ApplicationGUI attGUI = new OwnerGUI();
                 return attGUI;
             case "User":
-                ApplicationGUI cGUI = new CustomerGUI();
+                ApplicationGUI cGUI = new CustomerGUI(LM);
                 return cGUI;
             default:
                 return null;
