@@ -75,7 +75,7 @@ public class CustomerGUI extends ApplicationGUI {
 
         CustomerData CD = (CustomerData) LM.getCurrentUser();
         Label topParagraph = new Label("Wetlcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
-
+        topParagraph.setMinHeight(40);
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
         TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
@@ -101,6 +101,7 @@ public class CustomerGUI extends ApplicationGUI {
         
         FlowPane buttons = new FlowPane(10, 10, buyBtn, redeemBtn, logoutBtn);
         buttons.setAlignment(Pos.CENTER);
+        buttons.setMinHeight(40);
 
         BorderPane root = new BorderPane();
         root.setTop(topParagraph);

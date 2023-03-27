@@ -148,7 +148,8 @@ public class OwnerGUI extends ApplicationGUI{
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage books");
-
+        topParagraph.setMinHeight(40);
+        
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
@@ -180,7 +181,8 @@ public class OwnerGUI extends ApplicationGUI{
         FlowPane buttons = new FlowPane();
         buttons.setVgap(8);
         buttons.setHgap(4);
-        buttons.setPrefWrapLength(100); 
+        buttons.setPrefWrapLength(100);
+        buttons.setMinHeight(40);
         buttons.getChildren().add(LabelBookName);
         buttons.getChildren().add(bookNameField);
         buttons.getChildren().add(LabelBookPrice);
@@ -228,7 +230,7 @@ public class OwnerGUI extends ApplicationGUI{
         
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage the customers");
-
+        topParagraph.setMinHeight(40);
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
         TableColumn<CustomerData, String> col1 = new TableColumn<>("Username");
@@ -262,6 +264,7 @@ public class OwnerGUI extends ApplicationGUI{
         buttons.setVgap(8);
         buttons.setHgap(4);
         buttons.setPrefWrapLength(100); 
+        buttons.setMinHeight(40);
         buttons.getChildren().add(LabelUsername);
         buttons.getChildren().add(usernameField);
         buttons.getChildren().add(LabelPassword);
@@ -276,7 +279,6 @@ public class OwnerGUI extends ApplicationGUI{
         BorderPane root = new BorderPane();
         root.setTop(topParagraph);
         root.setCenter(table);
-        
         root.setBottom(buttons);
                 
         Owner_Customers_Scene = new Scene(root, defaultWidth, defaultHeight);
