@@ -54,9 +54,11 @@ public class OwnerGUI extends ApplicationGUI{
     
     private Scene OwnerMainMenuScene, Owner_Books_Scene, Owner_Customers_Scene;
     LoginManager LM;
+    BookStoreApplication BSA;
 
-    public OwnerGUI(LoginManager LM) {
+    public OwnerGUI(LoginManager LM, BookStoreApplication BSA) {
         this.LM = LM;
+        this.BSA = BSA;
     }
     
 
@@ -299,11 +301,11 @@ public class OwnerGUI extends ApplicationGUI{
         //Owner_Customers_Scene = new Scene(grid, defaultWidth, defaultHeight);
     }
     private void addCustomer(Stage primaryStage){
-        //add logic here
+        //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
     }
     
     private void deleteCustomer(Stage primaryStage){
-        //add logic here
+        //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
     }
     
     private void logoutSequence(Stage primaryStage) {
