@@ -49,6 +49,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import bookstoreapplication.DataStructures.*;
 
 /**
  *
@@ -178,8 +179,10 @@ public class CustomerGUI extends ApplicationGUI {
         
         System.out.println("REGULAR PURCHASE TEST");
         
-        //we need to fix the status and info yeah
-        SetupCostScene(primaryStage, 0, 0, "BRUH UPDATE THIS");//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        CustomerData CD = (CustomerData) LM.getCurrentUser(); 
+        double points = CD.getPoints();
+        String status = CD.getStatus();
+        SetupCostScene(primaryStage, 0, points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         primaryStage.setScene(CustomerCostScene);
         
     }
@@ -188,8 +191,10 @@ public class CustomerGUI extends ApplicationGUI {
         //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
-        
-        SetupCostScene(primaryStage, 20, 20, "BRUH UPDATE THIS");//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        CustomerData CD = (CustomerData) LM.getCurrentUser(); 
+        double points = CD.getPoints();
+        String status = CD.getStatus();
+        SetupCostScene(primaryStage, 0, points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         primaryStage.setScene(CustomerCostScene);
     }
     
