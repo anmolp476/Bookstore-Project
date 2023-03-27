@@ -17,7 +17,7 @@ public abstract class UserEntity {
         this.username = username;
         this.password = password;
     }
-    
+
     public String getUsername(){
         return username;
     }
@@ -25,6 +25,7 @@ public abstract class UserEntity {
     public String getPassword(){
         return password;
     }
+    
     
     /**
      * Returns a String representation of the type of user this is

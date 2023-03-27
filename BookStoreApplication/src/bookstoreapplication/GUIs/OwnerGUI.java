@@ -47,6 +47,7 @@ import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.scene.control.cell.PropertyValueFactory;
 /**
  *
  * @author deeps
@@ -217,22 +218,32 @@ public class OwnerGUI extends ApplicationGUI {
     }
 
     private void SetupOwnerCustomersScene(Stage primaryStage) {
-        TableView<UserEntity> table = new TableView<>();
+        TableView<CustomerData> table = new TableView<>();
         table.setEditable(true);
 
-        List<UserEntity> customer = BSA.getAccountManager().getUserList();
+        List<UserEntity> users = BSA.getAccountManager().getUserList();
+        List<CustomerData> customers = new ArrayList<CustomerData>();
+        
+        for (UserEntity i : users){
+            if (i instanceof CustomerData){
+                customers.add((CustomerData)i);                
+            }
+        }
 
-        table.setItems(FXCollections.observableArrayList(customer));
+        table.setItems(FXCollections.observableArrayList(customers));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage the customers");
         topParagraph.setMinHeight(40);
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
-        TableColumn<UserEntity, String> col1 = new TableColumn<>("Username");
+        TableColumn<CustomerData, String> col1 = new TableColumn<>("Username");
         col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getUsername())));
-        TableColumn<UserEntity, String> col2 = new TableColumn<>("Password");
-        TableColumn<UserEntity, Integer> col3 = new TableColumn<>("Points");
+        TableColumn<CustomerData, String> col2 = new TableColumn<>("Password");
+        col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPassword())));
+        TableColumn<CustomerData, Integer> col3 = new TableColumn<>("Points");
+        col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPoints())));
+
 
         double tableWidth = LoginGUI.defaultWidth;
 
