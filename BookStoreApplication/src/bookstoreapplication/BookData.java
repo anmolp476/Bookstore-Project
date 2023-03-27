@@ -1,6 +1,8 @@
 package bookstoreapplication;
 
-public class BookData
+import java.io.Serializable;
+
+public class BookData implements Serializable
 {
     protected String bookName = "";
     protected String author = "";
