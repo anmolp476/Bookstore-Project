@@ -21,6 +21,8 @@ public class FileGateway {
         //this is for testing
         ArrayList<UserEntity> arr = new ArrayList<UserEntity>();
         arr.add(new CustomerData("Bob", "123", 0));
+                arr.add(new CustomerData("bill", "1233", 0));
+                        arr.add(new CustomerData("bo", "1423", 0));
         return arr;
         
     }
