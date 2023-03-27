@@ -55,7 +55,8 @@ import javafx.scene.text.Text;
 public class CustomerGUI extends ApplicationGUI {
 
     public LoginManager LM;
-
+    private Scene CustomerCostScene;
+    
     public CustomerGUI(LoginManager LM) {
         this.LM = LM;
     }
@@ -87,9 +88,12 @@ public class CustomerGUI extends ApplicationGUI {
         table.getColumns().addAll(col1, col2, col3);
 
         Button buyBtn = new Button("Buy");
+        buyBtn.setOnAction(e -> RegularPurchase(primaryStage));
+        
         Button redeemBtn = new Button("Redeem Points to Buy");
+        redeemBtn.setOnAction(e -> PointPurchase(primaryStage));
+        
         Button logoutBtn = new Button("Logout");
-
         logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
         
         FlowPane buttons = new FlowPane(10, 10, buyBtn, redeemBtn, logoutBtn);
@@ -106,7 +110,21 @@ public class CustomerGUI extends ApplicationGUI {
 
     }
 
-    public void logoutSequence(Stage primaryStage) {
+    private void RegularPurchase(Stage primaryStage){
+        //CALL THE CART MANAGER CLASS FOR A REGULAR PURCHASE
+        //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
+        
+        
+    }
+    
+    private void PointPurchase(Stage primaryStage){
+        //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
+        //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
+        
+        
+    }
+    
+    private void logoutSequence(Stage primaryStage) {
         LoginGUI GUI = new LoginGUI();
         GUI.setLoginPresenter(LM);
         
