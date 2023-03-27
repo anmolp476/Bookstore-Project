@@ -60,7 +60,8 @@ public class CustomerGUI extends ApplicationGUI{
         //books.add(new Book("Temp", 99.99));
         table.setItems(FXCollections.observableArrayList(books));
         
-        Label topParagraph = new Label("Wetlcome " + LM.getCurrentUser().getUsername() + ". You have " + ((CustomerData) LM.getCurrentUser()).getPoints() + " points. Your status is " + ((CustomerData) LM.getCurrentUser()).getStatus() + ".");
+        CustomerData CD = (CustomerData) LM.getCurrentUser();
+        Label topParagraph = new Label("Wetlcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
         
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
     
