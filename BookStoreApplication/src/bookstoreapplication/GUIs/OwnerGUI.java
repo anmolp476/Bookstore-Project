@@ -197,7 +197,21 @@ public class OwnerGUI extends ApplicationGUI{
     }
     
     private void SetupOwnerCustomersScene(Stage primaryStage){
-        // Layout 1
+        TableView<CustomerData> table = new TableView<>();
+        table.setEditable(true);
+
+        List<Book> CustomerData = new ArrayList<>();
+        
+        OwnerData OD = (OwnerData) LM.getCurrentUser();
+        Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage the customers");
+
+        BorderPane.setAlignment(topParagraph, Pos.CENTER);
+
+        TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
+        TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
+
+
+// Layout 1
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(0, 0, 0, 0));
         grid.setHgap(15);
