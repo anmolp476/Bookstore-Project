@@ -34,8 +34,9 @@ public class AccountManager {
     
     public void loadUserList(ArrayList<UserEntity> userList){
         if(userList == null) return;
+        
         for(UserEntity user : userList){
-            userList.add(user);
+            this.userList.add(user);
         }
     }
     

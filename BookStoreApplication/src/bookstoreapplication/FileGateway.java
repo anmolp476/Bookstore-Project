@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package bookstoreapplication;
-import bookstoreapplication.DataStructures.UserEntity;
+import bookstoreapplication.DataStructures.*;
 import java.util.ArrayList;
 /**
  *
@@ -17,7 +17,12 @@ public class FileGateway {
     }
     public ArrayList<UserEntity> readUserFile(){
         //returns a list of all userEntities, make sure to cast them properly as Users or Owners
-        return null;
+        
+        //this is for testing
+        ArrayList<UserEntity> arr = new ArrayList<UserEntity>();
+        arr.add(new CustomerData("Bob", "123", 0));
+        return arr;
+        
     }
     
     public ArrayList<BookData> readBookFile(){
