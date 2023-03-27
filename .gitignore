@@ -4,3 +4,6 @@ BookStoreApplication/nbproject/private/private.properties
 /BookStoreApplication/dist/
 BookStoreApplication/nbproject/private/private.xml
 BookStoreApplication/nbproject/private/private.xml
+BookStoreApplication/nbproject/private/private.properties
+*.xml
+BookStoreApplication/nbproject/private/private.xml
