@@ -42,7 +42,7 @@ public class CustomerGUI extends ApplicationGUI{
      
         BorderPane root = new BorderPane();
         root.setTop(topParagraph);
-        Scene scene = new Scene(root, 560, 480);
+        Scene scene = new Scene(root, LoginGUI.defaultWidth, LoginGUI.defaultHeight);
 
         primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(scene);

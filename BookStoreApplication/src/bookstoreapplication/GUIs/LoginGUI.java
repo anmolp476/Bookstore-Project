@@ -40,8 +40,8 @@ public class LoginGUI implements Viewable {
     private LoginManager loginManager;
 
     private Scene scene, scene1, scene2;
-    final int defaultWidth = 600;
-    final int defaultHeight = 400;
+    public static final int defaultWidth = 800;
+    public static final int defaultHeight = 550;
     final int spacing = 15;
 
     public void setLoginPresenter(LoginManager presenter) {
