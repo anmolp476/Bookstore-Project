@@ -116,6 +116,8 @@ public class CustomerGUI extends ApplicationGUI {
     
     private void SetupCostScene(Button buyBtn, Button redeemBtn, Stage primaryStage){
         Button logoutButton = new Button("Logout");
+        logoutButton.setOnAction(e -> logoutSequence(primaryStage));
+        
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
