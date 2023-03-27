@@ -40,8 +40,8 @@ public class LoginGUI implements Viewable {
     private LoginManager loginManager;
 
     private Scene scene, scene1, scene2;
-    public static final int defaultWidth = 800;
-    public static final int defaultHeight = 550;
+    public static final int defaultWidth = 900;
+    public static final int defaultHeight = 600;
     final int spacing = 15;
 
     public void setLoginPresenter(LoginManager presenter) {
@@ -281,7 +281,7 @@ public class LoginGUI implements Viewable {
         return button3;
     }
 
-    private void shutdownSequence(Stage primaryStage) {
+    public void shutdownSequence(Stage primaryStage) {
         String musicFile = "Media/shutdown.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
