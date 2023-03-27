@@ -60,7 +60,8 @@ public class CustomerGUI extends ApplicationGUI{
         //books.add(new Book("Temp", 99.99));
         table.setItems(FXCollections.observableArrayList(books));
         
-        Label topParagraph = new Label("Welcome " + LM.getCurrentUser().getUsername() + ". You have X points. Your status is Y.");
+        Label topParagraph = new Label("Wetlcome " + LM.getCurrentUser().getUsername() + ". You have " + ((CustomerData) LM.getCurrentUser()).getPoints() + " points. Your status is " + ((CustomerData) LM.getCurrentUser()).getStatus() + ".");
+        
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
     
         
@@ -92,8 +93,5 @@ public class CustomerGUI extends ApplicationGUI{
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        // Checkboxes
-        //List<CheckBox> checkBoxes = createCheckBoxes(Arrays.asList("Attendee", "Organizer", "Speaker", "VIP"));
-        //checkBoxCheck(checkBoxes);
     }
 }

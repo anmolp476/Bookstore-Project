@@ -6,6 +6,7 @@
 package bookstoreapplication;
 
 import bookstoreapplication.GUIs.CustomerGUI;
+import bookstoreapplication.GUIs.LoginGUI;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -23,11 +24,16 @@ public class TestMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Conference");
-
-        //OwnerGUI TEST1 = new OwnerGUI();
-        CustomerGUI TEST2 = new CustomerGUI();
-        TEST2.accessUI(primaryStage);
+        primaryStage.setTitle("Bookstore Application");
+        
+        BookStoreApplication BSA = new BookStoreApplication();
+        
+        LoginGUI loginGUI = new LoginGUI();
+        LoginManager loginPresenter = new LoginManager(BSA);
+        loginGUI.setLoginPresenter(loginPresenter);
+        
+        
+        loginGUI.accessUI(primaryStage);
 
         primaryStage.show();
     }
