@@ -87,7 +87,7 @@ public class OwnerGUI extends ApplicationGUI{
             root.getChildren().add(vbox);
             vbox.getChildren().add(btn3);
             
-            Scene scene = new Scene(root, 800, 550);
+            Scene scene = new Scene(root, LoginGUI.defaultWidth, LoginGUI.defaultHeight);
 
             primaryStage.setTitle("Book Store Application");
             primaryStage.setScene(scene);
