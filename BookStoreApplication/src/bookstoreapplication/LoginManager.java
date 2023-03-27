@@ -21,15 +21,32 @@ public class LoginManager {
     private final BookStoreApplication BSA;
     private final AccountManager accManager;
     private ApplicationGUI appState;
+    private UserEntity currentUser;
+
+    public UserEntity getCurrentUser() {
+        return currentUser;
+    }
     
 
     public LoginManager(BookStoreApplication _BSA) {
         BSA = _BSA;
         accManager = BSA.getAccountManager();
+        currentUser = null;
     }
 
     public boolean login(String username, String password) {
         if (accManager.checkUserExists(username)) {
+            boolean LogInSuccess = (accManager.getUser(username).getPassword().equals(password));
+            System.out.println(accManager.getUser(username).getUsername() + ", has signed in");
+            if (LogInSuccess){
+                currentUser = accManager.getUser(username);
+                System.out.println(currentUser.getUsername() + ", has been saved to currentUser");
+            }
+            else{
+                
+            System.out.println(accManager.getUser(username).getUsername() + ", has NOT signed in");
+                currentUser = null;
+            }
             return (accManager.getUser(username).getPassword().equals(password));
         }
         return false;
@@ -79,7 +96,7 @@ public class LoginManager {
      */
     public ApplicationGUI createApplicationGUI(String username, Stage primaryStage, Viewable LG) {
         AccountGUIFactory accountGUIFactory = new AccountGUIFactory();
-        appState = accountGUIFactory.createApplicationGUI(accManager.getUser(username).getUserType(), BSA, username, primaryStage, LG);
+        appState = accountGUIFactory.createApplicationGUI(accManager.getUser(username).getUserType(), BSA, this, username, primaryStage, LG);
         return appState;
     }
 
