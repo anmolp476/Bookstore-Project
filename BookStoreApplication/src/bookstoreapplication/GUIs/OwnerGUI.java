@@ -7,6 +7,7 @@ package bookstoreapplication.GUIs;
 
 //import java.awt.Color;
 import bookstoreapplication.GUIs.ApplicationGUI;
+import bookstoreapplication.GUIs.LoginGUI;
 
 import bookstoreapplication.*;
 import bookstoreapplication.DataStructures.CustomerData;
