@@ -15,10 +15,10 @@ import java.util.ArrayList;
  */
 public class FileGateway {
 
-    public void saveAllFiles() {
+    public void saveAllFiles(ArrayList<UserEntity> userDataList, ArrayList<BookData> bookDataList) {
         System.out.println("ATTEMPING TO SAVE ALL FILES");
-        //writeUserFile(); 
-        //writeBookFile(); 
+        writeUserFile(userDataList);
+        writeBookFile(bookDataList);
         
     }
 

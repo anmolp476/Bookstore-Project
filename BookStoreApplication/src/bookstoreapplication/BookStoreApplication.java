@@ -23,10 +23,12 @@ public class BookStoreApplication implements Viewable {
     private final FileGateway gateway;
     private final AccountManager accManager;
     private final BookManager bookManager;
+    private final CartManager cartManager;
 
     public BookManager getBookManager() {
         return bookManager;
     }
+    
     
     public BookStoreApplication() {
         this.gateway = new FileGateway();;
@@ -34,7 +36,8 @@ public class BookStoreApplication implements Viewable {
         
         //Loadfiles from gateway
         accManager.loadUserList(gateway.readUserFile());
-        this.bookManager = new BookManager(gateway.readBookFile2());
+        this.bookManager = new BookManager(gateway.readBookFile());
+        this.cartManager = new CartManager();
     }
     
     
@@ -50,6 +53,11 @@ public class BookStoreApplication implements Viewable {
     public FileGateway getLocalFileGateway(){
         return gateway;
     }
+    
+    public CartManager getCartManager(){
+        return cartManager;
+    }
+    
 
     
 }

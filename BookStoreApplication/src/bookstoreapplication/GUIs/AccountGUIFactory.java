@@ -30,7 +30,7 @@ public class AccountGUIFactory {
                 ApplicationGUI attGUI = new OwnerGUI(LM, BSA);
                 return attGUI;
             case "User":
-                ApplicationGUI cGUI = new CustomerGUI(LM);
+                ApplicationGUI cGUI = new CustomerGUI(LM, BSA);
                 return cGUI;
             default:
                 return null;
