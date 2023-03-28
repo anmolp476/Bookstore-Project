@@ -140,7 +140,14 @@ public class OwnerGUI extends ApplicationGUI {
         TableView<BookData> table = new TableView<>();
         table.setEditable(true);
 
+        
         List<BookData> books = new ArrayList<>();
+        //for (BookData i : BSA.getBookManager().getUserList()){
+            //if (i instanceof CustomerData){
+                //customers.add((CustomerData)i);                
+            //}
+        //}
+        
         books.add(new BookData("Temp","Temp", 99));
         books.add(new BookData("Temp","Temp", 99));
         table.setItems(FXCollections.observableArrayList(books));
