@@ -147,7 +147,7 @@ public class OwnerGUI extends ApplicationGUI {
         //}
         //}
 
-        table.setItems(FXCollections.observableArrayList());
+        table.setItems(FXCollections.observableArrayList(BSA.getBookManager().getBookList()));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage books");
@@ -180,7 +180,6 @@ public class OwnerGUI extends ApplicationGUI {
         col3.setMinWidth(tableWidth / 3);
 
         table.getColumns().addAll(col1, col2, col3);
-        table.setItems(FXCollections.observableArrayList(books));
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();

@@ -23,6 +23,10 @@ public class BookStoreApplication implements Viewable {
     private final FileGateway gateway;
     private final AccountManager accManager;
     private final BookManager bookManager;
+
+    public BookManager getBookManager() {
+        return bookManager;
+    }
     
     public BookStoreApplication() {
         this.gateway = new FileGateway();;
