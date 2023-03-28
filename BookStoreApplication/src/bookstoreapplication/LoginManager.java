@@ -83,7 +83,7 @@ public class LoginManager {
 
 
         }
-        BSA.getLocalFileGateway().saveAllFiles();
+        BSA.getLocalFileGateway().saveAllFiles(accManager.getUserList(), BSA.getBookManager().getBookList());
     }
      
     /**
@@ -102,6 +102,6 @@ public class LoginManager {
 
     public void shutdownSequence() {
         System.out.println("calling fileGateway");
-        BSA.getLocalFileGateway().saveAllFiles();
+        BSA.getLocalFileGateway().saveAllFiles(accManager.getUserList(), BSA.getBookManager().getBookList());
     }
 }

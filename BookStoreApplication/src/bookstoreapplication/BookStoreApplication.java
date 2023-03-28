@@ -36,7 +36,7 @@ public class BookStoreApplication implements Viewable {
         
         //Loadfiles from gateway
         accManager.loadUserList(gateway.readUserFile());
-        this.bookManager = new BookManager(gateway.readBookFile2());
+        this.bookManager = new BookManager(gateway.readBookFile());
         this.cartManager = new CartManager();
     }
     
