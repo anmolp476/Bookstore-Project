@@ -61,7 +61,30 @@ public class FileGateway {
         //arr.add(new BookData("book2", "asdsa", 01213));
         //arr.add(new BookData("book12", "twe", 022));
         //return arr;
-
+        FileInputStream fileIn = null; 
+        ObjectInputStream ois = null; 
+        try{
+            fileIn = new FileInputStream("books.ser");
+            ois = new ObjectInputStream(fileIn); 
+            ArrayList<BookData> tmpList = new ArrayList<BookData>(); 
+            BookData bd; 
+            try{
+                while((bd = (BookData)ois.readObject()) != null){ 
+                    tmpList.add((bd));
+                }
+            } 
+            catch (ClassNotFoundException ex) {
+                System.out.println("Unable to retrieve book data..."); 
+            }
+            BookManager bm = new BookManager(tmpList); 
+            ois.close(); 
+            fileIn.close(); 
+        }
+        catch(IOException fe){
+            System.out.println("Save File For Books Not Found, Creating New File..."); 
+            File file = new File("books.ser"); 
+        }
+        return null;
     }
 
     public ArrayList<BookData> readBookFile() {
