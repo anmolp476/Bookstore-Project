@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class BookData {
+public class BookData implements Serializable{
 
     protected String bookName = "";
     protected String author = "";

@@ -6,12 +6,13 @@
 package bookstoreapplication.DataStructures;
 
 import bookstoreapplication.DataStructures.UserEntity;
+import java.io.Serializable;
 
 /**
  *
  * @author LordV
  */
-public class OwnerData extends UserEntity{
+public class OwnerData extends UserEntity implements Serializable{
     public OwnerData(String username, String password){
         super(username, password);
     }
