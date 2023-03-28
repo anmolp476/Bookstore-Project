@@ -5,6 +5,7 @@
  */
 package bookstoreapplication;
 
+import java.io.*;
 import bookstoreapplication.DataStructures.*;
 import java.util.ArrayList;
 
@@ -27,7 +28,31 @@ public class FileGateway {
         //arr.add(new CustomerData("bill", "1233", 0));
         //arr.add(new CustomerData("bo", "1423", 0));
         //return arr;
-
+        FileInputStream fileIn = null; 
+        ObjectInputStream ois = null; 
+        try{
+            fileIn = new FileInputStream("customers.ser");
+            ois = new ObjectInputStream(fileIn); 
+            ArrayList<UserEntity> tmpList = new ArrayList<UserEntity>(); 
+            UserEntity ue; 
+            try{
+                while((ue = (UserEntity)ois.readObject()) != null){ 
+                    tmpList.add((ue));
+                }
+            } 
+            catch (ClassNotFoundException ex) {
+                System.out.println("Unable to retrieve book data..."); 
+            }
+            AccountManager am = AccountManager.getInstance(); 
+            am.loadUserList(tmpList); 
+            ois.close(); 
+            fileIn.close(); 
+        }
+        catch(IOException fe){
+            System.out.println("Save File For Users Not Found, Creating New File..."); 
+            File file = new File("customers.ser"); 
+        }
+        return null;
     }
 
     public ArrayList<BookData> readBookFile2() {
