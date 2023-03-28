@@ -8,7 +8,11 @@ package bookstoreapplication.GUIs;
 //import java.awt.Color;
 import bookstoreapplication.GUIs.ApplicationGUI;
 import bookstoreapplication.GUIs.LoginGUI;
-
+import javafx.beans.property.*;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableColumn;
 import bookstoreapplication.*;
 import bookstoreapplication.DataStructures.CustomerData;
 import bookstoreapplication.DataStructures.*;
@@ -17,6 +21,7 @@ import static bookstoreapplication.GUIs.LoginGUI.defaultWidth;
 import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -49,6 +54,8 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 
 /**
  *
@@ -141,12 +148,6 @@ public class OwnerGUI extends ApplicationGUI {
         TableView<BookData> table = new TableView<>();
         table.setEditable(true);
 
-        //for (BookData i : BSA.getBookManager().getUserList()){
-        //if (i instanceof CustomerData){
-        //customers.add((CustomerData)i);                
-        //}
-        //}
-
         table.setItems(FXCollections.observableArrayList(BSA.getBookManager().getBookList()));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
@@ -160,18 +161,12 @@ public class OwnerGUI extends ApplicationGUI {
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
 
-        TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
-        col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().isSelected())));
-        //col3.setCellValueFactory(new PropertyValueFactory<>("selected"));
-        col3.setCellFactory(CheckBoxTableCell.forTableColumn(col3));
+        //TableColumn<BookData, Boolean> TESTCOL = new TableColumn<>("Selected");
+        //TESTCOL.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().isSelected().getValue())));
 
-        col3.setOnEditCommit(event -> {
-                System.out.println("should triger when box is toggled " + event.getRowValue().getBookName());
-            if (event.getRowValue().isSelected()) {
-                System.out.println("table.getItems().remove " + event.getRowValue().getBookName());
-                table.getItems().remove(event.getRowValue());
-            }
-        });
+        TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
+        col3.setCellValueFactory(new PropertyValueFactory("isSelected"));
+        col3.setCellFactory(tc -> new CheckBoxTableCell<>());
 
         double tableWidth = LoginGUI.defaultWidth;
 
@@ -183,6 +178,7 @@ public class OwnerGUI extends ApplicationGUI {
         col3.setMinWidth(tableWidth / 3);
 
         table.getColumns().addAll(col1, col2, col3);
+        
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
@@ -194,7 +190,7 @@ public class OwnerGUI extends ApplicationGUI {
         addBtn.setOnAction(e -> addBook(primaryStage));
 
         Button deleteBtn = new Button("Delete Selected Books");
-        deleteBtn.setOnAction(e -> deleteBooks(primaryStage, table));
+        deleteBtn.setOnAction(e -> deleteBooks(primaryStage, table, col3));
 
         Button backBtn = new Button("Back");
         backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
@@ -231,11 +227,10 @@ public class OwnerGUI extends ApplicationGUI {
         //add logic here
     }
 
-    private void deleteBooks(Stage primaryStage, TableView<BookData> table ) {
+    private void deleteBooks(Stage primaryStage, TableView<BookData> table, TableColumn<BookData, Boolean> col3) {
         //add logic here
-        //table.getItems().removeAll(table.getItems().filtered(BookData::isSelected)); // use BookData::getSelected
-        BSA.getBookManager().getOBM().removeBooks(table.getItems().filtered(BookData::isSelected)); 
-        //System.out.println("all selected books being deleted: " + table.getItems().filtered(BookData::isSelected));
+        BSA.getBookManager().getOBM().removeBooks(table.getItems().filtered(BookData::isSelected));
+
         SetupOwnerBooksScene(primaryStage);
     }
 
@@ -270,18 +265,18 @@ public class OwnerGUI extends ApplicationGUI {
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPassword())));
         TableColumn<CustomerData, Integer> col3 = new TableColumn<>("Points");
         col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPoints())));
-        
+
         TableColumn<CustomerData, Boolean> col4 = new TableColumn<>("Selection");
         col4.setCellValueFactory(new PropertyValueFactory<>("selected"));
         col4.setCellFactory(CheckBoxTableCell.forTableColumn(col4));
-        
+
         double tableWidth = LoginGUI.defaultWidth;
 
-        col1.setMinWidth(tableWidth/4);
-        col2.setMinWidth(tableWidth/4);
-        col3.setMinWidth(tableWidth/4);
-        col4.setMinWidth(tableWidth/4);
-        
+        col1.setMinWidth(tableWidth / 4);
+        col2.setMinWidth(tableWidth / 4);
+        col3.setMinWidth(tableWidth / 4);
+        col4.setMinWidth(tableWidth / 4);
+
         table.getColumns().addAll(col1, col2, col3, col4);
 
         Label LabelUsername = new Label("Username: ");

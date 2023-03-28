@@ -9,24 +9,29 @@ public class BookData {
     protected String bookName = "";
     protected String author = "";
     protected float price;
-    private boolean isSelected;
+    private BooleanProperty isSelected;
 
-    public boolean isSelected() {
+    public BooleanProperty isSelectedProperty() {
         return isSelected;
     }
 
+    public Boolean isSelected() {
+        return isSelected.getValue();
+    }
+
     public void SelectBook() {
-        isSelected = true;
+        isSelected.set(true);
     }
 
     public void UnSelectBook() {
-        isSelected = false;
+        isSelected.set(false);
     }
 
     public BookData(String inputBookName, String inputAuthor, float inputPrice) {
         bookName = inputBookName;
         author = inputAuthor;
         price = inputPrice;
+        isSelected = new SimpleBooleanProperty();
     }
 
     /**
