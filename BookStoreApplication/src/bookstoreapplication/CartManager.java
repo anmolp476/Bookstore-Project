@@ -27,6 +27,8 @@ public class CartManager extends BookManager
         theList.add(bd);
     }
     
+    
+    
     public double getTotalPrice()
     {
         double totalPrice = 0;
