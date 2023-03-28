@@ -28,26 +28,4 @@ public class OwnerBookManager extends BookManager {
         bl.add(bd);
     }
 
-    public boolean removeBook(BookData bd) {
-        ArrayList<BookData> b2 = getBookList();
-        for (BookData i : b2) {
-            if (i.equals(bd)) {
-                b2.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean removeBooks(List<BookData> bd) {
-        ArrayList<BookData> b2 = getBookList();
-        for (BookData i : bd) 
-        {
-            System.out.println("This book is being removed: " + i.getBookName());
-            if ((b2).contains(i)) {
-                b2.remove(i);
-            }
-        }
-        return false;
-    }
 }

@@ -256,7 +256,7 @@ public class OwnerGUI extends ApplicationGUI {
             System.out.println("this is the price of the book being deleted: " +  BD.getPrice());
         }
 
-        BSA.getBookManager().getOBM().removeBooks(table.getItems().filtered(BookData::isSelected));
+        BSA.getBookManager().removeBooks(table.getItems().filtered(BookData::isSelected));
 
         SetupOwnerBooksScene(primaryStage);
     }

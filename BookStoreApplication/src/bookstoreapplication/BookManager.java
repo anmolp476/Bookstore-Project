@@ -35,9 +35,31 @@ public class BookManager {
     public ArrayList<BookData> getBookList() {
         return bookList;
     }
-    
-    public void addBook(String name, String author, float price){
-        bookList.add(new BookData(name, author, price));
-}
 
+    public void addBook(String name, String author, float price) {
+        bookList.add(new BookData(name, author, price));
+    }
+    
+    public boolean removeBook(BookData bd) {
+        ArrayList<BookData> b2 = getBookList();
+        for (BookData i : b2) {
+            if (i.equals(bd)) {
+                b2.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean removeBooks(List<BookData> bd) {
+        ArrayList<BookData> b2 = getBookList();
+        for (BookData i : bd) 
+        {
+            System.out.println("This book is being removed: " + i.getBookName());
+            if ((b2).contains(i)) {
+                b2.remove(i);
+            }
+        }
+        return false;
+    }
 }

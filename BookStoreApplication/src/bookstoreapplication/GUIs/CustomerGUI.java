@@ -207,7 +207,7 @@ public class CustomerGUI extends ApplicationGUI {
         for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
 
             BSA.getCartManager().addselectbook(BD);
-            //add BSA.getBookManager().removeBook(BD); -- The method for removing books is not yet implemented in book manager.
+            BSA.getBookManager().removeBook(BD); // The method for removing books is not yet implemented in book manager.
          //  BSA.getBookManager().getCM().removeBook(BD);
         }
         
