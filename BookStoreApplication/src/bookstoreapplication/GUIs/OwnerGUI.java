@@ -141,16 +141,13 @@ public class OwnerGUI extends ApplicationGUI {
         TableView<BookData> table = new TableView<>();
         table.setEditable(true);
 
-        List<BookData> books = new ArrayList<>();
         //for (BookData i : BSA.getBookManager().getUserList()){
         //if (i instanceof CustomerData){
         //customers.add((CustomerData)i);                
         //}
         //}
 
-        books.add(new BookData("Temp", "Temp", 99));
-        books.add(new BookData("Temp", "Temp", 99));
-        table.setItems(FXCollections.observableArrayList(books));
+        table.setItems(FXCollections.observableArrayList());
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage books");
@@ -161,10 +158,7 @@ public class OwnerGUI extends ApplicationGUI {
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
         col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
-<<<<<<< HEAD
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
-        TableColumn<BookData, Double> col3 = new TableColumn<>("Selection");
-=======
 
         TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
         col3.setCellValueFactory(new PropertyValueFactory<>("selected"));
@@ -175,7 +169,6 @@ public class OwnerGUI extends ApplicationGUI {
                 table.getItems().remove(event.getRowValue());
             }
         });*/
->>>>>>> 6783f751fb664b8f51dbf4d587e97f9a295d721e
 
         double tableWidth = LoginGUI.defaultWidth;
 
