@@ -56,11 +56,14 @@ public class FileGateway {
     }
 
     public ArrayList<BookData> readBookFile2() {
-        //ArrayList<BookData> arr = new ArrayList<BookData>();
-        //arr.add(new BookData("bbok1", "ar", 021));
-        //arr.add(new BookData("book2", "asdsa", 01213));
-        //arr.add(new BookData("book12", "twe", 022));
-        //return arr;
+        ArrayList<BookData> arr = new ArrayList<BookData>();
+        arr.add(new BookData("bbok1", "ar", 021));
+        arr.add(new BookData("book2", "asdsa", 01213));
+        arr.add(new BookData("book12", "twe", 022));
+        return arr;
+    }
+
+    public ArrayList<BookData> readBookFile() {
         FileInputStream fileIn = null; 
         ObjectInputStream ois = null; 
         try{
@@ -87,15 +90,55 @@ public class FileGateway {
         return null;
     }
 
-    public ArrayList<BookData> readBookFile() {
-        return null;
-    }
-
     public boolean writeUserFile(ArrayList<UserEntity> userDataList) {
+        FileOutputStream fileOut = null; 
+        ObjectOutputStream oos = null; 
+        PrintWriter pw = null; 
+        try{
+            //deletes all previous data from file
+            pw = new PrintWriter("customers.ser");
+            pw.close(); 
+            //writes new serialized data into customers.ser
+            fileOut = new FileOutputStream("customers.ser");
+            oos = new ObjectOutputStream(fileOut); 
+            for(UserEntity user : userDataList){
+                oos.writeObject(user); 
+            }
+            oos.close(); 
+            fileOut.close(); 
+            
+            System.out.println("Customer Data Saved!");
+            return true; 
+        }
+        catch(IOException fe){
+            System.out.println("Error Saving Customer Data"); 
+        }
         return false;
     }
 
     public boolean writeBookFile(ArrayList<BookData> bookDataList) {
+        FileOutputStream fileOut = null; 
+        ObjectOutputStream oos = null; 
+        PrintWriter pw = null; 
+        try{
+            //deletes all previous data from file
+            pw = new PrintWriter("books.ser");
+            pw.close(); 
+            //writes new serialized data into customers.ser
+            fileOut = new FileOutputStream("books.ser");
+            oos = new ObjectOutputStream(fileOut); 
+            for(BookData book : bookDataList){
+                oos.writeObject(book); 
+            }
+            oos.close(); 
+            fileOut.close(); 
+            
+            System.out.println("Book Data Saved!");
+            return true; 
+        }
+        catch(IOException fe){
+            System.out.println("Error Saving Book Data"); 
+        }
         return false;
     }
 
