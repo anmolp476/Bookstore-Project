@@ -46,9 +46,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 /**
  *
  * @author deeps
@@ -140,16 +141,15 @@ public class OwnerGUI extends ApplicationGUI {
         TableView<BookData> table = new TableView<>();
         table.setEditable(true);
 
-        
         List<BookData> books = new ArrayList<>();
         //for (BookData i : BSA.getBookManager().getUserList()){
-            //if (i instanceof CustomerData){
-                //customers.add((CustomerData)i);                
-            //}
+        //if (i instanceof CustomerData){
+        //customers.add((CustomerData)i);                
         //}
-        
-        books.add(new BookData("Temp","Temp", 99));
-        books.add(new BookData("Temp","Temp", 99));
+        //}
+
+        books.add(new BookData("Temp", "Temp", 99));
+        books.add(new BookData("Temp", "Temp", 99));
         table.setItems(FXCollections.observableArrayList(books));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
@@ -161,18 +161,30 @@ public class OwnerGUI extends ApplicationGUI {
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
         col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
+<<<<<<< HEAD
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
         TableColumn<BookData, Double> col3 = new TableColumn<>("Selection");
+=======
+
+        TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
+        col3.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        col3.setCellFactory(CheckBoxTableCell.forTableColumn(col3));
+
+        /*\\col3.setOnEditCommit(event -> {
+            if (!event.getRowValue().isSelected()) {
+                table.getItems().remove(event.getRowValue());
+            }
+        });*/
+>>>>>>> 6783f751fb664b8f51dbf4d587e97f9a295d721e
 
         double tableWidth = LoginGUI.defaultWidth;
 
 //        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
 //        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
 //        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.34));
-        col1.setMinWidth(tableWidth/3);
-        col2.setMinWidth(tableWidth/3);
-        col3.setMinWidth(tableWidth/3);
-
+        col1.setMinWidth(tableWidth / 3);
+        col2.setMinWidth(tableWidth / 3);
+        col3.setMinWidth(tableWidth / 3);
 
         table.getColumns().addAll(col1, col2, col3);
         table.setItems(FXCollections.observableArrayList(books));
@@ -211,7 +223,6 @@ public class OwnerGUI extends ApplicationGUI {
         root.setTop(topParagraph);
         root.setCenter(table);
 
-        
         root.setBottom(buttons);
 
         Owner_Books_Scene = new Scene(root, defaultWidth, defaultHeight);
@@ -221,7 +232,7 @@ public class OwnerGUI extends ApplicationGUI {
     }
 
     private void addBook(Stage primaryStage) {
-        
+
         //add logic here
     }
 
@@ -240,10 +251,10 @@ public class OwnerGUI extends ApplicationGUI {
         table.setEditable(true);
 
         List<CustomerData> customers = new ArrayList<CustomerData>();
-        
-        for (UserEntity i : BSA.getAccountManager().getUserList()){
-            if (i instanceof CustomerData){
-                customers.add((CustomerData)i);                
+
+        for (UserEntity i : BSA.getAccountManager().getUserList()) {
+            if (i instanceof CustomerData) {
+                customers.add((CustomerData) i);
             }
         }
 
@@ -260,7 +271,6 @@ public class OwnerGUI extends ApplicationGUI {
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPassword())));
         TableColumn<CustomerData, Integer> col3 = new TableColumn<>("Points");
         col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPoints())));
-
 
         double tableWidth = LoginGUI.defaultWidth;
 
@@ -284,23 +294,20 @@ public class OwnerGUI extends ApplicationGUI {
             public void handle(ActionEvent event) {
                 System.out.println("add test");
                 //customers.add(new CustomerData("Test","code",0));
-                
+
                 //users.add(new CustomerData(usernameField.getText(), passwordField.getText(),0));
                 BSA.getAccountManager().addCustomer(usernameField.getText(), passwordField.getText());
-                
+
                 //for (UserEntity i : users){
-                    //if (i instanceof CustomerData){
-                        //System.out.println(i.getUsername());
-                    //}
+                //if (i instanceof CustomerData){
+                //System.out.println(i.getUsername());
                 //}
-                
+                //}
                 SetupOwnerCustomersScene(primaryStage);
             }
         });
-        
 
         //addBtn.setOnAction(users.add(new CustomerData(usernameField.toString(), passwordField.toString(), 0)));
-
         Button deleteBtn = new Button("Delete Customer Data");
         deleteBtn.setOnAction(e -> deleteCustomer(primaryStage));
 
@@ -336,10 +343,9 @@ public class OwnerGUI extends ApplicationGUI {
     }
 
     //private void addCustomer(Stage primaryStage, String s, String b, List<UserEntity> users) {
-        //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
-        //users.add(new CustomerData(s,b,0));
+    //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
+    //users.add(new CustomerData(s,b,0));
     //}
-
     private void deleteCustomer(Stage primaryStage) {
         //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
     }
