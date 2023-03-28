@@ -49,6 +49,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import bookstoreapplication.DataStructures.*;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.CheckBoxTableCell;
 
 /**
@@ -75,15 +76,19 @@ public class CustomerGUI extends ApplicationGUI {
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
         
         TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
+//        col1.setCellValsueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue())));
         TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
         TableColumn<Book, Boolean> col3 = new TableColumn<>("Selection Box");
         
         double tableWidth = LoginGUI.defaultWidth;
      
-        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
-        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
-        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
-           
+//        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//           
+        col1.setMinWidth(tableWidth / 3);
+        col2.setMinWidth(tableWidth / 3);
+        col3.setMinWidth(tableWidth / 3);
         //col3.setCellValueFactory(cellData -> cellData.getValue().selectedProperty());
         //col3.setCellFactory(CheckBoxTableCell.forTableColumn(col3));
 
