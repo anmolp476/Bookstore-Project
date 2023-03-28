@@ -7,6 +7,7 @@ package bookstoreapplication.GUIs;
 
 //import java.awt.Color;
 import bookstoreapplication.GUIs.ApplicationGUI;
+import bookstoreapplication.GUIs.LoginGUI;
 
 import bookstoreapplication.*;
 import bookstoreapplication.DataStructures.CustomerData;
@@ -140,8 +141,8 @@ public class OwnerGUI extends ApplicationGUI {
         table.setEditable(true);
 
         List<BookData> books = new ArrayList<>();
-        //books.add(new BookData("Temp","Temp", 99));
-        //books.add(new BookData("Temp","Temp", 99));
+        books.add(new BookData("Temp","Temp", 99));
+        books.add(new BookData("Temp","Temp", 99));
         table.setItems(FXCollections.observableArrayList(books));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
@@ -152,13 +153,19 @@ public class OwnerGUI extends ApplicationGUI {
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
+        TableColumn<BookData, Double> col3 = new TableColumn<>("Selection");
 
         double tableWidth = LoginGUI.defaultWidth;
 
-        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
-        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
+//        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.34));
+        col1.setMinWidth(tableWidth/3);
+        col2.setMinWidth(tableWidth/3);
+        col3.setMinWidth(tableWidth/3);
 
-        table.getColumns().addAll(col1, col2);
+
+        table.getColumns().addAll(col1, col2, col3);
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
