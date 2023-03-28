@@ -139,8 +139,7 @@ public class FileGateway {
             return true; 
         }
         catch(IOException fe){
-            System.out.println(fe); 
-            System.out.println("Error Saving Customer Data"); 
+            System.out.println("Error Saving Customer Data: " + fe); 
         }
         return false;
     }
@@ -166,8 +165,7 @@ public class FileGateway {
             return true; 
         }
         catch(IOException fe){
-            System.out.println(fe); 
-            System.out.println("Error Saving Book Data"); 
+            System.out.println("Error Saving Book Data: "+fe); 
         }
         return false;
     }
