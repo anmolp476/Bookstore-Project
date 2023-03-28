@@ -5,11 +5,13 @@
  */
 package bookstoreapplication.DataStructures;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LordV
  */
-public class CustomerData extends UserEntity{
+public class CustomerData extends UserEntity implements Serializable{
     private int points;
     public CustomerData(String username, String password, int points){
         super(username, password);

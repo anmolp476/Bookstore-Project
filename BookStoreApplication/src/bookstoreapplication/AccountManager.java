@@ -37,6 +37,7 @@ public class AccountManager {
         
         for(UserEntity user : userList){
             this.userList.add(user);
+            user.UnSelectUser();
         }
     }
     

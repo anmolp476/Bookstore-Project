@@ -5,6 +5,7 @@
  */
 package bookstoreapplication.DataStructures;
 
+import java.io.Serializable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -12,7 +13,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  *
  * @author LordV
  */
-public abstract class UserEntity {
+public abstract class UserEntity implements Serializable{
 
     private String username;
     private String password;
