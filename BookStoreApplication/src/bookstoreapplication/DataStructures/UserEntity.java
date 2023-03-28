@@ -5,31 +5,55 @@
  */
 package bookstoreapplication.DataStructures;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 /**
  *
  * @author LordV
  */
 public abstract class UserEntity {
+
     private String username;
     private String password;
-   
-    public UserEntity(String username, String password){
-        this.username = username;
-        this.password = password;
+    private BooleanProperty isSelected;
+
+    public BooleanProperty isSelectedProperty() {
+        return isSelected;
     }
 
-    public String getUsername(){
+    public Boolean isSelected() {
+        return isSelected.getValue();
+    }
+
+    public void SelectUser() {
+        isSelected.set(true);
+    }
+
+    public void UnSelectUser() {
+        isSelected.set(false);
+    }
+
+    public UserEntity(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.isSelected = new SimpleBooleanProperty();
+    }
+
+    public String getUsername() {
         return username;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    
-    
+
     /**
      * Returns a String representation of the type of user this is
+     *
      * @return The type of user as a string
      */
-    public String getUserType(){ return "User"; }
+    public String getUserType() {
+        return "User";
+    }
 }

@@ -163,9 +163,8 @@ public class OwnerGUI extends ApplicationGUI {
 
         //TableColumn<BookData, Boolean> TESTCOL = new TableColumn<>("Selected");
         //TESTCOL.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().isSelected().getValue())));
-
         TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
-        col3.setCellValueFactory(new PropertyValueFactory("isSelected"));
+        col3.setCellValueFactory(new PropertyValueFactory("isSelected"));//this is a boolean property variable's name in BookData
         col3.setCellFactory(tc -> new CheckBoxTableCell<>());
 
         double tableWidth = LoginGUI.defaultWidth;
@@ -178,7 +177,6 @@ public class OwnerGUI extends ApplicationGUI {
         col3.setMinWidth(tableWidth / 3);
 
         table.getColumns().addAll(col1, col2, col3);
-        
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
@@ -267,8 +265,8 @@ public class OwnerGUI extends ApplicationGUI {
         col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPoints())));
 
         TableColumn<CustomerData, Boolean> col4 = new TableColumn<>("Selection");
-        col4.setCellValueFactory(new PropertyValueFactory<>("selected"));
-        col4.setCellFactory(CheckBoxTableCell.forTableColumn(col4));
+        col4.setCellValueFactory(new PropertyValueFactory<>("isSelected"));
+        col4.setCellFactory(tc -> new CheckBoxTableCell<>());
 
         double tableWidth = LoginGUI.defaultWidth;
 
@@ -308,7 +306,7 @@ public class OwnerGUI extends ApplicationGUI {
 
         //addBtn.setOnAction(users.add(new CustomerData(usernameField.toString(), passwordField.toString(), 0)));
         Button deleteBtn = new Button("Delete Customer Data");
-        deleteBtn.setOnAction(e -> deleteCustomer(primaryStage));
+        deleteBtn.setOnAction(e -> deleteCustomer(primaryStage, table));
 
         Button backBtn = new Button("Back");
         backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
@@ -345,8 +343,14 @@ public class OwnerGUI extends ApplicationGUI {
     //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
     //users.add(new CustomerData(s,b,0));
     //}
-    private void deleteCustomer(Stage primaryStage) {
+    private void deleteCustomer(Stage primaryStage, TableView<CustomerData> table) {
         //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
+        for (CustomerData CD : table.getItems().filtered(CustomerData::isSelected)) {
+
+            BSA.getAccountManager().removeCustomer(CD.getUsername());
+        }
+
+        SetupOwnerCustomersScene(primaryStage);
     }
 
     private void logoutSequence(Stage primaryStage) {
