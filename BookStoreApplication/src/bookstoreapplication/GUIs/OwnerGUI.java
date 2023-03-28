@@ -227,6 +227,12 @@ public class OwnerGUI extends ApplicationGUI {
 
     private void deleteBooks(Stage primaryStage, TableView<BookData> table, TableColumn<BookData, Boolean> col3) {
         //add logic here
+
+        for (BookData BD : table.getItems().filtered(BookData::isSelected)) {//after checkboxes are set up properly this is how to read data from the selected objects
+
+            System.out.println("this is the price of the book being deleted: " +  BD.getPrice());
+        }
+
         BSA.getBookManager().getOBM().removeBooks(table.getItems().filtered(BookData::isSelected));
 
         SetupOwnerBooksScene(primaryStage);
