@@ -263,14 +263,19 @@ public class OwnerGUI extends ApplicationGUI {
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPassword())));
         TableColumn<CustomerData, Integer> col3 = new TableColumn<>("Points");
         col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getPoints())));
-
+        
+        TableColumn<CustomerData, Boolean> col4 = new TableColumn<>("Selection");
+        col4.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        col4.setCellFactory(CheckBoxTableCell.forTableColumn(col4));
+        
         double tableWidth = LoginGUI.defaultWidth;
 
-        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
-        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
-        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.333));
-
-        table.getColumns().addAll(col1, col2, col3);
+        col1.setMinWidth(tableWidth/4);
+        col2.setMinWidth(tableWidth/4);
+        col3.setMinWidth(tableWidth/4);
+        col4.setMinWidth(tableWidth/4);
+        
+        table.getColumns().addAll(col1, col2, col3, col4);
 
         Label LabelUsername = new Label("Username: ");
         TextField usernameField = new TextField();
