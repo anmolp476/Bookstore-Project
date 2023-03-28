@@ -80,7 +80,7 @@ public class OwnerGUI extends ApplicationGUI {
         btn1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Books test");
+                System.out.println("Opening Books Menu");
                 primaryStage.setScene(Owner_Books_Scene);
             }
         });
@@ -89,7 +89,7 @@ public class OwnerGUI extends ApplicationGUI {
         btn2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Customer test");
+                System.out.println("Opening Customer Menu");
                 primaryStage.setScene(Owner_Customers_Scene);
             }
         });
@@ -98,7 +98,7 @@ public class OwnerGUI extends ApplicationGUI {
         btn3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Logout Test");
+                System.out.println("Logging Out From Owner Main Menu");
                 logoutSequence(primaryStage);
             }
         });
