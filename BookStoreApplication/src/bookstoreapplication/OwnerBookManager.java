@@ -43,7 +43,7 @@ public class OwnerBookManager extends BookManager {
         ArrayList<BookData> b2 = getBookList();
         for (BookData i : bd) 
         {
-            System.out.println(i.getBookName());
+            System.out.println("This book is being removed: " + i.getBookName());
             if ((b2).contains(i)) {
                 b2.remove(i);
             }
