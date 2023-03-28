@@ -5,6 +5,8 @@
  */
 package bookstoreapplication.GUIs;
 
+import bookstoreapplication.BookData;
+import bookstoreapplication.BookStoreApplication;
 import bookstoreapplication.DataStructures.CustomerData;
 import bookstoreapplication.GUIs.ApplicationGUI;
 import static bookstoreapplication.GUIs.LoginGUI.defaultHeight;
@@ -60,25 +62,33 @@ public class CustomerGUI extends ApplicationGUI {
 
     public LoginManager LM;
     private Scene CustomerCostScene;
-   
-    public CustomerGUI(LoginManager LM) {
+    BookStoreApplication BSA;
+
+    public CustomerGUI(LoginManager LM, BookStoreApplication BSA) {
         this.LM = LM;
+        this.BSA = BSA;
     }
    
     @Override
     public void accessUI(Stage primaryStage) {
-        TableView<Book> table = new TableView<>();
+        TableView<BookData> table = new TableView<>();
         table.setEditable(true);
 
         CustomerData CD = (CustomerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
         topParagraph.setMinHeight(40);
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
+        table.setItems(FXCollections.observableArrayList(BSA.getBookManager().getBookList()));
+
         
-        TableColumn<Book, String> col1 = new TableColumn<>("Name of Book");
-//        col1.setCellValsueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue())));
-        TableColumn<Book, Double> col2 = new TableColumn<>("Price of Book");
-        TableColumn<Book, Boolean> col3 = new TableColumn<>("Selection Box");
+        TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
+            col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
+        TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
+            col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
+
+        TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection Box");
+            col3.setCellValueFactory(new PropertyValueFactory("isSelected"));//this is a boolean property variable's name in BookData
+            col3.setCellFactory(tc -> new CheckBoxTableCell<>());
         
         double tableWidth = LoginGUI.defaultWidth;
      
@@ -95,13 +105,14 @@ public class CustomerGUI extends ApplicationGUI {
         table.getColumns().addAll(col1, col2, col3);
         
         Button buyBtn = new Button("Buy");
-        buyBtn.setOnAction(e -> RegularPurchase(primaryStage));
+        buyBtn.setOnAction(e -> RegularPurchase(primaryStage, table));
         
         Button redeemBtn = new Button("Redeem Points to Buy");
         redeemBtn.setOnAction(e -> PointPurchase(primaryStage));
         
         Button logoutBtn = new Button("Logout");
         logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
+        
         
         FlowPane buttons = new FlowPane(10, 10, buyBtn, redeemBtn, logoutBtn);
         buttons.setAlignment(Pos.CENTER);
@@ -122,6 +133,9 @@ public class CustomerGUI extends ApplicationGUI {
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> logoutSequence(primaryStage));
         
+        //Button backBtn = new Button("Back");
+
+        
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
@@ -131,6 +145,11 @@ public class CustomerGUI extends ApplicationGUI {
         logoutButton.setTranslateY(-150);
         logoutButton.setMinSize(150, 50);
         logoutButton.setFont(Font.font("Arial", 20));
+        
+        //backBtn.setTranslateX(375);
+        //backBtn.setTranslateY(-180);
+        //backBtn.setMinSize(150, 50);
+        //backBtn.setFont(Font.font("Arial", 20));
         
         TextField totalCostField = new TextField();
         TextField pointsField = new TextField();
@@ -176,7 +195,7 @@ public class CustomerGUI extends ApplicationGUI {
         CustomerCostScene = new Scene(root, defaultWidth, defaultHeight);
     }
 
-    private void RegularPurchase(Stage primaryStage){
+    private void RegularPurchase(Stage primaryStage, TableView<BookData> table){
         //CALL THE CART MANAGER CLASS FOR A REGULAR PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
@@ -185,7 +204,14 @@ public class CustomerGUI extends ApplicationGUI {
         CustomerData CD = (CustomerData) LM.getCurrentUser(); 
         double points = CD.getPoints();
         String status = CD.getStatus();
-        SetupCostScene(primaryStage, 0, points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
+
+            BSA.getCartManager().addselectbook(BD);
+        }
+        
+        SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        
+        
         primaryStage.setScene(CustomerCostScene);
         
     }

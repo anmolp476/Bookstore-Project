@@ -13,9 +13,18 @@ public class CartManager extends BookManager
         theList = new ArrayList<>(inputList);
     }
     
+    public CartManager(){
+        theList = new ArrayList<>();
+
+        
+    }
+    
     public ArrayList<BookData> getSelectedBooks()
     {
         return theList;
+    }
+    public void addselectbook(BookData bd){
+        theList.add(bd);
     }
     
     public double getTotalPrice()
