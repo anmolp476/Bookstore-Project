@@ -159,6 +159,7 @@ public class OwnerGUI extends ApplicationGUI {
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
+        col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
         TableColumn<BookData, Double> col3 = new TableColumn<>("Selection");
 
