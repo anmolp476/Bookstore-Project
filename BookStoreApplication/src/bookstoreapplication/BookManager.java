@@ -2,16 +2,31 @@ package bookstoreapplication;
 
 import java.util.*;
 
-public class BookManager 
-{
- 
-    private ArrayList<BookData> bookList = new ArrayList<>();
-    
-    public BookManager(ArrayList<BookData> inputList)
-    {
+public class BookManager {
+
+    protected ArrayList<BookData> bookList = new ArrayList<>();
+    private OwnerBookManager OBM;
+
+    public BookManager(ArrayList<BookData> inputList) {
         bookList = inputList;
-        
-        if(inputList == null) bookList = new ArrayList<BookData>();
+
+        OBM = new OwnerBookManager(inputList);
+
+        if (inputList == null) {
+            bookList = new ArrayList<BookData>();
+        } else {
+
+            for (BookData book : bookList) {
+                book.UnSelectBook();
+            }
+        }
+    }
+
+    public BookManager() {
+    }
+
+    public OwnerBookManager getOBM() {
+        return OBM;
     }
 
     /**
@@ -20,13 +35,5 @@ public class BookManager
     public ArrayList<BookData> getBookList() {
         return bookList;
     }
-    
-    
+
 }
-
-
-
-
-
-
-

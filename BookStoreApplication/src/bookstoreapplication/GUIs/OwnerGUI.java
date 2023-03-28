@@ -161,14 +161,17 @@ public class OwnerGUI extends ApplicationGUI {
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
 
         TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
-        col3.setCellValueFactory(new PropertyValueFactory<>("selected"));
+        col3.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().isSelected())));
+        //col3.setCellValueFactory(new PropertyValueFactory<>("selected"));
         col3.setCellFactory(CheckBoxTableCell.forTableColumn(col3));
 
-        /*\\col3.setOnEditCommit(event -> {
-            if (!event.getRowValue().isSelected()) {
+        col3.setOnEditCommit(event -> {
+                System.out.println("should triger when box is toggled " + event.getRowValue().getBookName());
+            if (event.getRowValue().isSelected()) {
+                System.out.println("table.getItems().remove " + event.getRowValue().getBookName());
                 table.getItems().remove(event.getRowValue());
             }
-        });*/
+        });
 
         double tableWidth = LoginGUI.defaultWidth;
 
@@ -191,7 +194,7 @@ public class OwnerGUI extends ApplicationGUI {
         addBtn.setOnAction(e -> addBook(primaryStage));
 
         Button deleteBtn = new Button("Delete Selected Books");
-        deleteBtn.setOnAction(e -> deleteBooks(primaryStage));
+        deleteBtn.setOnAction(e -> deleteBooks(primaryStage, table));
 
         Button backBtn = new Button("Back");
         backBtn.setOnAction(e -> returnToOwnerMainMenu(primaryStage));
@@ -228,8 +231,12 @@ public class OwnerGUI extends ApplicationGUI {
         //add logic here
     }
 
-    private void deleteBooks(Stage primaryStage) {
+    private void deleteBooks(Stage primaryStage, TableView<BookData> table ) {
         //add logic here
+        //table.getItems().removeAll(table.getItems().filtered(BookData::isSelected)); // use BookData::getSelected
+        BSA.getBookManager().getOBM().removeBooks(table.getItems().filtered(BookData::isSelected)); 
+        //System.out.println("all selected books being deleted: " + table.getItems().filtered(BookData::isSelected));
+        SetupOwnerBooksScene(primaryStage);
     }
 
     private void returnToOwnerMainMenu(Stage primaryStage) {

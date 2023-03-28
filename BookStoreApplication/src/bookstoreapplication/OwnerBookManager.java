@@ -5,32 +5,49 @@
  */
 package bookstoreapplication;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**
  *
  * @author LordV
  */
-public class OwnerBookManager extends BookManager{
-      
-    public OwnerBookManager(ArrayList<BookData> inputList){
-        super(inputList);
+public class OwnerBookManager extends BookManager {
+
+    public OwnerBookManager(ArrayList<BookData> inputList) {
+        this.bookList = inputList;
+        if (inputList == null) {
+            bookList = new ArrayList<BookData>();
+        }
+
     }
     //Pretty sure we don't need to implement getBookList here
-   
-    public void addBook(BookData bd){
+
+    public void addBook(BookData bd) {
         ArrayList<BookData> bl = getBookList();
         bl.add(bd);
     }
-    
-    public boolean removeBook(BookData bd){
+
+    public boolean removeBook(BookData bd) {
         ArrayList<BookData> b2 = getBookList();
-        for (BookData i : b2){
-            if (i.equals(bd)){
+        for (BookData i : b2) {
+            if (i.equals(bd)) {
                 b2.remove(i);
                 return true;
-            }   
+            }
         }
-        return false; 
+        return false;
+    }
+
+    public boolean removeBooks(List<BookData> bd) {
+        ArrayList<BookData> b2 = getBookList();
+        for (BookData i : bd) 
+        {
+            System.out.println(i.getBookName());
+            if ((b2).contains(i)) {
+                b2.remove(i);
+            }
+        }
+        return false;
     }
 }

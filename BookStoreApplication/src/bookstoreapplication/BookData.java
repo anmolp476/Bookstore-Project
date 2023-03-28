@@ -4,18 +4,29 @@ import java.io.Serializable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class BookData
-{
+public class BookData {
+
     protected String bookName = "";
     protected String author = "";
     protected float price;
-    
-    public BookData(String inputBookName, String inputAuthor, float inputPrice)
-    {
+    private boolean isSelected;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void SelectBook() {
+        isSelected = true;
+    }
+
+    public void UnSelectBook() {
+        isSelected = false;
+    }
+
+    public BookData(String inputBookName, String inputAuthor, float inputPrice) {
         bookName = inputBookName;
         author = inputAuthor;
         price = inputPrice;
- 
     }
 
     /**
@@ -60,8 +71,3 @@ public class BookData
         price = newPrice;
     }
 }
-
-
-
-
-
