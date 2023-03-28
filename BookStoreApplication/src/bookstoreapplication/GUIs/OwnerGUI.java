@@ -153,13 +153,19 @@ public class OwnerGUI extends ApplicationGUI {
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
+        TableColumn<BookData, Double> col3 = new TableColumn<>("Selection");
 
         double tableWidth = LoginGUI.defaultWidth;
 
-        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
-        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
+//        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
+//        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.34));
+        col1.setMinWidth(tableWidth/3);
+        col2.setMinWidth(tableWidth/3);
+        col3.setMinWidth(tableWidth/3);
 
-        table.getColumns().addAll(col1, col2);
+
+        table.getColumns().addAll(col1, col2, col3);
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
