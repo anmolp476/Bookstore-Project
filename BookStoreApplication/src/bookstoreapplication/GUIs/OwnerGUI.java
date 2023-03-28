@@ -158,9 +158,11 @@ public class OwnerGUI extends ApplicationGUI {
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
         col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
+         TableColumn<BookData, String> col4 = new TableColumn<>("Author of Book");
+        col4.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getAuthor())));
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
         col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
-
+        
         //TableColumn<BookData, Boolean> TESTCOL = new TableColumn<>("Selected");
         //TESTCOL.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().isSelected().getValue())));
         TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection");
@@ -172,21 +174,40 @@ public class OwnerGUI extends ApplicationGUI {
 //        col1.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
 //        col2.prefWidthProperty().bind(table.widthProperty().multiply(0.33));
 //        col3.prefWidthProperty().bind(table.widthProperty().multiply(0.34));
-        col1.setMinWidth(tableWidth / 3);
-        col2.setMinWidth(tableWidth / 3);
-        col3.setMinWidth(tableWidth / 3);
+        col1.setMinWidth(tableWidth / 4);
+        col2.setMinWidth(tableWidth / 4);
+        col3.setMinWidth(tableWidth / 4);
+        col4.setMinWidth(tableWidth / 4);
+        
 
-        table.getColumns().addAll(col1, col2, col3);
+        table.getColumns().addAll(col1, col4,col2, col3);
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
-
+        Label LabelBookAuthor = new Label("Author Name: ");
+        TextField bookAuthorField = new TextField();
         Label LabelBookPrice = new Label("Book Price: ");
         TextField bookPriceField = new TextField();
 
         Button addBtn = new Button("Add");
-        addBtn.setOnAction(e -> addBook(primaryStage));
+        addBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("add test");
+                //customers.add(new CustomerData("Test","code",0));
 
+                //users.add(new CustomerData(usernameField.getText(), passwordField.getText(),0));
+                BSA.getBookManager().addBook(bookNameField.getText(), bookAuthorField.getText(), Float.parseFloat(bookPriceField.getText()));
+
+                //for (UserEntity i : users){
+                //if (i instanceof CustomerData){
+                //System.out.println(i.getUsername());
+                //}
+                //}
+                SetupOwnerBooksScene(primaryStage);
+            }
+        });
+        
         Button deleteBtn = new Button("Delete Selected Books");
         deleteBtn.setOnAction(e -> deleteBooks(primaryStage, table, col3));
 
@@ -200,6 +221,8 @@ public class OwnerGUI extends ApplicationGUI {
         buttons.setMinHeight(40);
         buttons.getChildren().add(LabelBookName);
         buttons.getChildren().add(bookNameField);
+        buttons.getChildren().add(LabelBookAuthor);
+        buttons.getChildren().add(bookAuthorField);
         buttons.getChildren().add(LabelBookPrice);
         buttons.getChildren().add(bookPriceField);
         buttons.getChildren().add(addBtn);

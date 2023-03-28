@@ -35,5 +35,9 @@ public class BookManager {
     public ArrayList<BookData> getBookList() {
         return bookList;
     }
+    
+    public void addBook(String name, String author, float price){
+        bookList.add(new BookData(name, author, price));
+}
 
 }
