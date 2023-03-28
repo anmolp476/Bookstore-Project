@@ -141,9 +141,8 @@ public class OwnerGUI extends ApplicationGUI {
         table.setEditable(true);
 
         List<BookData> books = new ArrayList<>();
-        books.add(new BookData("Temp","Temp", 99));
-        books.add(new BookData("Temp","Temp", 99));
-        table.setItems(FXCollections.observableArrayList(books));
+        books.add(new BookData("Temp", 0, 99));
+        books.add(new BookData("Temp", 0, 99));
 
         OwnerData OD = (OwnerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + OD.getUsername() + ". This is where you manage books");
@@ -166,6 +165,7 @@ public class OwnerGUI extends ApplicationGUI {
 
 
         table.getColumns().addAll(col1, col2, col3);
+        table.setItems(FXCollections.observableArrayList(books));
 
         Label LabelBookName = new Label("Book Name: ");
         TextField bookNameField = new TextField();
@@ -201,16 +201,17 @@ public class OwnerGUI extends ApplicationGUI {
         root.setTop(topParagraph);
         root.setCenter(table);
 
+        
         root.setBottom(buttons);
 
         Owner_Books_Scene = new Scene(root, defaultWidth, defaultHeight);
-
         primaryStage.setTitle("Book Store Application");
         primaryStage.setScene(Owner_Books_Scene);
         primaryStage.show();
     }
 
     private void addBook(Stage primaryStage) {
+        
         //add logic here
     }
 
