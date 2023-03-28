@@ -40,7 +40,7 @@ public class AccountManager {
         }
     }
     
-    public ArrayList getUserList(){
+    public ArrayList<UserEntity> getUserList(){
         return userList;
     }
     

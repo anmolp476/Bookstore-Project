@@ -221,10 +221,9 @@ public class OwnerGUI extends ApplicationGUI {
         TableView<CustomerData> table = new TableView<>();
         table.setEditable(true);
 
-        List<UserEntity> users = BSA.getAccountManager().getUserList();
         List<CustomerData> customers = new ArrayList<CustomerData>();
         
-        for (UserEntity i : users){
+        for (UserEntity i : BSA.getAccountManager().getUserList()){
             if (i instanceof CustomerData){
                 customers.add((CustomerData)i);                
             }
@@ -260,7 +259,29 @@ public class OwnerGUI extends ApplicationGUI {
         TextField passwordField = new TextField();
 
         Button addBtn = new Button("Add");
-        addBtn.setOnAction(e -> addCustomer(primaryStage));
+        //addBtn.setOnAction(e -> addCustomer(primaryStage,usernameField.toString(), passwordField.toString(), users));
+        //addBtn.setOnAction(e -> addCustomer(primaryStage,"test", "code", users));
+        addBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("add test");
+                //customers.add(new CustomerData("Test","code",0));
+                
+                //users.add(new CustomerData(usernameField.getText(), passwordField.getText(),0));
+                BSA.getAccountManager().addCustomer(usernameField.getText(), passwordField.getText());
+                
+                //for (UserEntity i : users){
+                    //if (i instanceof CustomerData){
+                        //System.out.println(i.getUsername());
+                    //}
+                //}
+                
+                SetupOwnerCustomersScene(primaryStage);
+            }
+        });
+        
+
+        //addBtn.setOnAction(users.add(new CustomerData(usernameField.toString(), passwordField.toString(), 0)));
 
         Button deleteBtn = new Button("Delete Customer Data");
         deleteBtn.setOnAction(e -> deleteCustomer(primaryStage));
@@ -294,22 +315,12 @@ public class OwnerGUI extends ApplicationGUI {
         primaryStage.setScene(Owner_Customers_Scene);
         primaryStage.show();
 
-// Layout 1
-        //GridPane grid = new GridPane();
-        //grid.setPadding(new Insets(0, 0, 0, 0));
-        //grid.setHgap(15);
-        //grid.setVgap(15);
-        //Text title = new Text("Customer Management Menu");
-        //title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
-        //GridPane.setConstraints(title, 1, 0);
-        //grid.getChildren().add(title);
-        //grid.setAlignment(Pos.CENTER);
-        //Owner_Customers_Scene = new Scene(grid, defaultWidth, defaultHeight);
     }
 
-    private void addCustomer(Stage primaryStage) {
+    //private void addCustomer(Stage primaryStage, String s, String b, List<UserEntity> users) {
         //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
-    }
+        //users.add(new CustomerData(s,b,0));
+    //}
 
     private void deleteCustomer(Stage primaryStage) {
         //add logic here you have a ref to the BSA, ADD functions to BSA if you need to access the accountmanager or call BSA.getAccountManager() DONT add a reference to the account manager to OwnerGUI
