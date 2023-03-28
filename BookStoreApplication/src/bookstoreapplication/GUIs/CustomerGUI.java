@@ -207,6 +207,7 @@ public class CustomerGUI extends ApplicationGUI {
         for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
 
             BSA.getCartManager().addselectbook(BD);
+            //add BSA.getBookManager().removeBook(BD); -- The method for removing books is not yet implemented in book manager.
         }
         
         SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
