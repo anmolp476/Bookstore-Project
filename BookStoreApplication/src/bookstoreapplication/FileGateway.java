@@ -17,6 +17,9 @@ public class FileGateway {
 
     public void saveAllFiles() {
         System.out.println("ATTEMPING TO SAVE ALL FILES");
+        //writeUserFile(); 
+        //writeBookFile(); 
+        
     }
 
     public ArrayList<UserEntity> readUserFile() {
@@ -28,29 +31,42 @@ public class FileGateway {
         //arr.add(new CustomerData("bill", "1233", 0));
         //arr.add(new CustomerData("bo", "1423", 0));
         //return arr;
-        FileInputStream fileIn = null; 
-        ObjectInputStream ois = null; 
+        FileInputStream fileIn; 
+        ObjectInputStream ois; 
         try{
-            fileIn = new FileInputStream("customers.ser");
-            ois = new ObjectInputStream(fileIn); 
-            ArrayList<UserEntity> tmpList = new ArrayList<UserEntity>(); 
-            UserEntity ue; 
-            try{
-                while((ue = (UserEntity)ois.readObject()) != null){ 
-                    tmpList.add((ue));
-                }
-            } 
-            catch (ClassNotFoundException ex) {
-                System.out.println("Unable to retrieve book data..."); 
+            File file = new File("customers.ser");
+            if(file.createNewFile()){
+                System.out.println("Save File For Users Not Found, Creating New File..."); 
             }
-            AccountManager am = AccountManager.getInstance(); 
-            am.loadUserList(tmpList); 
-            ois.close(); 
-            fileIn.close(); 
+            else{
+                fileIn = new FileInputStream("customers.ser");
+                ois = new ObjectInputStream(fileIn); 
+                ArrayList<UserEntity> tmpList = new ArrayList<UserEntity>(); 
+                UserEntity ue; 
+                try{
+                    while((ue = (UserEntity)ois.readObject()) != null){ 
+                        tmpList.add((ue));
+                    }
+                } 
+                catch (ClassNotFoundException ex) {
+                    System.out.println("Unable to retrieve user data..."); 
+                }
+                AccountManager am = AccountManager.getInstance(); 
+                am.loadUserList(tmpList); 
+                ois.close(); 
+                fileIn.close();
+            }
+             
+        }
+        catch(EOFException ef){
+            System.out.println("Save file is empty");
+        }
+        catch(FileNotFoundException fnf){
+            System.out.println("Save File For Users Not Found...");     
         }
         catch(IOException fe){
-            System.out.println("Save File For Users Not Found, Creating New File..."); 
-            File file = new File("customers.ser"); 
+            System.out.println(fe); 
+            System.out.println("Please retstart the application"); 
         }
         return null;
     }
@@ -64,35 +80,47 @@ public class FileGateway {
     }
 
     public ArrayList<BookData> readBookFile() {
-        FileInputStream fileIn = null; 
-        ObjectInputStream ois = null; 
+        FileInputStream fileIn; 
+        ObjectInputStream ois; 
         try{
-            fileIn = new FileInputStream("books.ser");
-            ois = new ObjectInputStream(fileIn); 
-            ArrayList<BookData> tmpList = new ArrayList<BookData>(); 
-            BookData bd; 
-            try{
-                while((bd = (BookData)ois.readObject()) != null){ 
-                    tmpList.add((bd));
-                }
-            } 
-            catch (ClassNotFoundException ex) {
-                System.out.println("Unable to retrieve book data..."); 
+            File file = new File("books.ser");
+            if(file.createNewFile()){
+                System.out.println("Save File For Books Not Found, Creating New File..."); 
             }
-            BookManager bm = new BookManager(tmpList); 
-            ois.close(); 
-            fileIn.close(); 
+            else{
+                fileIn = new FileInputStream("books.ser");
+                ois = new ObjectInputStream(fileIn); 
+                ArrayList<BookData> tmpList = new ArrayList<BookData>(); 
+                BookData bd; 
+                try{
+                    while((bd = (BookData)ois.readObject()) != null){ 
+                        tmpList.add((bd));
+                    }
+                } 
+                catch (ClassNotFoundException ex) {
+                    System.out.println("Unable to retrieve book data..."); 
+                }
+                BookManager bm = new BookManager(tmpList); 
+                ois.close(); 
+                fileIn.close();     
+            }    
+        }
+        catch(EOFException ef){
+            System.out.println("Save file is empty");
+        }
+        catch(FileNotFoundException fnf){
+            System.out.println("Save File For Books Not Found...");     
         }
         catch(IOException fe){
-            System.out.println("Save File For Books Not Found, Creating New File..."); 
-            File file = new File("books.ser"); 
+            System.out.println(fe); 
+            System.out.println("Please retstart the application");   
         }
         return null;
     }
 
     public boolean writeUserFile(ArrayList<UserEntity> userDataList) {
-        FileOutputStream fileOut = null; 
-        ObjectOutputStream oos = null; 
+        FileOutputStream fileOut; 
+        ObjectOutputStream oos; 
         PrintWriter pw = null; 
         try{
             //deletes all previous data from file
@@ -111,15 +139,16 @@ public class FileGateway {
             return true; 
         }
         catch(IOException fe){
+            System.out.println(fe); 
             System.out.println("Error Saving Customer Data"); 
         }
         return false;
     }
 
     public boolean writeBookFile(ArrayList<BookData> bookDataList) {
-        FileOutputStream fileOut = null; 
-        ObjectOutputStream oos = null; 
-        PrintWriter pw = null; 
+        FileOutputStream fileOut; 
+        ObjectOutputStream oos; 
+        PrintWriter pw; 
         try{
             //deletes all previous data from file
             pw = new PrintWriter("books.ser");
@@ -137,6 +166,7 @@ public class FileGateway {
             return true; 
         }
         catch(IOException fe){
+            System.out.println(fe); 
             System.out.println("Error Saving Book Data"); 
         }
         return false;
