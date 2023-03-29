@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 import javafx.event.EventHandler;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 /**
  *
@@ -57,7 +58,6 @@ public class LoginGUI implements Viewable {
         //mediaPlayer.setAutoPlay(true);
         //MediaView mediaView = new MediaView(mediaPlayer);
         primaryStage.setTitle("BookstoreApplication - Window");
-
         // Buttons
         Button loginButton = new Button("Login");
         Button signUpButton = new Button("Sign Up");
@@ -287,7 +287,8 @@ public class LoginGUI implements Viewable {
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setVolume(0.25);
         mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setOnEndOfMedia(primaryStage::close);
+        mediaPlayer.setStopTime(Duration.seconds(2));
+        mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
         MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
@@ -305,16 +306,6 @@ public class LoginGUI implements Viewable {
 
         primaryStage.show();
 
-        new java.util.Timer().schedule(//WAITS TO SHOW CREDITS THEN CLOSES APP
-                new java.util.TimerTask() {
-            @Override
-            public void run() {
-                System.exit(0);
-            }
-        },
-                2000
-        );
-        //
     }
 
 }
