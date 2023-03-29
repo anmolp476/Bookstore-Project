@@ -122,14 +122,36 @@ public class FileGateway {
         FileOutputStream fileOut; 
         ObjectOutputStream oos; 
         PrintWriter pw = null; 
+        ArrayList<UserEntitySerializable> serUserData = new ArrayList<UserEntitySerializable>();
+        
         try{
             //deletes all previous data from file
             pw = new PrintWriter("customers.ser");
             pw.close(); 
             //writes new serialized data into customers.ser
             fileOut = new FileOutputStream("customers.ser");
-            oos = new ObjectOutputStream(fileOut); 
-            for(UserEntity user : userDataList){
+            oos = new ObjectOutputStream(fileOut);
+            
+            //Temp variables for user entity attributes
+            int points; 
+            String usern; 
+            String pass; 
+            //Loop to convert userEntity objects to UserEntitySerializable objects for serialization
+            for(int i = 0; i < userDataList.size(); i++){
+                pass = userDataList.get(i).getPassword();
+                usern = userDataList.get(i).getUsername(); 
+                
+                //Checks if user is the owner or not and sets points to 0 if they are owner
+                if(usern.compareTo("admin") == 0 && pass.compareTo("admin") ==0){
+                    points = 0; 
+                }
+                else{
+                    points = ((CustomerData)userDataList.get(i)).getPoints();
+                }
+                UserEntitySerializable b = new UserEntitySerializable(usern, pass, points);
+                serUserData.add(b);
+            }
+            for(UserEntitySerializable user : serUserData){
                 oos.writeObject(user); 
             }
             oos.close(); 
@@ -145,6 +167,7 @@ public class FileGateway {
     }
 
     public boolean writeBookFile(ArrayList<BookData> bookDataList) {
+        ArrayList<BookDataSerializable> bds = new ArrayList<BookDataSerializable>(); 
         FileOutputStream fileOut; 
         ObjectOutputStream oos; 
         PrintWriter pw; 
@@ -155,7 +178,23 @@ public class FileGateway {
             //writes new serialized data into customers.ser
             fileOut = new FileOutputStream("books.ser");
             oos = new ObjectOutputStream(fileOut); 
-            for(BookData book : bookDataList){
+            
+            //Temp variables for bookData
+            String bName; 
+            String author; 
+            float price; 
+            
+            //Loop to convert bookData objects to bookDataSerializable objects for serialization
+            for(int i = 0; i < bookDataList.size(); i++){
+                bName = bookDataList.get(i).getBookName(); 
+                author = bookDataList.get(i).getAuthor(); 
+                price = bookDataList.get(i).getPrice(); 
+                
+                BookDataSerializable b = new BookDataSerializable(bName, author, price); 
+                bds.add(b);
+            }
+            
+            for(BookDataSerializable book : bds){
                 oos.writeObject(book); 
             }
             oos.close(); 

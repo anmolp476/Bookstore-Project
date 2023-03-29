@@ -21,5 +21,11 @@ public class OwnerData extends UserEntity implements Serializable{
      * Returns a String representation of the type of user this is
      * @return The type of user as a string
      */
-    public String getUserType(){ return "Owner"; }
+    public String getUserType(){ return "Owner"; }  
+    
+    public int getPoints(){
+        return 0; 
+    }
 }
+
+
