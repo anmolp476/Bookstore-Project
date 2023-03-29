@@ -40,14 +40,39 @@ public class FileGateway {
             }
             else{
                 fileIn = new FileInputStream("customers.ser");
-                ois = new ObjectInputStream(fileIn); 
+                ois = new ObjectInputStream(fileIn);
+                ArrayList<UserEntitySerializable> tmpListSer = new ArrayList<UserEntitySerializable>(); 
                 ArrayList<UserEntity> tmpList = new ArrayList<UserEntity>(); 
-                UserEntity ue; 
+                UserEntitySerializable ues; 
+                //Temp Variables
+                int points; 
+                String usern; 
+                String pass; 
+                
                 try{
-                    while((ue = (UserEntity)ois.readObject()) != null){ 
-                        tmpList.add((ue));
+                    while((ues = (UserEntitySerializable)ois.readObject()) != null){ 
+                        tmpListSer.add((ues));
                     }
-                } 
+                    
+                    //conversion loop
+                    for(int i = 0; i<tmpListSer.size(); i++){
+                        usern = tmpListSer.get(i).getUsername(); 
+                        points = tmpListSer.get(i).getPoints(); 
+                        pass = tmpListSer.get(i).getPassword(); 
+                       
+                        if(usern.compareTo("admin") == 0 && pass.compareTo("admin") == 0){
+                            UserEntity ue = new OwnerData(usern, pass); 
+                            tmpList.add(ue); 
+                        }
+                        else{
+                            UserEntity ue = new CustomerData(usern, pass, points); 
+                            tmpList.add(ue); 
+                        }
+                        
+                    }
+                    
+                }
+                
                 catch (ClassNotFoundException ex) {
                     System.out.println("Unable to retrieve user data..."); 
                 }
