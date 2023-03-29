@@ -35,14 +35,14 @@ public class AccountManager {
         if (userList == null) {
             return;
         }
-
+        System.out.println("loadUserList(ArrayList<UserEntity> userList)");
         for (UserEntity user : userList) {
+            System.out.println("REady to use: " + user.getUsername());
             this.userList.add(user);
             user.UnSelectUser();
         }
-        if (!checkUserExists("admin")) {
-            addOwner("admin", "admin");
-        }
+        
+        addOwner("admin", "admin");
     }
 
     public ArrayList<UserEntity> getUserList() {
