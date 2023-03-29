@@ -5,11 +5,13 @@
  */
 package bookstoreapplication.DataStructures;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Yanny
  */
-public class BookDataSerializable {
+public class BookDataSerializable implements Serializable{
     private String bookName; 
     private String author; 
     private float price; 

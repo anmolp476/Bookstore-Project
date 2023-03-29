@@ -5,11 +5,13 @@
  */
 package bookstoreapplication.DataStructures;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Yanny
  */
-public class UserEntitySerializable {
+public class UserEntitySerializable implements Serializable{
     private int points; 
     private String username; 
     private String password; 
