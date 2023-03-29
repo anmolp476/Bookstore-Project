@@ -21,7 +21,6 @@ public class AccountManager {
 
     private AccountManager() {
         userList = new ArrayList<UserEntity>();
-
     }
 
     public static AccountManager getInstance() {
@@ -33,6 +32,8 @@ public class AccountManager {
 
     public void loadUserList(ArrayList<UserEntity> userList) {
         if (userList == null) {
+
+            addOwner("admin", "admin");
             return;
         }
         System.out.println("loadUserList(ArrayList<UserEntity> userList)");
@@ -41,7 +42,7 @@ public class AccountManager {
             this.userList.add(user);
             user.UnSelectUser();
         }
-        
+
         addOwner("admin", "admin");
     }
 
