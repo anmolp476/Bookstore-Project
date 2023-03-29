@@ -196,6 +196,13 @@ public class CustomerGUI extends ApplicationGUI {
         Image gifImage = new Image(new File(gifFile).toURI().toString());
         gifView.setImage(gifImage);
                 
+        String musicFile = "Media/167535__jordanielmills__01-winner.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.25);
+        mediaPlayer.setAutoPlay(true);
+        MediaView mediaView = new MediaView(mediaPlayer);
+        
         BorderPane root = new BorderPane();
         
         root.getChildren().add(gifView);
