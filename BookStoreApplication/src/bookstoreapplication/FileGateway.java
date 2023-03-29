@@ -115,12 +115,28 @@ public class FileGateway {
             else{
                 fileIn = new FileInputStream("books.ser");
                 ois = new ObjectInputStream(fileIn); 
+                ArrayList<BookDataSerializable> tmpListSer = new ArrayList<BookDataSerializable>(); 
                 ArrayList<BookData> tmpList = new ArrayList<BookData>(); 
-                BookData bd; 
+                BookDataSerializable bd; 
+                //Temp Variable
+                String bName;
+                String author; 
+                float price; 
+                
                 try{
-                    while((bd = (BookData)ois.readObject()) != null){ 
-                        tmpList.add((bd));
+                    while((bd = (BookDataSerializable)ois.readObject()) != null){ 
+                        tmpListSer.add((bd));
                     }
+                    for(int i = 0; i<tmpListSer.size(); i++){
+                        bName = tmpListSer.get(i).getBookName(); 
+                        author = tmpListSer.get(i).getAuthor(); 
+                        price = tmpListSer.get(i).getPrice();
+                        
+                        BookData bookd = new BookData(bName, author, price);
+                        
+                        tmpList.add(bookd); 
+                    }
+                       
                 } 
                 catch (ClassNotFoundException ex) {
                     System.out.println("Unable to retrieve book data..."); 
