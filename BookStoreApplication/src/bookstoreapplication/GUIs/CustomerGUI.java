@@ -53,6 +53,8 @@ import javafx.scene.text.Text;
 import bookstoreapplication.DataStructures.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -184,14 +186,28 @@ public class CustomerGUI extends ApplicationGUI {
         
         grid.setTranslateY(150);
         grid.setTranslateX(190);
+        
+        ImageView gifView = new ImageView();
+        gifView.setFitWidth(LoginGUI.defaultWidth); // set the width of the GIF image
+        gifView.setFitHeight(LoginGUI.defaultHeight); // set the height of the GIF image
+        gifView.setTranslateX(0); // set the x position of the GIF image
+        gifView.setTranslateY(0); // set the y position of the GIF image
+        String gifFile = "Media/confetti.gif";
+        Image gifImage = new Image(new File(gifFile).toURI().toString());
+        gifView.setImage(gifImage);
                 
         BorderPane root = new BorderPane();
+        
+        root.getChildren().add(gifView);
         root.setTop(titleLabel);
         BorderPane.setAlignment(titleLabel, Pos.CENTER);
         root.setCenter(grid);
         root.setAlignment(grid, Pos.CENTER);
         root.setBottom(logoutButton);
+        
 
+
+        
         CustomerCostScene = new Scene(root, defaultWidth, defaultHeight);
     }
 
