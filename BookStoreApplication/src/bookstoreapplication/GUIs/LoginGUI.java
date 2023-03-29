@@ -277,47 +277,24 @@ public class LoginGUI implements Viewable {
 
     private Button createExitButton(Stage primaryStage) {
         Button button3 = new Button("Quit");
-        button3.setOnAction(e -> shutDownSequence(primaryStage));
+        button3.setOnAction(e -> logOutSequence(primaryStage, true));
         return button3;
     }
 
-    public void logOutSequence(Stage primaryStage) {
-        String musicFile = "Media/shutdown.mp3";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.25);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setStopTime(Duration.seconds(2));/*
-        if(!ShutDown)
-            mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
-        else
-            mediaPlayer.setOnEndOfMedia(() -> System.exit(0));*/
-        MediaView mediaView = new MediaView(mediaPlayer);
-        System.out.println("Shutting down ...");
-
-        Text endCredits = new Text("Brought to you by, Group_3");
-        endCredits.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 36));
-
-        StackPane layout = new StackPane();
-        //layout.getChildren().add(mediaView);
-        layout.getChildren().add(endCredits);
-        StackPane.setAlignment(endCredits, Pos.CENTER);
-        scene = new Scene(layout, defaultWidth, defaultHeight);
-        primaryStage.setScene(scene);
-
-        loginManager.shutdownSequence(); //IMPLEMENT THIS LATER <<CALS SAVING FUNCTION
-
-        primaryStage.show();
-
+    public void logOutSequence(Stage primaryStage){
+        logOutSequence(primaryStage, false);
     }
-        public void shutDownSequence(Stage primaryStage) {
+    public void logOutSequence(Stage primaryStage, boolean ShutDown) {
         String musicFile = "Media/shutdown.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setVolume(0.25);
         mediaPlayer.setAutoPlay(true);
         mediaPlayer.setStopTime(Duration.seconds(2));
-        mediaPlayer.setOnEndOfMedia(() -> System.exit(0));
+        if(!ShutDown)
+            mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
+        else
+            mediaPlayer.setOnEndOfMedia(() -> System.exit(0));
         MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
@@ -336,4 +313,5 @@ public class LoginGUI implements Viewable {
         primaryStage.show();
 
     }
+       
 }
