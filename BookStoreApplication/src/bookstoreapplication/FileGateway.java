@@ -94,14 +94,6 @@ public class FileGateway {
         return null;
     }
 
-    public ArrayList<BookData> readBookFile2() {
-        ArrayList<BookData> arr = new ArrayList<BookData>();
-        arr.add(new BookData("bbok1", "ar", 021));
-        arr.add(new BookData("book2", "asdsa", 01213));
-        arr.add(new BookData("book12", "twe", 022));
-        return arr;
-    }
-
     public ArrayList<BookData> readBookFile() {
         FileInputStream fileIn;
         ObjectInputStream ois;
@@ -121,25 +113,27 @@ public class FileGateway {
                 float price;
 
                 try {
-                    while ((bd = (BookDataSerializable) ois.readObject()) != null) {
-                        tmpListSer.add((bd));
-                    }
-                    for (int i = 0; i < tmpListSer.size(); i++) {
-                        bName = tmpListSer.get(i).getBookName();
-                        author = tmpListSer.get(i).getAuthor();
-                        price = tmpListSer.get(i).getPrice();
+                    tmpListSer = (ArrayList<BookDataSerializable>) ois.readObject();
+                    System.out.println("Loading Books From File");
+                    
+                    for (BookDataSerializable BDS : tmpListSer) {
+                        bName = BDS.getBookName();
+                        author = BDS.getAuthor();
+                        price = BDS.getPrice();
 
                         BookData bookd = new BookData(bName, author, price);
 
                         tmpList.add(bookd);
                     }
 
+                    ois.close();
+                    fileIn.close();
+                    
+                    return tmpList;
+                    
                 } catch (ClassNotFoundException ex) {
                     System.out.println("Unable to retrieve book data...");
                 }
-                BookManager bm = new BookManager(tmpList);
-                ois.close();
-                fileIn.close();
             }
         } catch (EOFException ef) {
             System.out.println("Save file is empty");
@@ -226,9 +220,7 @@ public class FileGateway {
                 bds.add(b);
             }
 
-            for (BookDataSerializable book : bds) {
-                oos.writeObject(book);
-            }
+            oos.writeObject(bds);
             oos.close();
             fileOut.close();
 
