@@ -32,6 +32,25 @@ public class CustomerData extends UserEntity implements Serializable{
         return status;
     }
     
+    public void addPoints(int p){
+        points = points + p;
+    }
+    
+    public int removePoints(int p){
+        if ((points - p) > 0){
+            points = points - p;
+            return 0;
+        }
+        else{
+            int usedPoints = 0;
+            while (points > 100){
+                usedPoints += 100;
+                points -= 100;
+            }
+            return usedPoints;
+        }
+    }
+    
     /**
      * Returns a String representation of the type of user this is
      * @return The type of user as a string

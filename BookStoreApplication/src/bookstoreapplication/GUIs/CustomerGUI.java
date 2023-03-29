@@ -110,7 +110,7 @@ public class CustomerGUI extends ApplicationGUI {
         buyBtn.setOnAction(e -> RegularPurchase(primaryStage, table));
         
         Button redeemBtn = new Button("Redeem Points to Buy");
-        redeemBtn.setOnAction(e -> PointPurchase(primaryStage));
+        redeemBtn.setOnAction(e -> PointPurchase(primaryStage, table));
         
         Button logoutBtn = new Button("Logout");
         logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
@@ -236,6 +236,28 @@ public class CustomerGUI extends ApplicationGUI {
         System.out.println("REGULAR PURCHASE TEST");
         
         CustomerData CD = (CustomerData) LM.getCurrentUser(); 
+        for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
+
+            BSA.getCartManager().addselectbook(BD);
+            BSA.getBookManager().removeBook(BD); // The method for removing books is not yet implemented in book manager.
+         //  BSA.getBookManager().getCM().removeBook(BD);
+        }
+        CD.addPoints((int)BSA.getCartManager().getTotalPrice()*10);
+        //double points = CD.getPoints();
+        //String status = CD.getStatus();
+        SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        for (BookData i : BSA.getBookManager().getBookList()){
+            System.out.println(i.getBookName());
+        }        
+        primaryStage.setScene(CustomerCostScene);
+        
+    }
+    
+    private void PointPurchase(Stage primaryStage,  TableView<BookData> table){
+        //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
+        //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
+        
+        CustomerData CD = (CustomerData) LM.getCurrentUser(); 
         double points = CD.getPoints();
         String status = CD.getStatus();
         for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
@@ -244,24 +266,17 @@ public class CustomerGUI extends ApplicationGUI {
             BSA.getBookManager().removeBook(BD); // The method for removing books is not yet implemented in book manager.
          //  BSA.getBookManager().getCM().removeBook(BD);
         }
-        
-        SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
-        for (BookData i : BSA.getBookManager().getBookList()){
-            System.out.println(i.getBookName());
+        double cost = BSA.getCartManager().getTotalPrice();
+        int pointsLoss = (int)cost*100;
+        int discount = CD.removePoints(pointsLoss);
+        double totalCost;
+        if (CD.removePoints(pointsLoss) == 0){
+            totalCost = 0;
         }
-        
-        primaryStage.setScene(CustomerCostScene);
-        
-    }
-    
-    private void PointPurchase(Stage primaryStage){
-        //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
-        //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
-        
-        CustomerData CD = (CustomerData) LM.getCurrentUser(); 
-        double points = CD.getPoints();
-        String status = CD.getStatus();
-        SetupCostScene(primaryStage, 0, points, status);//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        else{
+            totalCost = cost - (discount/100);
+        }
+        SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         primaryStage.setScene(CustomerCostScene);
     }
     
