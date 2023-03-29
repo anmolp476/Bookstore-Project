@@ -141,7 +141,7 @@ public class CustomerGUI extends ApplicationGUI {
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
-        Label titleLabel = new Label("Hello, CUSTOMER. This is your reciept");        
+        Label titleLabel = new Label("Hello, " + LM.getCurrentUser().getUsername() + ". This is your reciept");        
         
         logoutButton.setTranslateX(375);
         logoutButton.setTranslateY(-150);
