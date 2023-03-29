@@ -195,6 +195,15 @@ public class CustomerGUI extends ApplicationGUI {
         String gifFile = "Media/confetti.gif";
         Image gifImage = new Image(new File(gifFile).toURI().toString());
         gifView.setImage(gifImage);
+        
+        ImageView gifView2 = new ImageView();
+        gifView2.setFitWidth(LoginGUI.defaultWidth); // set the width of the GIF image
+        gifView2.setFitHeight(LoginGUI.defaultHeight); // set the height of the GIF image
+        gifView2.setTranslateX(0); // set the x position of the GIF image
+        gifView2.setTranslateY(0); // set the y position of the GIF image
+        String gifFile2 = "Media/2a91ebdf918337b5254207bf94b212e7.gif";
+        Image gifImage2 = new Image(new File(gifFile2).toURI().toString());
+        gifView2.setImage(gifImage2);
                 
         String musicFile = "Media/167535__jordanielmills__01-winner.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
@@ -206,6 +215,8 @@ public class CustomerGUI extends ApplicationGUI {
         BorderPane root = new BorderPane();
         
         root.getChildren().add(gifView);
+        root.getChildren().add(gifView2);
+        
         root.setTop(titleLabel);
         BorderPane.setAlignment(titleLabel, Pos.CENTER);
         root.setCenter(grid);
