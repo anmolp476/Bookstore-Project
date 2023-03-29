@@ -142,7 +142,7 @@ public class FileGateway {
                 usern = userDataList.get(i).getUsername(); 
                 
                 //Checks if user is the owner or not and sets points to 0 if they are owner
-                if(usern.compareTo("admin") == 0 && pass.compareTo("admin") ==0){
+                if(userDataList.get(i).getUserType().equals("Owner")){
                     points = 0; 
                 }
                 else{
