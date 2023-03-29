@@ -195,9 +195,16 @@ public class OwnerGUI extends ApplicationGUI {
             public void handle(ActionEvent event) {
                 System.out.println("add test");
                 //customers.add(new CustomerData("Test","code",0));
+                try{
+                    Float priceVal = Float.parseFloat(bookPriceField.getText());
+                    BSA.getBookManager().addBook(bookNameField.getText(), bookAuthorField.getText(), priceVal);
 
+                }
+                catch (Exception e){
+                    SetupOwnerBooksScene(primaryStage);
+
+                }
                 //users.add(new CustomerData(usernameField.getText(), passwordField.getText(),0));
-                BSA.getBookManager().addBook(bookNameField.getText(), bookAuthorField.getText(), Float.parseFloat(bookPriceField.getText()));
 
                 //for (UserEntity i : users){
                 //if (i instanceof CustomerData){
