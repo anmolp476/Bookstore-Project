@@ -294,7 +294,8 @@ public class LoginGUI implements Viewable {
 
         ImageView gifView = new ImageView();
         ImageView gifView2 = new ImageView();
-
+        ImageView gifView3 = new ImageView();
+            
         String musicFile = "Media/shutdown.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -306,7 +307,7 @@ public class LoginGUI implements Viewable {
                 mediaPlayer.setVolume(0.25);
                 mediaPlayer.setAutoPlay(true);
                 mediaPlayer.setStopTime(Duration.seconds(2));
-                
+
                 mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
                 endCredits = new Text("Logging Out . . .");
 
@@ -336,6 +337,14 @@ public class LoginGUI implements Viewable {
                     tx.getShearX(), tx.getScaleY(), tx.getTranslateY());
             gifView2.getTransforms().add(flip);
 
+            gifView3.setFitWidth(LoginGUI.defaultWidth); // set the width of the GIF image
+            gifView3.setFitHeight(LoginGUI.defaultHeight); // set the height of the GIF image
+            gifView3.setTranslateX(0); // set the x position of the GIF image
+            gifView3.setTranslateY(0); // set the y position of the GIF image
+            String gifFile3 = "Media/icegif-3602.gif";
+            Image gifImage3 = new Image(new File(gifFile3).toURI().toString());
+            gifView3.setImage(gifImage3);
+
             musicFile = "Media/Super Mario - Stage Win.mp3";
             sound = new Media(new File(musicFile).toURI().toString());
             mediaPlayer = new MediaPlayer(sound);
@@ -355,6 +364,7 @@ public class LoginGUI implements Viewable {
         layout.setStyle("-fx-background-color: white;");
         layout.getChildren().add(gifView);
         layout.getChildren().add(gifView2);
+        layout.getChildren().add(gifView3);
 
         layout.getChildren().add(endCredits);
         StackPane.setAlignment(endCredits, Pos.CENTER);
