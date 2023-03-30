@@ -286,7 +286,7 @@ public class CustomerGUI extends ApplicationGUI {
         LoginGUI GUI = new LoginGUI();
         GUI.setLoginPresenter(LM);
         
-        GUI.shutdownSequence(primaryStage);
+        GUI.logOutSequence(primaryStage);
        
     }
 }

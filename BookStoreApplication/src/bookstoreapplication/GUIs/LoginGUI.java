@@ -7,6 +7,7 @@ package bookstoreapplication.GUIs;
 
 import bookstoreapplication.LoginManager;
 import bookstoreapplication.Viewable;
+import java.awt.geom.AffineTransform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,7 +30,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 
 /**
  *
@@ -57,7 +61,6 @@ public class LoginGUI implements Viewable {
         //mediaPlayer.setAutoPlay(true);
         //MediaView mediaView = new MediaView(mediaPlayer);
         primaryStage.setTitle("BookstoreApplication - Window");
-
         // Buttons
         Button loginButton = new Button("Login");
         Button signUpButton = new Button("Sign Up");
@@ -85,7 +88,7 @@ public class LoginGUI implements Viewable {
 
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {//THIS CHANGES BEHAVIOR OF X BUTTON
             public void handle(WindowEvent we) {
-                shutdownSequence(primaryStage);
+                logOutSequence(primaryStage);
             }
         });
 
@@ -174,7 +177,7 @@ public class LoginGUI implements Viewable {
             System.out.println("Going back to start menu");
             confirmLabel.setText("");
             primaryStage.setScene(scene);
-           
+
         });
         GridPane.setConstraints(returnButton, 0, 8, 1, 1, HPos.RIGHT, VPos.CENTER);
         return returnButton;
@@ -277,17 +280,52 @@ public class LoginGUI implements Viewable {
 
     private Button createExitButton(Stage primaryStage) {
         Button button3 = new Button("Quit");
-        button3.setOnAction(e -> shutdownSequence(primaryStage));
+        button3.setOnAction(e -> logOutSequence(primaryStage, true));
         return button3;
     }
 
-    public void shutdownSequence(Stage primaryStage) {
+    public void logOutSequence(Stage primaryStage) {
+        logOutSequence(primaryStage, false);
+    }
+
+    public void logOutSequence(Stage primaryStage, boolean ShutDown) {
+
+        ImageView gifView = new ImageView();
+        ImageView gifView2 = new ImageView();
+
         String musicFile = "Media/shutdown.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setVolume(0.25);
         mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setOnEndOfMedia(primaryStage::close);
+        mediaPlayer.setStopTime(Duration.seconds(2));
+        if (!ShutDown) {
+            mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
+        } else {
+            gifView.setFitWidth(LoginGUI.defaultWidth / 2); // set the width of the GIF image
+            gifView.setFitHeight(LoginGUI.defaultHeight /2); // set the height of the GIF image
+            gifView.setPreserveRatio(true);
+            gifView.setTranslateX(-gifView.getFitWidth() / 1.5); // set the x position of the GIF image
+            gifView.setTranslateY(150); // set the y position of the GIF image
+            String gifFile = "Media/KeFqCfBzmPCEuovZDfHBJ.gif";
+            Image gifImage = new Image(new File(gifFile).toURI().toString());
+            gifView.setImage(gifImage);
+
+            gifView2.setFitWidth(LoginGUI.defaultWidth / 2); // set the width of the GIF image
+            gifView2.setFitHeight(LoginGUI.defaultHeight / 2); // set the height of the GIF image
+            gifView2.setPreserveRatio(true);
+            gifView2.setTranslateX(gifView.getFitWidth()/2-25); // set the x position of the GIF image
+            gifView2.setTranslateY(150); // set the y position of the GIF image
+            gifView2.setImage(gifImage);
+            AffineTransform tx = new AffineTransform(-1, 0, 0, 1, gifView2.getImage().getWidth(), 0);
+            // Convert AffineTransform to javafx.scene.transform.Affine
+            javafx.scene.transform.Affine flip = new javafx.scene.transform.Affine(
+                    tx.getScaleX(), tx.getShearY(), tx.getTranslateX(),
+                    tx.getShearX(), tx.getScaleY(), tx.getTranslateY());
+            gifView2.getTransforms().add(flip);
+
+            mediaPlayer.setOnEndOfMedia(() -> System.exit(0));
+        }
         MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
@@ -295,7 +333,10 @@ public class LoginGUI implements Viewable {
         endCredits.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 36));
 
         StackPane layout = new StackPane();
-        //layout.getChildren().add(mediaView);
+        layout.setStyle("-fx-background-color: white;");
+        layout.getChildren().add(gifView);
+        layout.getChildren().add(gifView2);
+
         layout.getChildren().add(endCredits);
         StackPane.setAlignment(endCredits, Pos.CENTER);
         scene = new Scene(layout, defaultWidth, defaultHeight);
@@ -305,16 +346,6 @@ public class LoginGUI implements Viewable {
 
         primaryStage.show();
 
-        new java.util.Timer().schedule(//WAITS TO SHOW CREDITS THEN CLOSES APP
-                new java.util.TimerTask() {
-            @Override
-            public void run() {
-                System.exit(0);
-            }
-        },
-                2000
-        );
-        //
     }
 
 }
