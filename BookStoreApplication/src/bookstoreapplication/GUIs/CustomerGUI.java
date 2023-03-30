@@ -75,6 +75,8 @@ public class CustomerGUI extends ApplicationGUI {
     public void accessUI(Stage primaryStage) {
         TableView<BookData> table = new TableView<>();
         table.setEditable(true);
+        
+        primaryStage.setResizable(false);
 
         CustomerData CD = (CustomerData) LM.getCurrentUser();
         Label topParagraph = new Label("Welcome " + CD.getUsername() + ". You have " + CD.getPoints() + " points. Your status is " + CD.getStatus() + ".");
