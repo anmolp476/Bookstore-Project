@@ -156,14 +156,14 @@ public class OwnerGUI extends ApplicationGUI {
         topParagraph.setMinHeight(40);
 
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
-        DecimalFormat f = new DecimalFormat("##.00");
+        DecimalFormat f = new DecimalFormat("0.00");
 
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
         col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
          TableColumn<BookData, String> col4 = new TableColumn<>("Author of Book");
         col4.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getAuthor())));
-        TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
-        col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.parseDouble(f.format(Double.valueOf((cellData.getValue().getPrice()))))));
+        TableColumn<BookData, String> col2 = new TableColumn<>("Price of Book");
+        col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(f.format(Double.valueOf((cellData.getValue().getPrice())))));
         
         //TableColumn<BookData, Boolean> TESTCOL = new TableColumn<>("Selected");
         //TESTCOL.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().isSelected().getValue())));
