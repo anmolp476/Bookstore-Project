@@ -55,7 +55,8 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import java.lang.Math;
+import java.text.DecimalFormat;
 /**
  *
  * @author deeps
@@ -84,12 +85,12 @@ public class CustomerGUI extends ApplicationGUI {
         BorderPane.setAlignment(topParagraph, Pos.CENTER);
         table.setItems(FXCollections.observableArrayList(BSA.getBookManager().getBookList()));
 
+        DecimalFormat f = new DecimalFormat("##.00");
         
         TableColumn<BookData, String> col1 = new TableColumn<>("Name of Book");
             col1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>((cellData.getValue().getBookName())));
         TableColumn<BookData, Double> col2 = new TableColumn<>("Price of Book");
-            col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.valueOf((cellData.getValue().getPrice()))));
-
+            col2.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(Double.parseDouble(f.format(Double.valueOf((cellData.getValue().getPrice()))))));
         TableColumn<BookData, Boolean> col3 = new TableColumn<>("Selection Box");
             col3.setCellValueFactory(new PropertyValueFactory("isSelected"));//this is a boolean property variable's name in BookData
             col3.setCellFactory(tc -> new CheckBoxTableCell<>());
