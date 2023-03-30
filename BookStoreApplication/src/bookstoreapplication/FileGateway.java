@@ -15,6 +15,9 @@ import java.util.ArrayList;
  */
 public class FileGateway {
 
+    String CustomerSaveFile = "customers.txt";
+    String BooksSaveFile = "books.txt";
+    
     public void saveAllFiles(ArrayList<UserEntity> userDataList, ArrayList<BookData> bookDataList) {
         System.out.println("ATTEMPING TO SAVE ALL FILES");
         writeUserFile(userDataList);
@@ -34,11 +37,11 @@ public class FileGateway {
         FileInputStream fileIn;
         ObjectInputStream ois;
         try {
-            File file = new File("customers.ser");
+            File file = new File(CustomerSaveFile);
             if (file.createNewFile()) {
                 System.out.println("Save File For Users Not Found, Creating New File...");
             } else {
-                fileIn = new FileInputStream("customers.ser");
+                fileIn = new FileInputStream(CustomerSaveFile);
                 ois = new ObjectInputStream(fileIn);
                 ArrayList<UserEntitySerializable> tmpListSer = new ArrayList<UserEntitySerializable>();
                 ArrayList<UserEntity> tmpList = new ArrayList<UserEntity>();
@@ -98,11 +101,11 @@ public class FileGateway {
         FileInputStream fileIn;
         ObjectInputStream ois;
         try {
-            File file = new File("books.ser");
+            File file = new File(BooksSaveFile);
             if (file.createNewFile()) {
                 System.out.println("Save File For Books Not Found, Creating New File...");
             } else {
-                fileIn = new FileInputStream("books.ser");
+                fileIn = new FileInputStream(BooksSaveFile);
                 ois = new ObjectInputStream(fileIn);
                 ArrayList<BookDataSerializable> tmpListSer = new ArrayList<BookDataSerializable>();
                 ArrayList<BookData> tmpList = new ArrayList<BookData>();
@@ -154,10 +157,10 @@ public class FileGateway {
 
         try {
             //deletes all previous data from file
-            pw = new PrintWriter("customers.ser");
+            pw = new PrintWriter(CustomerSaveFile);
             pw.close();
-            //writes new serialized data into customers.ser
-            fileOut = new FileOutputStream("customers.ser");
+            //writes new serialized data into CustomerSaveFile
+            fileOut = new FileOutputStream(CustomerSaveFile);
             oos = new ObjectOutputStream(fileOut);
 
             //Temp variables for user entity attributes
@@ -199,10 +202,10 @@ public class FileGateway {
         PrintWriter pw;
         try {
             //deletes all previous data from file
-            pw = new PrintWriter("books.ser");
+            pw = new PrintWriter(BooksSaveFile);
             pw.close();
             //writes new serialized data into customers.ser
-            fileOut = new FileOutputStream("books.ser");
+            fileOut = new FileOutputStream(BooksSaveFile);
             oos = new ObjectOutputStream(fileOut);
 
             //Temp variables for bookData
