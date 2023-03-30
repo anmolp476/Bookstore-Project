@@ -106,6 +106,10 @@ public class OwnerGUI extends ApplicationGUI {
 
         SetupChildScenes(primaryStage);
 
+        btn1.setMinWidth(200);
+        btn2.setMinWidth(200);
+        btn3.setMinWidth(200);
+        
         btn1.setStyle(buttonStyle);
         btn2.setStyle(buttonStyle);
         btn3.setStyle(buttonStyle);
