@@ -275,13 +275,19 @@ public class CustomerGUI extends ApplicationGUI {
         System.out.println(""+cost);
         System.out.println(""+(int)cost*100);
         //int pointsLoss = (int)cost*100;
-        int discount = CD.removePoints((int)cost*100);
         double totalCost = 0;
-        if (discount == 0){
-            totalCost = 0;
+
+        if (CD.getPoints()>100){
+        int discount = CD.removePoints((int)cost*100);
+            if (discount == 0){
+                totalCost = 0;
+            }
+            else{
+                totalCost = cost - (discount/100);
+            }
         }
         else{
-            totalCost = cost - (discount/100);
+            totalCost = cost;
         }
         SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
