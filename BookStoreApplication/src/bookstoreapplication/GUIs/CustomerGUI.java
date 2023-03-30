@@ -149,7 +149,7 @@ public class CustomerGUI extends ApplicationGUI {
         logoutButton.setTranslateX(375);
         logoutButton.setTranslateY(-150);
         logoutButton.setMinSize(150, 50);
-        logoutButton.setFont(Font.font("Arial", 20));
+        logoutButton.setFont(Font.font("Helvetica", 20));
         
         //backBtn.setTranslateX(375);
         //backBtn.setTranslateY(-180);
@@ -160,10 +160,10 @@ public class CustomerGUI extends ApplicationGUI {
         TextField pointsField = new TextField();
         TextField statusField = new TextField();
         
-        titleLabel.setFont(Font.font("Arial", 35));
-        totalCostLabel.setFont(Font.font("Arial", 30));
-        pointsLabel.setFont(Font.font("Arial", 30));
-        statusLabel.setFont(Font.font("Arial", 30));
+        titleLabel.setFont(Font.font("Helvetica", 35));
+        totalCostLabel.setFont(Font.font("Helvetica", 30));
+        pointsLabel.setFont(Font.font("Helvetica", 30));
+        statusLabel.setFont(Font.font("Helvetica", 30));
        
         titleLabel.setTranslateY(100);
         totalCostField.setMinWidth(80 + Double.toString(Math.floor(totalCost)).length());
