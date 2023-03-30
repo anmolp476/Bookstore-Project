@@ -290,20 +290,32 @@ public class LoginGUI implements Viewable {
 
     public void logOutSequence(Stage primaryStage, boolean ShutDown) {
 
+        Text endCredits = new Text("Brought to you by, Group_3");
+
         ImageView gifView = new ImageView();
         ImageView gifView2 = new ImageView();
 
         String musicFile = "Media/shutdown.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.25);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setStopTime(Duration.seconds(2));
         if (!ShutDown) {
-            mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
+            {
+                musicFile = "Media/shutdown.mp3";
+                sound = new Media(new File(musicFile).toURI().toString());
+                mediaPlayer = new MediaPlayer(sound);
+                mediaPlayer.setVolume(0.25);
+                mediaPlayer.setAutoPlay(true);
+                mediaPlayer.setStopTime(Duration.seconds(2));
+                
+                mediaPlayer.setOnEndOfMedia(() -> accessUI(primaryStage));
+                endCredits = new Text("Logging Out . . .");
+
+            }
         } else {
+            endCredits = new Text("Brought to you by, Group 3");
+
             gifView.setFitWidth(LoginGUI.defaultWidth / 2); // set the width of the GIF image
-            gifView.setFitHeight(LoginGUI.defaultHeight /2); // set the height of the GIF image
+            gifView.setFitHeight(LoginGUI.defaultHeight / 2); // set the height of the GIF image
             gifView.setPreserveRatio(true);
             gifView.setTranslateX(-gifView.getFitWidth() / 1.5); // set the x position of the GIF image
             gifView.setTranslateY(150); // set the y position of the GIF image
@@ -314,7 +326,7 @@ public class LoginGUI implements Viewable {
             gifView2.setFitWidth(LoginGUI.defaultWidth / 2); // set the width of the GIF image
             gifView2.setFitHeight(LoginGUI.defaultHeight / 2); // set the height of the GIF image
             gifView2.setPreserveRatio(true);
-            gifView2.setTranslateX(gifView.getFitWidth()/2-25); // set the x position of the GIF image
+            gifView2.setTranslateX(gifView.getFitWidth() / 2 - 25); // set the x position of the GIF image
             gifView2.setTranslateY(150); // set the y position of the GIF image
             gifView2.setImage(gifImage);
             AffineTransform tx = new AffineTransform(-1, 0, 0, 1, gifView2.getImage().getWidth(), 0);
@@ -324,12 +336,19 @@ public class LoginGUI implements Viewable {
                     tx.getShearX(), tx.getScaleY(), tx.getTranslateY());
             gifView2.getTransforms().add(flip);
 
+            musicFile = "Media/Super Mario - Stage Win.mp3";
+            sound = new Media(new File(musicFile).toURI().toString());
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(0.15);
+            mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setStopTime(Duration.seconds(6));
+
             mediaPlayer.setOnEndOfMedia(() -> System.exit(0));
         }
+
         MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
-        Text endCredits = new Text("Brought to you by, Group_3");
         endCredits.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 36));
 
         StackPane layout = new StackPane();
