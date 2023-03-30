@@ -78,6 +78,7 @@ public class CustomerCostGUI extends Application {
 
         primaryStage.setTitle("Bookstore App");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

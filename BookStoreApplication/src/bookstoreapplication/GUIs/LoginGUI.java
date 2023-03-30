@@ -61,6 +61,7 @@ public class LoginGUI implements Viewable {
         //mediaPlayer.setAutoPlay(true);
         //MediaView mediaView = new MediaView(mediaPlayer);
         primaryStage.setTitle("BookstoreApplication - Window");
+        primaryStage.setResizable(false);
         // Buttons
         Button loginButton = new Button("Login");
         Button signUpButton = new Button("Sign Up");
@@ -117,7 +118,7 @@ public class LoginGUI implements Viewable {
 
         // Layout 2
         Text title = new Text("Login");
-        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        title.setFont(Font.font("Helvetica", FontWeight.SEMI_BOLD, 18));
         GridPane.setConstraints(title, 1, 0);
         grid.getChildren().add(title);
         grid.getChildren().addAll(labelList);
@@ -199,7 +200,7 @@ public class LoginGUI implements Viewable {
 
     private void signUpLayout(GridPane grid, List<Label> labelList, List<Button> buttonList, List<TextField> textFields) {
         Text title = new Text("Sign Up");
-        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        title.setFont(Font.font("Helvetica", FontWeight.SEMI_BOLD, 18));
         grid.getChildren().add(title);
         grid.getChildren().addAll(labelList);
         grid.getChildren().addAll(buttonList);
@@ -270,7 +271,7 @@ public class LoginGUI implements Viewable {
     private VBox createLayout(List<Button> buttons) {
         VBox layout = new VBox(spacing);
         Text title = new Text("Bookstore Application - Login / Sign Up");
-        title.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 18));
+        title.setFont(Font.font("Helvetica", FontWeight.SEMI_BOLD, 18));
         layout.setAlignment(Pos.CENTER);
         layout.setPadding(new Insets(0, 0, 0, 0));
         layout.getChildren().add(title);
@@ -367,7 +368,7 @@ public class LoginGUI implements Viewable {
         MediaView mediaView = new MediaView(mediaPlayer);
         System.out.println("Shutting down ...");
 
-        endCredits.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 36));
+        endCredits.setFont(Font.font("Helvetica", FontWeight.SEMI_BOLD, 36));
 
         StackPane layout = new StackPane();
         layout.setStyle("-fx-background-color: white;");
