@@ -295,7 +295,8 @@ public class LoginGUI implements Viewable {
         ImageView gifView = new ImageView();
         ImageView gifView2 = new ImageView();
         ImageView gifView3 = new ImageView();
-            
+        ImageView gifView4 = new ImageView();
+
         String musicFile = "Media/shutdown.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -345,12 +346,20 @@ public class LoginGUI implements Viewable {
             Image gifImage3 = new Image(new File(gifFile3).toURI().toString());
             gifView3.setImage(gifImage3);
 
+            gifView4.setFitWidth(LoginGUI.defaultWidth/4); // set the width of the GIF image
+            gifView4.setFitHeight(LoginGUI.defaultHeight/4); // set the height of the GIF image
+            gifView4.setTranslateX(0); // set the x position of the GIF image
+            gifView4.setTranslateY(LoginGUI.defaultHeight/2 - 40); // set the y position of the GIF image
+            String gifFile4 = "Media/output-onlinegiftools.gif";
+            Image gifImage4 = new Image(new File(gifFile4).toURI().toString());
+            gifView4.setImage(gifImage4);
+
             musicFile = "Media/Super Mario - Stage Win.mp3";
             sound = new Media(new File(musicFile).toURI().toString());
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.setVolume(0.15);
             mediaPlayer.setAutoPlay(true);
-            mediaPlayer.setStopTime(Duration.seconds(6));
+            mediaPlayer.setStopTime(Duration.seconds(7));
 
             mediaPlayer.setOnEndOfMedia(() -> System.exit(0));
         }
@@ -365,7 +374,8 @@ public class LoginGUI implements Viewable {
         layout.getChildren().add(gifView);
         layout.getChildren().add(gifView2);
         layout.getChildren().add(gifView3);
-
+        layout.getChildren().add(gifView4);
+        
         layout.getChildren().add(endCredits);
         StackPane.setAlignment(endCredits, Pos.CENTER);
         scene = new Scene(layout, defaultWidth, defaultHeight);
