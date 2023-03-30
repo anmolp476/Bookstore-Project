@@ -27,7 +27,9 @@ public class CartManager extends BookManager
         theList.add(bd);
     }
     
-    
+    public void removeselectbook(BookData bd){
+        theList.remove(bd);
+    }
     
     public double getTotalPrice()
     {

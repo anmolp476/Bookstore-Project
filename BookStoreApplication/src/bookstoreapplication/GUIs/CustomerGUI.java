@@ -246,6 +246,11 @@ public class CustomerGUI extends ApplicationGUI {
         //double points = CD.getPoints();
         //String status = CD.getStatus();
         SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
+            BSA.getCartManager().removeselectbook(BD);
+
+        }
+
         for (BookData i : BSA.getBookManager().getBookList()){
             System.out.println(i.getBookName());
         }        
@@ -279,6 +284,10 @@ public class CustomerGUI extends ApplicationGUI {
             totalCost = cost - (discount/100);
         }
         SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
+        for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
+            BSA.getCartManager().removeselectbook(BD);
+
+        }
         primaryStage.setScene(CustomerCostScene);
     }
     
