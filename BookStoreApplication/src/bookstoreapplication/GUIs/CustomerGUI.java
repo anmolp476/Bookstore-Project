@@ -267,10 +267,12 @@ public class CustomerGUI extends ApplicationGUI {
          //  BSA.getBookManager().getCM().removeBook(BD);
         }
         double cost = BSA.getCartManager().getTotalPrice();
+        System.out.println(""+cost);
+        System.out.println(""+(int)cost*100);
         //int pointsLoss = (int)cost*100;
         int discount = CD.removePoints((int)cost*100);
-        double totalCost;
-        if (CD.removePoints((int)cost*100) == 0){
+        double totalCost = 0;
+        if (discount == 0){
             totalCost = 0;
         }
         else{

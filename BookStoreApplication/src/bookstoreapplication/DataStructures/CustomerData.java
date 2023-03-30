@@ -37,17 +37,25 @@ public class CustomerData extends UserEntity implements Serializable{
     }
     
     public int removePoints(int p){
-        if ((points - p) > 0){
-            points = points - p;
-            return 0;
+        if (points > p){
+            //points = points - p;
+            while (p > 0){
+                p = p - 100;
+                points = points - 100;
+            }
+            System.out.println("Option1: "+ points);
+            return p;
         }
         else{
             int usedPoints = 0;
-            while (points > 100){
-                usedPoints += 100;
-                points -= 100;
+            while (points >= 100){
+                usedPoints = usedPoints + 100;
+                points = points - 100;
             }
+            System.out.println("Option2: "+ points);
+
             return usedPoints;
+
         }
     }
     
