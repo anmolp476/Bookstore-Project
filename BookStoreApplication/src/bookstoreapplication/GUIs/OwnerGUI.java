@@ -74,7 +74,7 @@ public class OwnerGUI extends ApplicationGUI {
     }
 
     public void accessUI(Stage primaryStage) {
-
+        primaryStage.setResizable(false);
         Button btn1 = new Button();
         String buttonStyle = "-fx-font-family: Helvetica; -fx-background-color: #fff; -fx-font-size: 16pt;";
         btn1.setText("Books");
