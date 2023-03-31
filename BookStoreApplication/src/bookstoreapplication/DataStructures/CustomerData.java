@@ -24,10 +24,10 @@ public class CustomerData extends UserEntity implements Serializable{
     public String getStatus(){
         String status;
         if (points >= 1000){
-            status = "gold";
+            status = "Gold";
         }
         else {
-            status = "silver";
+            status = "Silver";
         }
         return status;
     }
