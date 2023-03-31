@@ -292,8 +292,9 @@ public class CustomerGUI extends ApplicationGUI {
         else{
             totalCost = cost;
         }
-        SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
         CD.addPoints((int)totalCost*10);
+
+        SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
 
         for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
             BSA.getCartManager().removeselectbook(BD);
