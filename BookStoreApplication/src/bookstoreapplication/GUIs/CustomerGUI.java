@@ -135,22 +135,21 @@ public class CustomerGUI extends ApplicationGUI {
    
     private void SetupCostScene(Stage primaryStage, double totalCost, double points, String status){
 
+        //Creating the button
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> logoutSequence(primaryStage));
         
         //Button backBtn = new Button("Back");
 
-        
+        //Creating the labels
         Label totalCostLabel = new Label("Total Cost:");
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
         Label titleLabel = new Label("Hello, " + LM.getCurrentUser().getUsername() + ". This is your reciept");        
         Label redeemedLabel = new Label("Points redeemed:");
         Label earnedLabel = new Label("Points earned:");
-        
-        
-        
-        
+      
+        //Setting up the button
         logoutButton.setTranslateX(375);
         logoutButton.setTranslateY(-75);
         logoutButton.setMinSize(150, 50);
@@ -161,51 +160,58 @@ public class CustomerGUI extends ApplicationGUI {
         //backBtn.setMinSize(150, 50);
         //backBtn.setFont(Font.font("Arial", 20));
         
+        //Creating the text fields
         TextField totalCostField = new TextField();
         TextField pointsField = new TextField();
         TextField statusField = new TextField();
         TextField redeemedField = new TextField();
         TextField earnedField = new TextField();
         
+        //Setting up the labels
         titleLabel.setFont(Font.font("Helvetica", 35));
+        titleLabel.setTranslateY(100);
         totalCostLabel.setFont(Font.font("Helvetica", 30));
         pointsLabel.setFont(Font.font("Helvetica", 30));
         statusLabel.setFont(Font.font("Helvetica", 30));
-        redeemedLabel.setFont(Font.font("Arial", 30));
-        earnedLabel.setFont(Font.font("Arial", 30));
-       
-        titleLabel.setTranslateY(100);
+        redeemedLabel.setFont(Font.font("Arial", 20));
+        redeemedLabel.setTranslateX(75);
+        earnedLabel.setFont(Font.font("Arial", 20));
+        earnedLabel.setTranslateX(75);
+        
+        //Setting up the text fields 
         totalCostField.setMinWidth(80 + Double.toString(Math.floor(totalCost)).length());
         pointsField.setMinWidth(80 + Double.toString(Math.floor(points)).length());
         statusField.setMinWidth(80);
-        
         totalCostField.setEditable(false);
         pointsField.setEditable(false);
         statusField.setEditable(false);
         redeemedField.setEditable(false);
         earnedField.setEditable(false);
-        
         totalCostField.setText(Double.toString(totalCost));
         pointsField.setText(Double.toString(points));
+        redeemedField.setText(Double.toString(3));
+        earnedField.setText(Double.toString(3));
         statusField.setText(status);
+        
+        //Creating and setting up the grid
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
-        grid.setHgap(10);
+        grid.setHgap(170);
         grid.setVgap(10);
 
         grid.add(totalCostLabel, 0, 1);
         grid.add(totalCostField, 1, 1);
         grid.add(redeemedLabel, 0, 2);
         grid.add(redeemedField, 1, 2);
-        grid.add(earnedLabel, 0, 3);
-        grid.add(earnedField, 1, 3);
-        grid.add(pointsLabel, 0, 4);
-        grid.add(pointsField, 1, 4);
+        grid.add(pointsLabel, 0, 3);
+        grid.add(pointsField, 1, 3);
+        grid.add(earnedLabel, 0, 4);
+        grid.add(earnedField, 1, 4);
         grid.add(statusLabel, 0, 5);
         grid.add(statusField, 1, 5);
         
         grid.setTranslateY(125);
-        grid.setTranslateX(250);
+        grid.setTranslateX(205);
         
         ImageView gifView = new ImageView();
         gifView.setFitWidth(LoginGUI.defaultWidth); // set the width of the GIF image
