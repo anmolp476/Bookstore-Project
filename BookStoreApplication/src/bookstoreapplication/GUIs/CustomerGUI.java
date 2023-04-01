@@ -113,10 +113,10 @@ public class CustomerGUI extends ApplicationGUI {
         table.getColumns().addAll(col1, col2, col3);
         
         Button buyBtn = new Button("Buy");
-        buyBtn.setOnAction(e -> RegularPurchase(primaryStage, table));
+        buyBtn.setOnAction(e -> RegularPurchase(primaryStage, table, f));
         
         Button redeemBtn = new Button("Redeem Points to Buy");
-        redeemBtn.setOnAction(e -> PointPurchase(primaryStage, table));
+        redeemBtn.setOnAction(e -> PointPurchase(primaryStage, table, f));
         
         Button logoutBtn = new Button("Logout");
         logoutBtn.setOnAction(e -> logoutSequence(primaryStage));
@@ -267,7 +267,7 @@ public class CustomerGUI extends ApplicationGUI {
         CustomerCostScene = new Scene(root, defaultWidth, defaultHeight);
     }
 
-    private void RegularPurchase(Stage primaryStage, TableView<BookData> table){
+    private void RegularPurchase(Stage primaryStage, TableView<BookData> table, DecimalFormat g){
         //CALL THE CART MANAGER CLASS FOR A REGULAR PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
@@ -281,8 +281,11 @@ public class CustomerGUI extends ApplicationGUI {
             BSA.getBookManager().removeBook(BD); // The method for removing books is not yet implemented in book manager.
          //  BSA.getBookManager().getCM().removeBook(BD);
         }
-        CD.addPoints((int)BSA.getCartManager().getTotalPrice()*10);
-        earnedPoints = (int)BSA.getCartManager().getTotalPrice()*10;
+        
+        double ap = BSA.getCartManager().getTotalPrice()*10;
+        ap = Double.parseDouble(g.format(ap));
+        CD.addPoints((int)ap);
+        earnedPoints = (int)ap;
         //double points = CD.getPoints();
         //String status = CD.getStatus();
         SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
@@ -298,7 +301,7 @@ public class CustomerGUI extends ApplicationGUI {
         
     }
     
-    private void PointPurchase(Stage primaryStage,  TableView<BookData> table){
+    private void PointPurchase(Stage primaryStage,  TableView<BookData> table, DecimalFormat g){
         //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
@@ -320,22 +323,22 @@ public class CustomerGUI extends ApplicationGUI {
         System.out.println(""+(int)cost*100);
         //int pointsLoss = (int)cost*100;
         double totalCost = 0;
+        double rp = cost*100;
 
-        if (CD.getPoints()>100){
-            int discount = CD.removePoints((int)cost*100);
-            redeemedPoints = discount;
-            if (discount == 0){
-                totalCost = 0;
-            }
-            else{
-                totalCost = cost - (discount/100);
-            }
+
+        int discount = CD.removePoints((int)rp);
+        redeemedPoints = discount;
+        if (discount == CD.getPoints()){
+            totalCost = 0;
         }
         else{
-            totalCost = cost;
+            totalCost = cost - (double)(discount/100.0);
         }
-        CD.addPoints((int)totalCost*10);
-        earnedPoints = (int)totalCost*10;
+        totalCost = Double.parseDouble(g.format(totalCost));
+        double ap = totalCost*10;
+        System.out.println(""+ap);
+        CD.addPoints((int)ap);
+        earnedPoints = (int)ap;
 
         SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
 
