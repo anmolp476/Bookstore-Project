@@ -141,6 +141,7 @@ public class CustomerGUI extends ApplicationGUI {
         //Creating the button
         Button logoutButton = new Button("Logout");
         logoutButton.setOnAction(e -> logoutSequence(primaryStage));
+            
         
         //Button backBtn = new Button("Back");
 
@@ -190,18 +191,18 @@ public class CustomerGUI extends ApplicationGUI {
         statusField.setEditable(false);
         redeemedField.setEditable(false);
         earnedField.setEditable(false);
-        totalCostField.setText(Double.toString(totalCost));
+        totalCostField.setText(String.format("%.2f", totalCost));
         if(isPointsPurchased)
         {
-             redeemedField.setText(Double.toString(redeemedPoints));
-             pointsField.setText(Double.toString(points));
+             redeemedField.setText(String.format("%.0f", redeemedPoints));
+             pointsField.setText(String.format("%.0f", points));
         }
         else
         {
-            pointsField.setText(Double.toString(points));
-            redeemedField.setText(Double.toString(redeemedPoints));
+            pointsField.setText(String.format("%.0f", points));
+            redeemedField.setText(String.format("%.0f", redeemedPoints));
         }
-        earnedField.setText(Double.toString(earnedPoints));
+        earnedField.setText(String.format("%.0f", earnedPoints));
         statusField.setText(status);
         
         //Creating and setting up the grid
