@@ -57,6 +57,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import java.lang.IllegalArgumentException;
 
 /**
  *
@@ -201,6 +202,10 @@ public class OwnerGUI extends ApplicationGUI {
             public void handle(ActionEvent event) {
                 System.out.println("add test");
                 //customers.add(new CustomerData("Test","code",0));
+                if(Double.parseDouble(bookPriceField.getText())<0)
+                {
+                    throw new IllegalArgumentException("Please input a value that is not negative.");
+                }
                 try{
                     Float priceVal = Float.parseFloat(bookPriceField.getText());
                     BSA.getBookManager().addBook(bookNameField.getText(), bookAuthorField.getText(), priceVal);
