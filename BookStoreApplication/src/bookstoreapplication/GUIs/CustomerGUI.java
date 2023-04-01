@@ -66,6 +66,9 @@ public class CustomerGUI extends ApplicationGUI {
     public LoginManager LM;
     private Scene CustomerCostScene;
     BookStoreApplication BSA;
+    private boolean isPointsPurchased = false;
+    private double redeemedPoints = 0;
+    private double earnedPoints = 0;
 
     public CustomerGUI(LoginManager LM, BookStoreApplication BSA) {
         this.LM = LM;
@@ -188,9 +191,17 @@ public class CustomerGUI extends ApplicationGUI {
         redeemedField.setEditable(false);
         earnedField.setEditable(false);
         totalCostField.setText(Double.toString(totalCost));
-        pointsField.setText(Double.toString(points));
-        redeemedField.setText(Double.toString(3));
-        earnedField.setText(Double.toString(3));
+        if(isPointsPurchased)
+        {
+             redeemedField.setText(Double.toString(redeemedPoints));
+             pointsField.setText(Double.toString(points));
+        }
+        else
+        {
+            pointsField.setText(Double.toString(points));
+            redeemedField.setText(Double.toString(redeemedPoints));
+        }
+        earnedField.setText(Double.toString(earnedPoints));
         statusField.setText(status);
         
         //Creating and setting up the grid
@@ -260,6 +271,7 @@ public class CustomerGUI extends ApplicationGUI {
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
         System.out.println("REGULAR PURCHASE TEST");
+        isPointsPurchased = false;
         
         CustomerData CD = (CustomerData) LM.getCurrentUser(); 
         for (BookData BD : table.getItems().filtered(BookData::isSelected)) {
@@ -269,6 +281,7 @@ public class CustomerGUI extends ApplicationGUI {
          //  BSA.getBookManager().getCM().removeBook(BD);
         }
         CD.addPoints((int)BSA.getCartManager().getTotalPrice()*10);
+        earnedPoints = (int)BSA.getCartManager().getTotalPrice()*10;
         //double points = CD.getPoints();
         //String status = CD.getStatus();
         SetupCostScene(primaryStage, BSA.getCartManager().getTotalPrice(), CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
@@ -288,6 +301,10 @@ public class CustomerGUI extends ApplicationGUI {
         //CALL THE CART MANAGER CLASS FOR A POINT PURCHASE
         //PUT MOST OF THE LOGIC IN THE CART MANAGER CLASS
         
+        isPointsPurchased = true;
+        
+        System.out.println("PointsPurchase " + isPointsPurchased);
+        
         CustomerData CD = (CustomerData) LM.getCurrentUser(); 
         double points = CD.getPoints();
         String status = CD.getStatus();
@@ -304,7 +321,8 @@ public class CustomerGUI extends ApplicationGUI {
         double totalCost = 0;
 
         if (CD.getPoints()>100){
-        int discount = CD.removePoints((int)cost*100);
+            int discount = CD.removePoints((int)cost*100);
+            redeemedPoints = discount;
             if (discount == 0){
                 totalCost = 0;
             }
@@ -316,6 +334,7 @@ public class CustomerGUI extends ApplicationGUI {
             totalCost = cost;
         }
         CD.addPoints((int)totalCost*10);
+        earnedPoints = (int)totalCost*10;
 
         SetupCostScene(primaryStage, totalCost, CD.getPoints(), CD.getStatus());//UPDATE THIS AFTER YOU DO THE LOGIC FOR CALCULATING COST< POINTS< STATUS
 
