@@ -27,7 +27,9 @@ public class CustomerCostGUI extends Application {
     public void start(Stage primaryStage) {
         Button logoutButton = new Button("Logout");
         Label totalCostLabel = new Label("Total Cost:");
-        Label pointsLabel = new Label("Points:");
+        Label pointsLabel = new Label("New Points Balance:");
+        Label redeemedLabel = new Label("Points redeemed:");
+        Label earnedLabel = new Label("Points earned:");
         Label statusLabel = new Label("Status:");
         Label titleLabel = new Label("Hello, CUSTOMER. This is your reciept");
         
@@ -38,12 +40,17 @@ public class CustomerCostGUI extends Application {
         
         TextField totalCostField = new TextField();
         TextField pointsField = new TextField();
+        TextField redeemedField = new TextField();
+        TextField earnedField = new TextField();
         TextField statusField = new TextField();
+        
         
         titleLabel.setFont(Font.font("Arial", 35));
         totalCostLabel.setFont(Font.font("Arial", 30));
         pointsLabel.setFont(Font.font("Arial", 30));
         statusLabel.setFont(Font.font("Arial", 30));
+        redeemedLabel.setFont(Font.font("Arial", 30));
+        earnedLabel.setFont(Font.font("Arial", 30));
 
         totalCostField.setPrefWidth(130);
         pointsField.setPrefWidth(130);
@@ -51,6 +58,8 @@ public class CustomerCostGUI extends Application {
         totalCostField.setEditable(false);
         pointsField.setEditable(false);
         statusField.setEditable(false);
+        redeemedField.setEditable(false);
+        earnedField.setEditable(false);
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_LEFT);
@@ -59,10 +68,14 @@ public class CustomerCostGUI extends Application {
 
         grid.add(totalCostLabel, 0, 1);
         grid.add(totalCostField, 1, 1);
-        grid.add(pointsLabel, 0, 2);
-        grid.add(pointsField, 1, 2);
-        grid.add(statusLabel, 0, 3);
-        grid.add(statusField, 1, 3);
+        grid.add(redeemedLabel, 0, 2);
+        grid.add(redeemedField, 1, 2);
+        grid.add(earnedLabel, 0, 3);
+        grid.add(earnedField, 1, 3);
+        grid.add(pointsLabel, 0, 4);
+        grid.add(pointsField, 1, 4);
+        grid.add(statusLabel, 0, 5);
+        grid.add(statusField, 1, 5);
         
         grid.setTranslateY(90);
         grid.setTranslateX(100);

@@ -145,9 +145,14 @@ public class CustomerGUI extends ApplicationGUI {
         Label pointsLabel = new Label("Points:");
         Label statusLabel = new Label("Status:");
         Label titleLabel = new Label("Hello, " + LM.getCurrentUser().getUsername() + ". This is your reciept");        
+        Label redeemedLabel = new Label("Points redeemed:");
+        Label earnedLabel = new Label("Points earned:");
+        
+        
+        
         
         logoutButton.setTranslateX(375);
-        logoutButton.setTranslateY(-150);
+        logoutButton.setTranslateY(-75);
         logoutButton.setMinSize(150, 50);
         logoutButton.setFont(Font.font("Helvetica", 20));
         
@@ -159,19 +164,27 @@ public class CustomerGUI extends ApplicationGUI {
         TextField totalCostField = new TextField();
         TextField pointsField = new TextField();
         TextField statusField = new TextField();
+        TextField redeemedField = new TextField();
+        TextField earnedField = new TextField();
         
         titleLabel.setFont(Font.font("Helvetica", 35));
         totalCostLabel.setFont(Font.font("Helvetica", 30));
         pointsLabel.setFont(Font.font("Helvetica", 30));
         statusLabel.setFont(Font.font("Helvetica", 30));
+        redeemedLabel.setFont(Font.font("Arial", 30));
+        earnedLabel.setFont(Font.font("Arial", 30));
        
         titleLabel.setTranslateY(100);
         totalCostField.setMinWidth(80 + Double.toString(Math.floor(totalCost)).length());
         pointsField.setMinWidth(80 + Double.toString(Math.floor(points)).length());
         statusField.setMinWidth(80);
+        
         totalCostField.setEditable(false);
         pointsField.setEditable(false);
         statusField.setEditable(false);
+        redeemedField.setEditable(false);
+        earnedField.setEditable(false);
+        
         totalCostField.setText(Double.toString(totalCost));
         pointsField.setText(Double.toString(points));
         statusField.setText(status);
@@ -181,14 +194,18 @@ public class CustomerGUI extends ApplicationGUI {
         grid.setVgap(10);
 
         grid.add(totalCostLabel, 0, 1);
-        grid.add(totalCostField, 25, 1);
-        grid.add(pointsLabel, 0, 2);
-        grid.add(pointsField, 25, 2);
-        grid.add(statusLabel, 0, 3);
-        grid.add(statusField, 25, 3);
+        grid.add(totalCostField, 1, 1);
+        grid.add(redeemedLabel, 0, 2);
+        grid.add(redeemedField, 1, 2);
+        grid.add(earnedLabel, 0, 3);
+        grid.add(earnedField, 1, 3);
+        grid.add(pointsLabel, 0, 4);
+        grid.add(pointsField, 1, 4);
+        grid.add(statusLabel, 0, 5);
+        grid.add(statusField, 1, 5);
         
-        grid.setTranslateY(150);
-        grid.setTranslateX(190);
+        grid.setTranslateY(125);
+        grid.setTranslateX(250);
         
         ImageView gifView = new ImageView();
         gifView.setFitWidth(LoginGUI.defaultWidth); // set the width of the GIF image
