@@ -191,7 +191,7 @@ public class CustomerGUI extends ApplicationGUI {
         statusField.setEditable(false);
         redeemedField.setEditable(false);
         earnedField.setEditable(false);
-        totalCostField.setText(String.format("%.2f", totalCost));
+        totalCostField.setText(String.format("$%.2f", totalCost));
         if(isPointsPurchased)
         {
              redeemedField.setText(String.format("%.0f", redeemedPoints));
